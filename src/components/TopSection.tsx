@@ -1,5 +1,43 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
+const EVENT_DATE = new Date("2026-10-10T00:00:00+09:00");
+
+function useCountdown() {
+  const [diff, setDiff] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  useEffect(() => {
+    const tick = () => {
+      const now = new Date();
+      const ms = EVENT_DATE.getTime() - now.getTime();
+
+      if (ms <= 0) {
+        setDiff({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        return;
+      }
+
+      setDiff({
+        days: Math.floor(ms / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((ms / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((ms / (1000 * 60)) % 60),
+        seconds: Math.floor((ms / 1000) % 60),
+      });
+    };
+
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  return diff;
+}
+
 type TopSectionProps = {
   showLogo: boolean;
   showSubtitle: boolean;
@@ -13,6 +51,8 @@ export function TopSection({
   onTitleAnimationEnd,
   onLogoAnimationEnd,
 }: TopSectionProps) {
+  const { days, hours, minutes, seconds } = useCountdown();
+
   return (
     <section id="top" className="h-screen">
       <div className="max-w-4xl mx-auto px-4 h-full flex flex-col items-center justify-center">
@@ -38,6 +78,17 @@ export function TopSection({
           className={`text-sm md:text-lg text-slate-600 mt-4 font-bold ${showSubtitle ? "animate-fade-in-up" : "opacity-0"}`}
         >
           VTuberとリスナーでつくる体育祭の思い出
+        </p>
+        <p className="block mt-16 font-bold text-center text-xl md:text-2xl">
+          2026年10月10日(土) 10:00〜開催
+        </p>
+        <p className="mt-2 tabular-nums text-xl">
+          あと
+          <span className="font-bold text-2xl text-red-600">{days}</span>日
+          <span className="font-bold ml-2 text-base">
+            ({String(hours).padStart(2, "0")}:{String(minutes).padStart(2, "0")}
+            :{String(seconds).padStart(2, "0")})
+          </span>
         </p>
       </div>
     </section>
