@@ -20,7 +20,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ja" className={`scroll-smooth scroll-pt-12 md:scroll-pt-16 ${headingFont.variable}`}>
+    <html
+      lang="ja"
+      className={`scroll-smooth scroll-pt-12 md:scroll-pt-16 ${headingFont.variable}`}
+    >
       <body className="min-h-screen antialiased">
         <Header />
         <main>{children}</main>

@@ -1,4 +1,3 @@
-/** microCMS ギャラリー1件の型（APIのフィールド名に合わせて変更してください） */
 export type GalleryItem = {
   id: string;
   image?: { url: string; height?: number; width?: number };

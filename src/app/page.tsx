@@ -1,5 +1,6 @@
 "use client";
 
+import type { CreditItem } from "@/types/credits";
 import type { GalleryItem } from "@/types/gallery";
 import { useCallback, useEffect, useState } from "react";
 
@@ -8,12 +9,27 @@ export default function HomePage() {
   const [showSubtitle, setShowSubtitle] = useState(false);
   const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
   const [galleryError, setGalleryError] = useState<string | null>(null);
+  const [credits, setCredits] = useState<CreditItem[]>([]);
+  const [creditsError, setCreditsError] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("/api/gallery")
       .then((res) => (res.ok ? res.json() : Promise.reject(new Error(res.statusText))))
       .then(setGalleryItems)
       .catch((e) => setGalleryError(e instanceof Error ? e.message : "読み込みに失敗しました"));
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/credit")
+      .then((res) =>
+        res.ok ? res.json() : Promise.reject(new Error(res.statusText)),
+      )
+      .then(setCredits)
+      .catch((e) =>
+        setCreditsError(
+          e instanceof Error ? e.message : "読み込みに失敗しました",
+        ),
+      );
   }, []);
 
   const handleTitleAnimationEnd = useCallback(() => {
@@ -35,17 +51,15 @@ export default function HomePage() {
           particleCount: Math.floor(count * particleRatio),
         });
       }
-      fire(0.25, { spread: 26, startVelocity: 55 });
-      fire(0.2, { spread: 60 });
-      fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
-      fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
-      fire(0.1, { spread: 120, startVelocity: 45 });
-      setTimeout(() => setShowLogo(true), 1500);
+      fire(0.5, { spread: 130, startVelocity: 55 });
+      setTimeout(() => {
+        setShowLogo(true);
+      }, 1500);
     });
   }, []);
 
   return (
-    <div className="space-y-8">
+    <div>
       <section id="top" className="h-screen">
         <div className="max-w-4xl mx-auto px-4 h-full flex flex-col items-center justify-center">
           <div className="flex flex-col items-center">
@@ -55,24 +69,26 @@ export default function HomePage() {
               className={`max-h-[min(40vh,280px)] w-auto object-contain mb-8 ${
                 showLogo ? "animate-blur-in" : "opacity-0"
               }`}
-              onAnimationEnd={() => showLogo && setShowSubtitle(true)}
+              onAnimationEnd={() => setShowSubtitle(true)}
             />
             <h1
               className="text-3xl md:text-5xl font-bold mb-2 animate-slide-in-left text-center"
               onAnimationEnd={handleTitleAnimationEnd}
             >
-              八煌フェス<br className="md:hidden" />〜V体育祭〜
+              八煌フェス
+              <br className="md:hidden" />
+              〜V体育祭〜
             </h1>
           </div>
-          {showSubtitle && (
-            <p className="text-sm md:text-lg text-slate-600 mt-4 animate-fade-in-up font-bold">
-              VTuberとリスナーでつくる体育祭の思い出
-            </p>
-          )}
+          <p
+            className={`text-sm md:text-lg text-slate-600 mt-4 font-bold ${showSubtitle ? "animate-fade-in-up" : "opacity-0"}`}
+          >
+            VTuberとリスナーでつくる体育祭の思い出
+          </p>
         </div>
       </section>
-      <section id="schedule" className="h-screen bg-slate-100">
-        <div className="max-w-6xl mx-auto px-4 py-8">
+      <section id="schedule" className="bg-slate-100 border-t border-slate-200">
+        <div className="max-w-6xl mx-auto px-4 py-16">
           <h2 className="text-3xl font-bold mb-8">SCHEDULE</h2>
           <ul className="space-y-8">
             <li>
@@ -81,13 +97,13 @@ export default function HomePage() {
             </li>
             <li>
               <h3 className="text-xl font-bold mb-1">13:00 - 14:00</h3>
-              <p className="text-slate-600">ゲーム1</p>
+              <p className="text-slate-600">マリオカート ワールド</p>
             </li>
           </ul>
         </div>
       </section>
-      <section id="gallery" className="min-h-screen">
-        <div className="max-w-6xl mx-auto px-4 py-8">
+      <section id="gallery" className="border-t border-slate-200">
+        <div className="max-w-6xl mx-auto px-4 py-16">
           <h2 className="text-3xl font-bold mb-6">GALLERY</h2>
           {galleryError && (
             <p className="text-red-600 text-sm mb-4">{galleryError}</p>
@@ -136,23 +152,35 @@ export default function HomePage() {
           )}
         </div>
       </section>
-      <section id="credits" className="h-screen bg-slate-100">
-        <div className="max-w-6xl mx-auto px-4 py-8">
+      <section id="credits" className="bg-slate-100 border-t border-slate-200">
+        <div className="max-w-6xl mx-auto px-4 py-16 pb-32">
           <h2 className="text-3xl font-bold mb-2">CREDITS</h2>
-          <ul>
-            <li>
-              主催：ラルル・アルナイル
-            </li>
-            <li>
-              協力：八煌メンバー
-            </li>
-            <li>
-              協力：八煌リスナー
-            </li>
-            <li>
-              協力：八煌ゲスト
-            </li>
+          {creditsError && (
+            <p className="text-red-600 text-sm mb-4">{creditsError}</p>
+          )}
+          <ul className="space-y-6 mt-6 text-center text-xl">
+            {[...credits]
+              .sort(
+                (a, b) =>
+                  new Date(a.createdAt ?? 0).getTime() -
+                  new Date(b.createdAt ?? 0).getTime()
+              )
+              .map((item) => (
+                <li key={item.id}>
+                  <dl>
+                    <dt className="font-bold">{item.title}</dt>
+                    <dd className="text-slate-600">
+                      {item.items?.map((inner, i) => (
+                        <p key={i}>{inner.name}</p>
+                      ))}
+                    </dd>
+                  </dl>
+                </li>
+              ))}
           </ul>
+          {!creditsError && credits.length === 0 && (
+            <p className="text-slate-500 text-sm mt-6">まだ登録がありません</p>
+          )}
         </div>
       </section>
     </div>
