@@ -11,7 +11,7 @@ export function GallerySection({ items, error }: GallerySectionProps) {
   return (
     <section id="gallery" className="border-t border-slate-200">
       <div className="max-w-6xl mx-auto px-4 py-16">
-        <h2 className="text-3xl font-bold mb-6">GALLERY</h2>
+        <h2 className="text-3xl font-bold mb-6">ART BOARD</h2>
         {error && <p className="text-red-600 text-sm mb-4">{error}</p>}
         <ul className="grid grid-cols-1 md:grid-cols-4 gap-4">
           {items.map((item) => {
@@ -23,27 +23,23 @@ export function GallerySection({ items, error }: GallerySectionProps) {
                   rel: "noopener noreferrer",
                 }
               : {};
+            const wrapperClassName = item.url
+              ? "block rounded-lg overflow-hidden border-2 border-slate-200 bg-white transition-all duration-200 hover:border-slate-400 hover:shadow-lg hover:shadow-slate-300 hover:scale-[1.02] group cursor-pointer"
+              : "block rounded-lg overflow-hidden border border-slate-200 bg-white";
             return (
               <li key={item.id}>
-                <Wrapper
-                  {...wrapperProps}
-                  className="block rounded-lg overflow-hidden border border-slate-200 bg-white hover:border-slate-400 transition-colors"
-                >
-                  {item.image?.url ? (
+                <Wrapper {...wrapperProps} className={wrapperClassName}>
+                  {item.image && (
                     <img
                       src={item.image.url}
-                      alt={item.title || "ギャラリー"}
-                      className="w-full aspect-video object-cover"
+                      alt={item.title || ""}
+                      className={`w-full aspect-video object-contain ${item.url ? "group-hover:brightness-110 transition-[filter] duration-200" : ""}`}
                       width={item.image.width}
                       height={item.image.height}
                     />
-                  ) : (
-                    <div className="w-full aspect-video bg-slate-100 flex items-center justify-center text-slate-400 text-sm">
-                      画像なし
-                    </div>
                   )}
                   {item.title && (
-                    <p className="p-2 text-sm font-medium text-slate-700 truncate">
+                    <p className="p-2 text-md font-medium text-slate-700 truncate">
                       {item.title}
                     </p>
                   )}
