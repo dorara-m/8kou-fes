@@ -3,10 +3,10 @@
 import { useState, useEffect } from 'react';
 
 const navItems = [
-  { href: '#top', label: 'TOP' },
-  { href: '#schedule', label: 'SCHEDULE' },
-  { href: '#gallery', label: 'ART BOARD' },
-  { href: '#credits', label: 'CREDITS' },
+  { href: "#top", label: "TOP" },
+  { href: "#schedule", label: "TimeTable" },
+  { href: "#gallery", label: "ArtBoard" },
+  { href: "#credits", label: "Credits" },
 ];
 
 const SCROLL_THRESHOLD = 80;
@@ -67,10 +67,10 @@ export function Header() {
           onClick={() => setMenuOpen((prev) => !prev)}
           className="p-2 text-slate-600 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-400 rounded"
           aria-expanded={menuOpen}
-          aria-label={menuOpen ? 'メニューを閉じる' : 'メニューを開く'}
+          aria-label={menuOpen ? "メニューを閉じる" : "メニューを開く"}
         >
           <span className="sr-only">
-            {menuOpen ? 'メニューを閉じる' : 'メニューを開く'}
+            {menuOpen ? "メニューを閉じる" : "メニューを開く"}
           </span>
           <svg
             className="w-6 h-6"
