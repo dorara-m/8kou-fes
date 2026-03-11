@@ -85,10 +85,6 @@ export function TopSection({
         <p className="mt-2 tabular-nums text-xl">
           あと
           <span className="font-bold text-2xl text-red-600">{days}</span>日
-          <span className="font-bold ml-2 text-base">
-            ({String(hours).padStart(2, "0")}:{String(minutes).padStart(2, "0")}
-            :{String(seconds).padStart(2, "0")})
-          </span>
         </p>
       </div>
     </section>
