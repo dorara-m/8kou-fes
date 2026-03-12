@@ -9,7 +9,7 @@ type GallerySectionProps = {
 
 export function GallerySection({ items, error }: GallerySectionProps) {
   return (
-    <section id="gallery" className="border-t border-slate-200">
+    <section id="gallery" className="bg-slate-100 border-t border-slate-200">
       <div className="max-w-6xl mx-auto px-4 py-16">
         <h2 className="text-3xl font-bold mb-6">ART BOARD</h2>
         {error && <p className="text-red-600 text-sm mb-4">{error}</p>}

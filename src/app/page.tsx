@@ -2,10 +2,12 @@
 
 import { CreditsSection } from "@/components/CreditsSection";
 import { GallerySection } from "@/components/GallerySection";
-import { ScheduleSection } from "@/components/ScheduleSection";
+import { QASection } from "@/components/QASection";
+import { TimeTableSection } from "@/components/TimeTableSection";
 import { TopSection } from "@/components/TopSection";
 import type { CreditItem } from "@/types/credits";
 import type { GalleryItem } from "@/types/gallery";
+import type { QAItem } from "@/types/qa";
 import { useCallback, useEffect, useState } from "react";
 
 export default function HomePage() {
@@ -15,6 +17,8 @@ export default function HomePage() {
   const [galleryError, setGalleryError] = useState<string | null>(null);
   const [credits, setCredits] = useState<CreditItem[]>([]);
   const [creditsError, setCreditsError] = useState<string | null>(null);
+  const [qaItems, setQaItems] = useState<QAItem[]>([]);
+  const [qaError, setQaError] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("/api/gallery")
@@ -39,6 +43,17 @@ export default function HomePage() {
         setCreditsError(
           e instanceof Error ? e.message : "読み込みに失敗しました",
         ),
+      );
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/qa")
+      .then((res) =>
+        res.ok ? res.json() : Promise.reject(new Error(res.statusText)),
+      )
+      .then(setQaItems)
+      .catch((e) =>
+        setQaError(e instanceof Error ? e.message : "読み込みに失敗しました"),
       );
   }, []);
 
@@ -85,7 +100,8 @@ export default function HomePage() {
         onTitleAnimationEnd={handleTitleAnimationEnd}
         onLogoAnimationEnd={() => setShowSubtitle(true)}
       />
-      <ScheduleSection />
+      <QASection items={qaItems} error={qaError} />
+      <TimeTableSection />
       <GallerySection items={galleryItems} error={galleryError} />
       <CreditsSection items={credits} error={creditsError} />
     </div>

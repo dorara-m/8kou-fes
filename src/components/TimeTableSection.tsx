@@ -1,6 +1,6 @@
-export function ScheduleSection() {
+export function TimeTableSection() {
   return (
-    <section id="schedule" className="bg-slate-100 border-t border-slate-200">
+    <section id="time-table" className="border-t border-slate-200">
       <div className="max-w-6xl mx-auto px-4 py-16">
         <h2 className="text-3xl font-bold mb-8">TIME TABLE</h2>
         <ul className="space-y-8">

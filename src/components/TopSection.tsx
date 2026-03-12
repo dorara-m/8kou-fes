@@ -80,7 +80,7 @@ export function TopSection({
           VTuberとリスナーでつくる体育祭の思い出
         </p>
         <p className="block mt-16 font-bold text-center text-xl md:text-2xl">
-          2026年10月10日(土) 10:00〜開催
+          2026年10月10日(土) 8:00〜開催
         </p>
         <p className="mt-2 tabular-nums text-xl">
           あと
