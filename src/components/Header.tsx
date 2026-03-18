@@ -6,8 +6,9 @@ const navItems = [
   { href: "#top", label: "TOP" },
   { href: "#qa", label: "Q&A" },
   { href: "#time-table", label: "TimeTable" },
+  { href: "#staff", label: "Staff" },
   { href: "#gallery", label: "ArtBoard" },
-  { href: "#credits", label: "Credits" },
+  { href: "#entry", label: "Entry" },
 ];
 
 const SCROLL_THRESHOLD = 80;

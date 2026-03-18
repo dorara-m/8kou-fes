@@ -3,11 +3,14 @@
 import { CreditsSection } from "@/components/CreditsSection";
 import { GallerySection } from "@/components/GallerySection";
 import { QASection } from "@/components/QASection";
+import { EntrySection } from "@/components/EntrySection";
+import { StaffSection } from "@/components/StaffSection";
 import { TimeTableSection } from "@/components/TimeTableSection";
 import { TopSection } from "@/components/TopSection";
 import type { CreditItem } from "@/types/credits";
 import type { GalleryItem } from "@/types/gallery";
 import type { QAItem } from "@/types/qa";
+import type { StaffItem } from "@/types/staff";
 import { useCallback, useEffect, useState } from "react";
 
 export default function HomePage() {
@@ -19,6 +22,8 @@ export default function HomePage() {
   const [creditsError, setCreditsError] = useState<string | null>(null);
   const [qaItems, setQaItems] = useState<QAItem[]>([]);
   const [qaError, setQaError] = useState<string | null>(null);
+  const [staffItems, setStaffItems] = useState<StaffItem[]>([]);
+  const [staffError, setStaffError] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("/api/gallery")
@@ -54,6 +59,19 @@ export default function HomePage() {
       .then(setQaItems)
       .catch((e) =>
         setQaError(e instanceof Error ? e.message : "読み込みに失敗しました"),
+      );
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/staff")
+      .then((res) =>
+        res.ok ? res.json() : Promise.reject(new Error(res.statusText)),
+      )
+      .then(setStaffItems)
+      .catch((e) =>
+        setStaffError(
+          e instanceof Error ? e.message : "読み込みに失敗しました",
+        ),
       );
   }, []);
 
@@ -102,7 +120,9 @@ export default function HomePage() {
       />
       <QASection items={qaItems} error={qaError} />
       <TimeTableSection />
+      <StaffSection items={staffItems} error={staffError} />
       <GallerySection items={galleryItems} error={galleryError} />
+      <EntrySection />
       <CreditsSection items={credits} error={creditsError} />
     </div>
   );
