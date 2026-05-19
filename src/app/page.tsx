@@ -5,7 +5,8 @@ import { GallerySection } from "@/components/GallerySection";
 import { QASection } from "@/components/QASection";
 import { EntrySection } from "@/components/EntrySection";
 import { StaffSection } from "@/components/StaffSection";
-import { TimeTableSection } from "@/components/TimeTableSection";
+// import { TimeTableSection } from "@/components/TimeTableSection";
+import { RoadMapSection } from "@/components/RoadMapSection";
 import { TopSection } from "@/components/TopSection";
 import type { CreditItem } from "@/types/credits";
 import type { GalleryItem } from "@/types/gallery";
@@ -119,11 +120,12 @@ export default function HomePage() {
         onLogoAnimationEnd={() => setShowSubtitle(true)}
       />
       <QASection items={qaItems} error={qaError} />
-      <TimeTableSection />
+      <RoadMapSection />
       <StaffSection items={staffItems} error={staffError} />
-      <GallerySection items={galleryItems} error={galleryError} />
       <EntrySection />
       <CreditsSection items={credits} error={creditsError} />
+      {/* <TimeTableSection /> */}
+      {/* <GallerySection items={galleryItems} error={galleryError} /> */}
     </div>
   );
 }
