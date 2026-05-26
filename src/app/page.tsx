@@ -25,7 +25,6 @@ export default function HomePage() {
   const [staffError, setStaffError] = useState<string | null>(null);
   const [credits, setCredits] = useState<CreditItem[]>([]);
   const [creditsError, setCreditsError] = useState<string | null>(null);
-  const [showFixedEntryButton, setShowFixedEntryButton] = useState(false);
 
   useEffect(() => {
     fetch("/api/captain")
@@ -77,23 +76,6 @@ export default function HomePage() {
       );
   }, []);
 
-  useEffect(() => {
-    const entrySection = document.getElementById("entry");
-    if (!entrySection) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setShowFixedEntryButton(
-          !entry.isIntersecting && entry.boundingClientRect.top < 0,
-        );
-      },
-      { threshold: 0 },
-    );
-
-    observer.observe(entrySection);
-    return () => observer.disconnect();
-  }, []);
-
   const handleTitleAnimationEnd = useCallback(() => {
     import("canvas-confetti").then(({ default: confetti }) => {
       const count = 200;
@@ -142,7 +124,7 @@ export default function HomePage() {
       <EntrySection faqItems={qaItems} faqError={qaError} />
       <StaffSection items={staffItems} error={staffError} />
       <CreditsSection items={credits} error={creditsError} />
-      <EntryFormButton variant="fixed" visible={showFixedEntryButton} />
+      <EntryFormButton variant="fixed" />
       {/* <TimeTableSection /> */}
       {/* <GallerySection items={galleryItems} error={galleryError} /> */}
     </div>
