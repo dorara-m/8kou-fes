@@ -2,7 +2,57 @@
 
 import { useEffect, useState } from "react";
 
-const EVENT_DATE = new Date("2026-10-10T00:00:00+09:00");
+const EVENT_DATE = new Date("2026-10-11T00:00:00+09:00");
+
+/** キャラクター間のフェードイン間隔（秒） */
+const CHARACTER_FADE_IN_STAGGER_S = 0.5;
+
+type CharacterBg = {
+  src: string;
+  alt: string;
+  className: string;
+  zIndex: number;
+  /** フェードイン順: 0=のあ → 1=ゔぁん。 → 2=みぺん → 3=ぬめちゃ → 4=ラルル */
+  fadeInOrder: number;
+};
+
+const CHARACTERS: CharacterBg[] = [
+  {
+    src: "/ralulu.png",
+    alt: "ラルル",
+    className: "bottom-[-130px] left-[7vw] w-[360px]",
+    zIndex: 7,
+    fadeInOrder: 4,
+  },
+  {
+    src: "/mipen.png",
+    alt: "みぺん",
+    className: "bottom-[-20px] left-[1vw] w-[370px]",
+    zIndex: 6,
+    fadeInOrder: 3,
+  },
+  {
+    src: "/numecha.png",
+    alt: "ぬめちゃ",
+    className: "bottom-[-100px] right-[12vw] w-[370px]",
+    zIndex: 6,
+    fadeInOrder: 1,
+  },
+  {
+    src: "/van.png",
+    alt: "ゔぁん。",
+    className: "bottom-[40px] right-[2vw] w-[290px]",
+    zIndex: 5,
+    fadeInOrder: 0,
+  },
+  {
+    src: "/noa.png",
+    alt: "のあ",
+    className: "bottom-[90px] left-[15vw] w-[320px]",
+    zIndex: 5,
+    fadeInOrder: 2,
+  },
+];
 
 function useCountdown() {
   const [diff, setDiff] = useState({
@@ -40,27 +90,55 @@ function useCountdown() {
 
 type TopSectionProps = {
   showLogo: boolean;
-  showSubtitle: boolean;
+  /** true になったらキャラクターのフェードインを開始 */
+  showCharacters: boolean;
   onTitleAnimationEnd: () => void;
   onLogoAnimationEnd: () => void;
 };
 
 export function TopSection({
   showLogo,
-  showSubtitle,
+  showCharacters,
   onTitleAnimationEnd,
   onLogoAnimationEnd,
 }: TopSectionProps) {
   const { days, hours, minutes, seconds } = useCountdown();
 
   return (
-    <section id="top" className="h-screen">
-      <div className="max-w-4xl mx-auto px-4 h-full flex flex-col items-center justify-center">
+    <section id="top" className="relative h-screen">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-0 sr-only sm:not-sr-only"
+      >
+        {CHARACTERS.map(({ src, alt, className, zIndex, fadeInOrder }) => (
+          <div
+            key={src}
+            className={`absolute ${className} ${
+              showCharacters ? "animate-fade-in" : "opacity-0"
+            }`}
+            style={{
+              zIndex,
+              animationDelay: showCharacters
+                ? `${fadeInOrder * CHARACTER_FADE_IN_STAGGER_S}s`
+                : undefined,
+            }}
+          >
+            <img
+              src={src}
+              alt={alt}
+              className="h-full w-full object-contain"
+              draggable={false}
+            />
+          </div>
+        ))}
+      </div>
+
+      <div className="relative z-10 max-w-4xl mx-auto px-4 h-full flex flex-col items-center justify-center">
         <div className="flex flex-col items-center">
           <img
             src="/logo.png"
             alt="八煌フェス"
-            className={`max-h-[min(40vh,280px)] w-auto object-contain mb-8 ${
+            className={`max-h-[min(40vh,300px)] w-auto object-contain mb-8 ${
               showLogo ? "animate-blur-in" : "opacity-0"
             }`}
             onAnimationEnd={onLogoAnimationEnd}
@@ -74,17 +152,12 @@ export function TopSection({
             〜V体育祭〜
           </h1>
         </div>
-        <p
-          className={`text-sm md:text-lg text-slate-600 mt-4 font-bold ${showSubtitle ? "animate-fade-in-up" : "opacity-0"}`}
-        >
-          VTuberとリスナーでつくる体育祭の思い出
+        <p className="block mt-8 font-bold text-center text-xl md:text-2xl font-heading">
+          2026年10月11日(日)<br/><span className="text-lg">9〜23時予定</span>
         </p>
-        <p className="block mt-16 font-bold text-center text-xl md:text-2xl">
-          2026年10月10日(土) 9:00〜開催
-        </p>
-        <p className="mt-2 tabular-nums text-xl">
+        <p className="mt-4 tabular-nums text-xl">
           あと
-          <span className="font-bold text-2xl text-red-600">{days}</span>日
+          <span className="font-bold text-3xl text-red-600">{days}</span>日
         </p>
       </div>
     </section>

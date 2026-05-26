@@ -4,9 +4,11 @@ import { useState, useEffect } from 'react';
 
 const navItems = [
   { href: "#top", label: "TOP" },
-  { href: "#qa", label: "Q&A" },
-  { href: "#staff", label: "Staff" },
-  { href: "#entry", label: "Entry" },
+  { href: "#concept", label: "八煌フェスとは？" },
+  { href: "#captains", label: "団長紹介" },
+  { href: "#entry", label: "応募詳細" },
+  { href: "#staff", label: "運営紹介" },
+  { href: "#credits", label: "クレジット" },
 ];
 
 const SCROLL_THRESHOLD = 80;

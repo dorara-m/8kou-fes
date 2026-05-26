@@ -11,14 +11,14 @@ export function CreditsSection({ items, error }: CreditsSectionProps) {
   return (
     <section id="credits" className="border-t border-slate-200">
       <div className="max-w-6xl mx-auto px-4 py-16 pb-32">
-        <h2 className="text-3xl font-bold mb-2">CREDITS</h2>
+        <h2 className="text-3xl font-bold mb-2">クレジット</h2>
         {error && <p className="text-red-600 text-sm mb-4">{error}</p>}
-        <ul className="space-y-6 mt-6 text-center text-xl">
+        <ul className="space-y-6 mt-6 text-xl">
           {items.map((item) => (
             <li key={item.id}>
               <dl>
-                <dt className="font-bold">{item.title}</dt>
-                <dd className="text-slate-600">
+                <dt className="font-bold font-heading">{item.title}</dt>
+                <dd className="text-slate-600 mt-2">
                   {item.items?.map((inner, i) => (
                     <p key={i}>{inner.name}</p>
                   ))}
