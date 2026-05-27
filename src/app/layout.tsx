@@ -18,7 +18,7 @@ const headingFont = localFont({
 
 export const metadata: Metadata = {
   title: '八煌フェス　〜V体育祭〜',
-  description: 'VTuberとリスナーでつくる体育祭の思い出',
+  description: '「やりたいことを、きみと一緒に。」',
 };
 
 export default function RootLayout({

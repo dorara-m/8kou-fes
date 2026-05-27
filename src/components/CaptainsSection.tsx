@@ -54,7 +54,7 @@ function CaptainCard({ item }: { item: CaptainItem }) {
         </p>
       )}
       {(item.x_url || item.youtube_url) && (
-        <div className="flex gap-3 justify-center mt-auto">
+        <div className="flex gap-2 justify-center mt-auto">
           {item.x_url && (
             <a
               href={item.x_url}
@@ -64,7 +64,7 @@ function CaptainCard({ item }: { item: CaptainItem }) {
               aria-label="X"
             >
               <svg
-                className="w-5 h-5"
+                className="w-6 h-6"
                 viewBox="0 0 24 24"
                 fill="currentColor"
                 aria-hidden
@@ -82,7 +82,7 @@ function CaptainCard({ item }: { item: CaptainItem }) {
               aria-label="YouTube"
             >
               <svg
-                className="w-5 h-5"
+                className="w-6 h-6"
                 viewBox="0 0 24 24"
                 fill="currentColor"
                 aria-hidden
