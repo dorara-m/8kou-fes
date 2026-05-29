@@ -47,7 +47,7 @@ function CaptainCard({ item }: { item: CaptainItem }) {
       )}
       <h3
         className="text-lg md:text-xl font-bold mb-2 text-slate-900 text-center"
-        dangerouslySetInnerHTML={{ __html: item.name }}
+        dangerouslySetInnerHTML={{ __html: item.name ?? "" }}
       ></h3>
       {item.comment && (
         <p className="text-slate-600 whitespace-pre-wrap text-sm mb-4">
