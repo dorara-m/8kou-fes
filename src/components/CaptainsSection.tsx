@@ -17,7 +17,7 @@ function CaptainCard({ item }: { item: CaptainItem }) {
   const labelTextColor = resolveLabelTextColor(item.team_color);
 
   return (
-    <li className="relative flex flex-col items-center text-center overflow-hidden rounded-lg p-5 md:p-6 pt-10 md:pt-11 bg-white border border-slate-200 shadow-sm">
+    <li className="relative flex flex-col items-center overflow-hidden rounded-lg p-5 md:p-6 pt-10 md:pt-11 bg-white border border-slate-200 shadow-sm">
       {item.team_name && (
         <span
           className="absolute top-0 left-0 rounded-br-lg px-2.5 py-1 text-sm font-bold"
@@ -45,11 +45,12 @@ function CaptainCard({ item }: { item: CaptainItem }) {
           aria-hidden
         />
       )}
-      <h3 className="text-lg md:text-xl font-bold mb-2 text-slate-900">
-        {item.name ?? "（名前未登録）"}
-      </h3>
+      <h3
+        className="text-lg md:text-xl font-bold mb-2 text-slate-900 text-center"
+        dangerouslySetInnerHTML={{ __html: item.name }}
+      ></h3>
       {item.comment && (
-        <p className="text-slate-600 whitespace-pre-wrap text-sm mb-4 line-clamp-4">
+        <p className="text-slate-600 whitespace-pre-wrap text-sm mb-4">
           {item.comment}
         </p>
       )}
