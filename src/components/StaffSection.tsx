@@ -11,7 +11,7 @@ export function StaffSection({ items, error }: StaffSectionProps) {
   return (
     <section id="staff" className="border-t border-slate-200 bg-slate-100">
       <div className="max-w-6xl mx-auto px-4 py-16">
-        <h2 className="text-3xl font-bold mb-8">運営紹介</h2>
+        <h2 className="text-3xl font-bold mb-8">実行委員紹介</h2>
         {error && <p className="text-red-600 text-sm mb-4">{error}</p>}
         <ul className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr]  gap-6">
           {items.map((item,index) => {
