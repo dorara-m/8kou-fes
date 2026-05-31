@@ -13,6 +13,7 @@ VTuberイベント用のウェブサイトです。
 | **ギャラリー** | 応援イラスト一覧 | 画像、リンク、クリエイター名 |
 | **競技紹介** | 確定競技・候補競技の一覧 | CMSなし（`src/content/games.ts` で管理） |
 | **運営紹介** | 運営メンバー紹介 | 画像、名前、コメント、X URL、YouTube URL |
+| **クリエイター紹介** | 制作関係者の紹介 | CMSなし（`src/content/creators.ts` で管理） |
 | **クレジット** | 主催・出演者等のクレジット一覧 | 項目名（dt）、各項目のリスト（dd） |
 
 ### 技術スタック
@@ -61,6 +62,7 @@ code/
 - Q&Aは `GET /api/qa` 経由で取得。microCMSでAPI `qa` を作成し、フィールド `question`（テキスト）と `answer`（テキストエリア）を設定
 - 競技紹介はCMSを使わず、`src/content/games.ts` の `CONFIRMED_GAMES`（確定競技）と `CANDIDATE_GAMES`（候補競技）で管理
 - 運営紹介は `GET /api/staff` 経由で取得。microCMSでAPI `staff` を作成し、フィールド `image`（画像）、`image2`（画像）、`name`（テキスト）、`comment`（テキストエリア）、`x_url`（テキスト）、`youtube_url`（テキスト）を設定
+- クリエイター紹介はCMSを使わず、`src/content/creators.ts` の `CREATORS` で管理
 - クレジットは `GET /api/credit` 経由で取得。microCMSでAPI `credit` を作成し、フィールド `term`（テキスト）と `items`（リピーター、中に `name` テキスト）を設定
 
 ### 開発の進め方

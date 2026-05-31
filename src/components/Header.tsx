@@ -10,6 +10,7 @@ const navItems = [
   { href: "#games", label: "競技紹介" },
   { href: "#entry", label: "選手募集中！" },
   { href: "#staff", label: "実行委員紹介" },
+  { href: "#creators", label: "クリエイター紹介" },
   { href: "#credits", label: "クレジット" },
 ];
 

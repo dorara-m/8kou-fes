@@ -9,7 +9,7 @@ type CreditsSectionProps = {
 
 export function CreditsSection({ items, error }: CreditsSectionProps) {
   return (
-    <section id="credits" className="border-t border-slate-200">
+    <section id="credits" className="border-t border-slate-200 bg-slate-100">
       <div className="max-w-6xl mx-auto px-6 py-16 pb-32">
         <h2 className="text-3xl font-bold mb-2">クレジット</h2>
         {error && <p className="text-red-600 text-sm mb-4">{error}</p>}
