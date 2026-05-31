@@ -106,7 +106,18 @@ export default function HomePage() {
           particleCount: Math.floor(count * particleRatio),
         });
       }
-      fire(0.5, { spread: 130, startVelocity: 55 });
+      fire(0.5, {
+        angle: 55,
+        origin: { x: 0, y: 0.85 },
+        spread: 55,
+        startVelocity: 60,
+      });
+      fire(0.5, {
+        angle: 125,
+        origin: { x: 1, y: 0.85 },
+        spread: 55,
+        startVelocity: 60,
+      });
       setTimeout(() => {
         setShowLogo(true);
       }, 1000);
