@@ -22,10 +22,7 @@ export function EntryFAQ({ items, error }: EntryFAQProps) {
 
   return (
     <div id="entry-faq" className="mt-16">
-      <h3 className="text-xl font-bold mb-6 text-slate-900">よくある質問</h3>
-      <p className="text-sm text-slate-600 mb-6">
-        応募に際してよくある質問をまとめます。
-      </p>
+      <h3 id="faq" className="text-xl font-bold mb-6 text-slate-900">よくある質問</h3>
       {error && <p className="text-red-600 text-sm mb-4">{error}</p>}
       <ul className="space-y-0 border border-slate-200 rounded-lg overflow-hidden bg-white">
         {items.map((item) => {

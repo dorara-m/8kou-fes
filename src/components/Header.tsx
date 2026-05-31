@@ -7,7 +7,7 @@ const navItems = [
   { href: "#top", label: "TOP" },
   { href: "#concept", label: "八煌フェスとは？" },
   { href: "#captains", label: "団長紹介" },
-  { href: "#entry", label: "応募詳細" },
+  { href: "#entry", label: "選手募集中！" },
   { href: "#staff", label: "実行委員紹介" },
   { href: "#credits", label: "クレジット" },
 ];
