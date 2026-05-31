@@ -31,7 +31,7 @@ const config: Config = {
           '100%': { filter: 'blur(0)', opacity: '1' },
         },
         'fade-in-up': {
-          '0%': { transform: 'translateY(12px)', opacity: '0' },
+          '0%': { transform: 'translateY(20px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
         },
         'fade-in': {

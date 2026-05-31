@@ -108,7 +108,7 @@ export function TopSection({
     <section id="top" className="relative h-screen">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-0 hidden lg:block"
+        className="pointer-events-none absolute inset-0 z-[1] hidden lg:block"
       >
         <div className="relative mx-auto h-full w-full max-w-[1400px]">
           {CHARACTERS.map(({ src, alt, className, zIndex, fadeInOrder }) => (
@@ -146,7 +146,7 @@ export function TopSection({
             onAnimationEnd={onLogoAnimationEnd}
           />
           <h1
-            className="text-3xl md:text-5xl font-bold mb-2 animate-slide-in-left text-center"
+            className="text-3xl md:text-5xl font-bold mb-2 animate-fade-in-up text-center"
             onAnimationEnd={onTitleAnimationEnd}
           >
             八煌フェス

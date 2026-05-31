@@ -125,7 +125,14 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div>
+    <div className="relative">
+      <img
+        src="/okumono_sora2.png"
+        alt=""
+        className="absolute inset-0 z-0 h-[100vh] md:h-[110vh] w-full object-cover"
+        aria-hidden
+        draggable={false}
+      />
       <TopSection
         showLogo={showLogo}
         showCharacters={showSubtitle}
