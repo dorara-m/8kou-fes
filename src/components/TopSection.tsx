@@ -20,35 +20,35 @@ const CHARACTERS: CharacterBg[] = [
   {
     src: "/ralulu.png",
     alt: "ラルル",
-    className: "bottom-[2vh] left-[2vw] w-[112px] sm:bottom-[-130px] sm:left-[7vw] sm:w-[360px]",
+    className: "bottom-[-130px] left-[7%] w-[360px]",
     zIndex: 7,
     fadeInOrder: 4,
   },
   {
     src: "/mipen.png",
     alt: "みぺん",
-    className: "bottom-0 left-[18vw] w-[108px] sm:bottom-[-20px] sm:left-[1vw] sm:w-[370px]",
+    className: "bottom-[-20px] left-[1%] w-[370px]",
     zIndex: 6,
     fadeInOrder: 3,
   },
   {
     src: "/numecha.png",
     alt: "ぬめちゃ",
-    className: "bottom-0 right-[16vw] w-[112px] sm:bottom-[-100px] sm:right-[12vw] sm:w-[370px]",
+    className: "bottom-[-100px] right-[12%] w-[370px]",
     zIndex: 6,
     fadeInOrder: 1,
   },
   {
     src: "/van.png",
     alt: "ゔぁん。",
-    className: "bottom-[10vh] right-[2vw] w-[86px] sm:bottom-[40px] sm:right-[2vw] sm:w-[290px]",
+    className: "bottom-[40px] right-[2%] w-[290px]",
     zIndex: 5,
     fadeInOrder: 0,
   },
   {
     src: "/noa.png",
     alt: "のあ",
-    className: "bottom-[12vh] left-1/2 w-[105px] -translate-x-1/2 sm:bottom-[90px] sm:left-[15vw] sm:w-[320px] sm:translate-x-0",
+    className: "bottom-[90px] left-[15%] w-[320px]",
     zIndex: 5,
     fadeInOrder: 2,
   },
@@ -108,29 +108,31 @@ export function TopSection({
     <section id="top" className="relative h-screen">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-0 overflow-hidden sm:overflow-visible"
+        className="pointer-events-none absolute inset-0 z-0 hidden lg:block"
       >
-        {CHARACTERS.map(({ src, alt, className, zIndex, fadeInOrder }) => (
-          <div
-            key={src}
-            className={`absolute ${className} ${
-              showCharacters ? "animate-fade-in" : "opacity-0"
-            }`}
-            style={{
-              zIndex,
-              animationDelay: showCharacters
-                ? `${fadeInOrder * CHARACTER_FADE_IN_STAGGER_S}s`
-                : undefined,
-            }}
-          >
-            <img
-              src={src}
-              alt={alt}
-              className="h-full w-full object-contain"
-              draggable={false}
-            />
-          </div>
-        ))}
+        <div className="relative mx-auto h-full w-full max-w-[1400px]">
+          {CHARACTERS.map(({ src, alt, className, zIndex, fadeInOrder }) => (
+            <div
+              key={src}
+              className={`absolute ${className} ${
+                showCharacters ? "animate-fade-in" : "opacity-0"
+              }`}
+              style={{
+                zIndex,
+                animationDelay: showCharacters
+                  ? `${fadeInOrder * CHARACTER_FADE_IN_STAGGER_S}s`
+                  : undefined,
+              }}
+            >
+              <img
+                src={src}
+                alt={alt}
+                className="h-full w-full object-contain"
+                draggable={false}
+              />
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 h-full flex flex-col items-center justify-center">
