@@ -1,6 +1,7 @@
 "use client";
 
 import type { StaffItem } from "@/types/staff";
+import { useState } from "react";
 
 type StaffSectionProps = {
   items: StaffItem[];
@@ -8,14 +9,20 @@ type StaffSectionProps = {
 };
 
 export function StaffSection({ items, error }: StaffSectionProps) {
+  const [showAlternateImages, setShowAlternateImages] = useState<
+    Record<string, boolean>
+  >({});
+
   return (
     <section id="staff" className="border-t border-slate-200 bg-slate-100">
       <div className="max-w-6xl mx-auto px-4 py-16">
         <h2 className="text-3xl font-bold mb-8">実行委員紹介</h2>
         {error && <p className="text-red-600 text-sm mb-4">{error}</p>}
         <ul className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr]  gap-6">
-          {items.map((item,index) => {
+          {items.map((item, index) => {
             const isOrganizer = index === 0;
+            const isAlternateImage = showAlternateImages[item.id] ?? false;
+            const hasAlternateImage = Boolean(item.image && item.image2);
 
             return (
               <li
@@ -30,17 +37,69 @@ export function StaffSection({ items, error }: StaffSectionProps) {
               >
                 {item.image && (
                   <div
-                    className={`w-40 h-40 rounded-full overflow-hidden shrink-0 mb-4 border-2 border-slate-200
+                    className={`relative w-40 h-40 shrink-0 mb-4
                     ${isOrganizer ? "md:h-60 md:w-60" : ""}
                     `}
                   >
-                    <img
-                      src={item.image.url}
-                      alt={item.name ?? ""}
-                      className="w-full h-full object-cover"
-                      width={item.image.width}
-                      height={item.image.height}
-                    />
+                    <div className="relative h-full w-full overflow-hidden rounded-full border-2 border-slate-200">
+                      <img
+                        src={item.image.url}
+                        alt={item.name ?? ""}
+                        className={`h-full w-full object-cover transition-opacity duration-500 ease-out ${
+                          isAlternateImage && hasAlternateImage
+                            ? "opacity-0"
+                            : "opacity-100"
+                        }`}
+                        width={item.image.width}
+                        height={item.image.height}
+                      />
+                      {item.image2 && (
+                        <img
+                          src={item.image2.url}
+                          alt=""
+                          aria-hidden
+                          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out ${
+                            isAlternateImage ? "opacity-100" : "opacity-0"
+                          }`}
+                          width={item.image2.width}
+                          height={item.image2.height}
+                        />
+                      )}
+                    </div>
+                    {hasAlternateImage && (
+                      <button
+                        type="button"
+                        className="absolute -bottom-1 -right-1 grid h-10 w-10 place-items-center rounded-full border border-white/80 bg-slate-900/75 text-white shadow-lg transition hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-slate-900"
+                        aria-label={
+                          isAlternateImage
+                            ? "通常の画像に切り替える"
+                            : "別の画像に切り替える"
+                        }
+                        aria-pressed={isAlternateImage}
+                        onClick={() =>
+                          setShowAlternateImages((current) => ({
+                            ...current,
+                            [item.id]: !isAlternateImage,
+                          }))
+                        }
+                      >
+                        <svg
+                          className="h-5 w-5"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden
+                        >
+                          <path d="M21 12a9 9 0 0 1-15.5 6.2" />
+                          <path d="M3 12A9 9 0 0 1 18.5 5.8" />
+                          <path d="M7 18H3v4" />
+                          <path d="M17 6h4V2" />
+                        </svg>
+                      </button>
+                    )}
                   </div>
                 )}
                 <h3

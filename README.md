@@ -58,7 +58,7 @@ code/
 - 環境変数 `NEXT_PUBLIC_CMS_API_URL`・`NEXT_PUBLIC_CMS_API_KEY` で接続先を指定
 - ギャラリーは `GET /api/gallery` 経由で取得。microCMSのエンドポイント名は `gallery`（`src/app/api/gallery/route.ts` で変更可能）
 - Q&Aは `GET /api/qa` 経由で取得。microCMSでAPI `qa` を作成し、フィールド `question`（テキスト）と `answer`（テキストエリア）を設定
-- 運営紹介は `GET /api/staff` 経由で取得。microCMSでAPI `staff` を作成し、フィールド `image`（画像）、`name`（テキスト）、`comment`（テキストエリア）、`x_url`（テキスト）、`youtube_url`（テキスト）を設定
+- 運営紹介は `GET /api/staff` 経由で取得。microCMSでAPI `staff` を作成し、フィールド `image`（画像）、`image2`（画像）、`name`（テキスト）、`comment`（テキストエリア）、`x_url`（テキスト）、`youtube_url`（テキスト）を設定
 - クレジットは `GET /api/credit` 経由で取得。microCMSでAPI `credit` を作成し、フィールド `term`（テキスト）と `items`（リピーター、中に `name` テキスト）を設定
 
 ### 開発の進め方
