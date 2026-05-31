@@ -1,5 +1,6 @@
 'use client';
 
+import type { MouseEvent } from 'react';
 import { useState, useEffect } from 'react';
 
 const navItems = [
@@ -31,6 +32,16 @@ export function Header() {
   }, [visible]);
 
   const closeMenu = () => setMenuOpen(false);
+  const handleNavClick = (
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    event.preventDefault();
+    closeMenu();
+
+    const target = document.querySelector(href);
+    target?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   const headerTransition =
     'transition-all duration-300 ease-out';
@@ -51,6 +62,7 @@ export function Header() {
           <a
             key={href}
             href={href}
+            onClick={(event) => handleNavClick(event, href)}
             className="text-slate-600 hover:text-slate-900 transition font-bold"
           >
             {label}
@@ -121,7 +133,7 @@ export function Header() {
                 <a
                   key={href}
                   href={href}
-                  onClick={closeMenu}
+                  onClick={(event) => handleNavClick(event, href)}
                   className="py-3 px-4 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition"
                 >
                   {label}
