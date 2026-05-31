@@ -29,7 +29,7 @@ function DecorativeCheck() {
 export function EntrySection({ faqItems, faqError }: EntrySectionProps) {
   return (
     <section id="entry" className="border-t border-slate-200">
-      <div className="max-w-6xl mx-auto px-4 py-16">
+      <div className="max-w-6xl mx-auto px-6 py-16">
         <h2 className="text-3xl font-bold mb-8">応募詳細</h2>
 
         <h3 className="text-xl font-bold mb-6 text-slate-900">応募条件</h3>
