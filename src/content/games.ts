@@ -5,7 +5,7 @@ export const CONFIRMED_GAMES: GameItem[] = [
   {
     title: "スプラトゥーン3",
     description:
-      "ルールはナワバリバトル、ガチルールから1つを予定しています",
+      "ルールはナワバリ+ガチルールどれか1つの計2つを予定しています",
     image: "/game/splatoon3.jpg",
   },
   { title: "テトリス99", image: "/game/tetris99.jpeg" },
