@@ -17,5 +17,6 @@ export const CREATORS: CreatorItem[] = [
     role: "団長任命状制作クリエイター",
     name: "栞つづる",
     image: "/creators/tuzuru.png",
+    xUrl: "https://twitter.com/tuduru_shiori"
   },
 ];

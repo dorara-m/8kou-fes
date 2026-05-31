@@ -14,7 +14,7 @@ export const CONFIRMED_GAMES: GameItem[] = [
 
 export const CANDIDATE_GAMES: GameItem[] = [
   // { title: "候補競技名", description: "補足テキスト" },
-  { title: "マリオカート（Switch）", description: "※ワールドか8DXか参加者さんの所持率で決めようと思っています" },
+  { title: "マリオカート（Switch）", description: "※8dx or ワールド" },
   { title: "Pokémon Champions" },
   { title: "PICOPARK" },
   { title: "Faaast Penguin （ファーストペンギン）" },
