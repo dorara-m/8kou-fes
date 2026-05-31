@@ -20,35 +20,35 @@ const CHARACTERS: CharacterBg[] = [
   {
     src: "/ralulu.png",
     alt: "ラルル",
-    className: "bottom-[-130px] left-[7vw] w-[360px]",
+    className: "bottom-[2vh] left-[2vw] w-[112px] sm:bottom-[-130px] sm:left-[7vw] sm:w-[360px]",
     zIndex: 7,
     fadeInOrder: 4,
   },
   {
     src: "/mipen.png",
     alt: "みぺん",
-    className: "bottom-[-20px] left-[1vw] w-[370px]",
+    className: "bottom-0 left-[18vw] w-[108px] sm:bottom-[-20px] sm:left-[1vw] sm:w-[370px]",
     zIndex: 6,
     fadeInOrder: 3,
   },
   {
     src: "/numecha.png",
     alt: "ぬめちゃ",
-    className: "bottom-[-100px] right-[12vw] w-[370px]",
+    className: "bottom-0 right-[16vw] w-[112px] sm:bottom-[-100px] sm:right-[12vw] sm:w-[370px]",
     zIndex: 6,
     fadeInOrder: 1,
   },
   {
     src: "/van.png",
     alt: "ゔぁん。",
-    className: "bottom-[40px] right-[2vw] w-[290px]",
+    className: "bottom-[10vh] right-[2vw] w-[86px] sm:bottom-[40px] sm:right-[2vw] sm:w-[290px]",
     zIndex: 5,
     fadeInOrder: 0,
   },
   {
     src: "/noa.png",
     alt: "のあ",
-    className: "bottom-[90px] left-[15vw] w-[320px]",
+    className: "bottom-[12vh] left-1/2 w-[105px] -translate-x-1/2 sm:bottom-[90px] sm:left-[15vw] sm:w-[320px] sm:translate-x-0",
     zIndex: 5,
     fadeInOrder: 2,
   },
@@ -108,7 +108,7 @@ export function TopSection({
     <section id="top" className="relative h-screen">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-0 sr-only sm:not-sr-only"
+        className="pointer-events-none absolute inset-0 z-0 overflow-hidden sm:overflow-visible"
       >
         {CHARACTERS.map(({ src, alt, className, zIndex, fadeInOrder }) => (
           <div

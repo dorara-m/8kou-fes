@@ -3,6 +3,7 @@
 import { CaptainsSection } from "@/components/CaptainsSection";
 import { CatchCopySection } from "@/components/CatchCopySection";
 import { EntrySection } from "@/components/EntrySection";
+import { GameSection } from "@/components/GameSection";
 import { StaffSection } from "@/components/StaffSection";
 // import { TimeTableSection } from "@/components/TimeTableSection";
 import { CreditsSection } from "@/components/CreditsSection";
@@ -121,6 +122,7 @@ export default function HomePage() {
       />
       <CatchCopySection />
       <CaptainsSection items={captainItems} error={captainError} />
+      <GameSection />
       <EntrySection faqItems={qaItems} faqError={qaError} />
       <StaffSection items={staffItems} error={staffError} />
       <CreditsSection items={credits} error={creditsError} />
