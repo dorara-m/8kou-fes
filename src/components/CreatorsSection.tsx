@@ -1,6 +1,8 @@
 "use client";
 
 import { CREATORS } from "@/content/creators";
+import { CREATOR_RECRUITMENT_CAPTION } from "@/content/creatorRecruitment";
+import { CreatorRecruitmentButton } from "@/components/CreatorRecruitmentButton";
 import type { CreatorItem } from "@/types/creator";
 
 function XIcon() {
@@ -70,6 +72,12 @@ export function CreatorsSection() {
         {CREATORS.length === 0 && (
           <p className="mt-6 text-sm text-slate-500">まだ登録がありません</p>
         )}
+        <div className="mt-12 text-center">
+          <p className="mb-6 text-sm md:text-base text-slate-600 leading-relaxed">
+            {CREATOR_RECRUITMENT_CAPTION}
+          </p>
+          <CreatorRecruitmentButton />
+        </div>
       </div>
     </section>
   );

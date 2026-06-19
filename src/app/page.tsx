@@ -10,10 +10,9 @@ import { StaffSection } from "@/components/StaffSection";
 import { CreditsSection } from "@/components/CreditsSection";
 import { TopSection } from "@/components/TopSection";
 import type { CaptainItem } from "@/types/captain";
-import type { QAItem } from "@/types/qa";
 import type { StaffItem } from "@/types/staff";
 import type { CreditItem } from "@/types/credits";
-import { EntryFormButton } from "@/components/EntryFormButton";
+import { CreatorRecruitmentButton } from "@/components/CreatorRecruitmentButton";
 import { useCallback, useEffect, useState } from "react";
 
 export default function HomePage() {
@@ -21,8 +20,6 @@ export default function HomePage() {
   const [showSubtitle, setShowSubtitle] = useState(false);
   const [captainItems, setCaptainItems] = useState<CaptainItem[]>([]);
   const [captainError, setCaptainError] = useState<string | null>(null);
-  const [qaItems, setQaItems] = useState<QAItem[]>([]);
-  const [qaError, setQaError] = useState<string | null>(null);
   const [staffItems, setStaffItems] = useState<StaffItem[]>([]);
   const [staffError, setStaffError] = useState<string | null>(null);
   const [credits, setCredits] = useState<CreditItem[]>([]);
@@ -38,17 +35,6 @@ export default function HomePage() {
         setCaptainError(
           e instanceof Error ? e.message : "読み込みに失敗しました",
         ),
-      );
-  }, []);
-
-  useEffect(() => {
-    fetch("/api/qa")
-      .then((res) =>
-        res.ok ? res.json() : Promise.reject(new Error(res.statusText)),
-      )
-      .then(setQaItems)
-      .catch((e) =>
-        setQaError(e instanceof Error ? e.message : "読み込みに失敗しました"),
       );
   }, []);
 
@@ -142,11 +128,11 @@ export default function HomePage() {
       <CatchCopySection />
       <CaptainsSection items={captainItems} error={captainError} />
       <GameSection />
-      <EntrySection faqItems={qaItems} faqError={qaError} />
+      <EntrySection />
       <StaffSection items={staffItems} error={staffError} />
       <CreatorsSection />
       <CreditsSection items={credits} error={creditsError} />
-      <EntryFormButton variant="fixed" />
+      <CreatorRecruitmentButton variant="fixed" />
       {/* <TimeTableSection /> */}
       {/* <GallerySection items={galleryItems} error={galleryError} /> */}
     </div>
