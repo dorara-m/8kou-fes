@@ -69,23 +69,8 @@ export function GameSection() {
 
         {CONFIRMED_GAMES.length > 0 && (
           <div className="mt-8">
-            <h3 className="mb-4 text-xl font-bold text-slate-900">確定競技</h3>
             <GameList items={CONFIRMED_GAMES} />
           </div>
-        )}
-
-        {CANDIDATE_GAMES.length > 0 && (
-          <div className="mt-12">
-            <h3 className="mb-3 text-xl font-bold text-slate-900">候補競技</h3>
-            <p className="mb-4 rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm font-bold leading-relaxed text-slate-700 md:text-base">
-              {CANDIDATE_NOTICE}
-            </p>
-            <GameList items={CANDIDATE_GAMES} showImages={false} />
-          </div>
-        )}
-
-        {CONFIRMED_GAMES.length === 0 && CANDIDATE_GAMES.length === 0 && (
-          <p className="mt-6 text-sm text-slate-500">まだ登録がありません</p>
         )}
       </div>
     </section>

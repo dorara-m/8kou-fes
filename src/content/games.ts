@@ -5,20 +5,12 @@ export const CONFIRMED_GAMES: GameItem[] = [
   {
     title: "スプラトゥーン3",
     description:
-      "ルールはナワバリ+ガチルールどれか1つの計2つを予定しています",
+      "ルールはナワバリとガチエリア。それぞれトーナメント形式で行います",
     image: "/game/splatoon3.jpg",
   },
-  { title: "テトリス99", image: "/game/tetris99.jpeg" },
-  { title: "クイズ大会", description:"zoomラウンジを使用します", image: "/game/quiz.png" },
+  { title: "マリオカート8DX", description: "バトルモードを混合グループ(2チームずつ共闘)で行います", image:"/game/mariokart.png" },
+  { title: "ファーストペンギン", description: "各チーム4人ずつの計32人でレースを行います", image:"/game/penguin.jpg" },
+  { title: "テトリス99", image: "/game/tetris99.jpeg", description:"最終順位がつくまで行います" },
+  { title: "クイズ大会", description:"zoomラウンジを使用したオリジナルクイズを行います", image: "/game/quiz.png" },
 ];
 
-export const CANDIDATE_GAMES: GameItem[] = [
-  // { title: "候補競技名", description: "補足テキスト" },
-  { title: "マリオカート（Switch）", description: "※8dx or ワールド" },
-  { title: "Pokémon Champions" },
-  { title: "PICOPARK" },
-  { title: "Faaast Penguin （ファーストペンギン）" },
-  { title: "PEAK" },
-  { title: "Super Battle Golf" },
-  { title: "パドルパドルパドる（Paddle Paddle Paddle）" },
-];

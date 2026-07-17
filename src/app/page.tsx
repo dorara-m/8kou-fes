@@ -128,7 +128,6 @@ export default function HomePage() {
       <CatchCopySection />
       <CaptainsSection items={captainItems} error={captainError} />
       <GameSection />
-      <EntrySection />
       <StaffSection items={staffItems} error={staffError} />
       <CreatorsSection />
       <CreditsSection items={credits} error={creditsError} />
