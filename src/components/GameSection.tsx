@@ -1,6 +1,6 @@
 "use client";
 
-import { CANDIDATE_GAMES, CONFIRMED_GAMES } from "@/content/games";
+import { CONFIRMED_GAMES } from "@/content/games";
 import type { GameItem } from "@/types/game";
 
 const CANDIDATE_NOTICE =
