@@ -1,5 +1,6 @@
 "use client";
 
+import { resolveLabelTextColor } from "@/lib/teamColor";
 import type { CaptainItem } from "@/types/captain";
 
 type CaptainsSectionProps = {
@@ -7,26 +8,20 @@ type CaptainsSectionProps = {
   error: string | null;
 };
 
-const LIGHT_TEAM_COLOR = "#e7e8ed";
-
-function resolveLabelTextColor(teamColor?: string) {
-  return teamColor === LIGHT_TEAM_COLOR ? "#231815" : "#fff";
-}
-
 function CaptainCard({ item }: { item: CaptainItem }) {
-  const labelTextColor = resolveLabelTextColor(item.team_color);
+  const labelTextColor = resolveLabelTextColor(item.team?.color);
 
   return (
     <li className="relative flex flex-col items-center overflow-hidden rounded-lg p-5 md:p-6 pt-10 md:pt-11 bg-white border border-slate-200 shadow-sm">
-      {item.team_name && (
+      {item.team?.name && (
         <span
           className="absolute top-0 left-0 rounded-br-lg px-2.5 py-1 text-sm font-bold"
           style={{
-            backgroundColor: item.team_color,
+            backgroundColor: item.team.color,
             color: labelTextColor,
           }}
         >
-          {item.team_name}チーム
+          {item.team.name}({item.team.kana})チーム
         </span>
       )}
       {item.image ? (

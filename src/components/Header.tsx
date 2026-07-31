@@ -7,6 +7,7 @@ const navItems = [
   { href: "#top", label: "TOP" },
   { href: "#concept", label: "八煌フェスとは？" },
   { href: "#captains", label: "団長" },
+  { href: "#players", label: "選手" },
   { href: "#games", label: "競技" },
   { href: "#staff", label: "実行委員" },
   { href: "#creators", label: "クリエイター" },

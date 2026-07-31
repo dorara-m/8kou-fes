@@ -1,6 +1,7 @@
 "use client";
 
 import { CaptainsSection } from "@/components/CaptainsSection";
+import { PlayersSection } from "@/components/PlayersSection";
 import { CatchCopySection } from "@/components/CatchCopySection";
 import { CreatorsSection } from "@/components/CreatorsSection";
 import { EntrySection } from "@/components/EntrySection";
@@ -10,8 +11,8 @@ import { StaffSection } from "@/components/StaffSection";
 import { CreditsSection } from "@/components/CreditsSection";
 import { TopSection } from "@/components/TopSection";
 import type { CaptainItem } from "@/types/captain";
+import type { PlayerItem } from "@/types/player";
 import type { StaffItem } from "@/types/staff";
-import type { CreditItem } from "@/types/credits";
 import { CreatorRecruitmentButton } from "@/components/CreatorRecruitmentButton";
 import { useCallback, useEffect, useState } from "react";
 
@@ -20,10 +21,10 @@ export default function HomePage() {
   const [showSubtitle, setShowSubtitle] = useState(false);
   const [captainItems, setCaptainItems] = useState<CaptainItem[]>([]);
   const [captainError, setCaptainError] = useState<string | null>(null);
+  const [playerItems, setPlayerItems] = useState<PlayerItem[]>([]);
+  const [playerError, setPlayerError] = useState<string | null>(null);
   const [staffItems, setStaffItems] = useState<StaffItem[]>([]);
   const [staffError, setStaffError] = useState<string | null>(null);
-  const [credits, setCredits] = useState<CreditItem[]>([]);
-  const [creditsError, setCreditsError] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("/api/captain")
@@ -39,6 +40,19 @@ export default function HomePage() {
   }, []);
 
   useEffect(() => {
+    fetch("/api/player")
+      .then((res) =>
+        res.ok ? res.json() : Promise.reject(new Error(res.statusText)),
+      )
+      .then(setPlayerItems)
+      .catch((e) =>
+        setPlayerError(
+          e instanceof Error ? e.message : "読み込みに失敗しました",
+        ),
+      );
+  }, []);
+
+  useEffect(() => {
     fetch("/api/staff")
       .then((res) =>
         res.ok ? res.json() : Promise.reject(new Error(res.statusText)),
@@ -46,19 +60,6 @@ export default function HomePage() {
       .then(setStaffItems)
       .catch((e) =>
         setStaffError(
-          e instanceof Error ? e.message : "読み込みに失敗しました",
-        ),
-      );
-  }, []);
-
-  useEffect(() => {
-    fetch("/api/credit")
-      .then((res) =>
-        res.ok ? res.json() : Promise.reject(new Error(res.statusText)),
-      )
-      .then(setCredits)
-      .catch((e) =>
-        setCreditsError(
           e instanceof Error ? e.message : "読み込みに失敗しました",
         ),
       );
@@ -127,10 +128,11 @@ export default function HomePage() {
       />
       <CatchCopySection />
       <CaptainsSection items={captainItems} error={captainError} />
+      <PlayersSection items={playerItems} error={playerError} />
       <GameSection />
       <StaffSection items={staffItems} error={staffError} />
       <CreatorsSection />
-      <CreditsSection items={credits} error={creditsError} />
+      <CreditsSection />
       <CreatorRecruitmentButton variant="fixed" />
       {/* <TimeTableSection /> */}
       {/* <GallerySection items={galleryItems} error={galleryError} /> */}
