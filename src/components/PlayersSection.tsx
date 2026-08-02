@@ -104,10 +104,22 @@ function PlayerCard({ item }: { item: PlayerItem }) {
           {item.team.name}
         </span>
       )}
-      <h3
-        className="line-clamp-2 text-center text-base font-bold leading-tight text-slate-900"
-        dangerouslySetInnerHTML={{ __html: item.name ?? "（名前未登録）" }}
-      />
+      {item.kana ? (
+        <h3 className="grid text-center text-base font-bold leading-tight text-slate-900">
+          <span
+            className="col-start-1 row-start-1 line-clamp-2 transition-opacity duration-300 group-hover:opacity-0"
+            dangerouslySetInnerHTML={{ __html: item.name ?? "（名前未登録）" }}
+          />
+          <span className="col-start-1 row-start-1 line-clamp-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            {item.kana}
+          </span>
+        </h3>
+      ) : (
+        <h3
+          className="line-clamp-2 text-center text-base font-bold leading-tight text-slate-900"
+          dangerouslySetInnerHTML={{ __html: item.name ?? "（名前未登録）" }}
+        />
+      )}
     </li>
   );
 }
@@ -143,7 +155,10 @@ export function PlayersSection({ items, error }: PlayersSectionProps) {
   const displayedItems = useMemo(() => {
     if (sortMode === "name") {
       return [...filteredItems].sort((a, b) =>
-        getDisplayName(a.name).localeCompare(getDisplayName(b.name), "ja"),
+        (a.kana ?? getDisplayName(a.name)).localeCompare(
+          b.kana ?? getDisplayName(b.name),
+          "ja",
+        ),
       );
     }
 

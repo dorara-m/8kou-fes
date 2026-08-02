@@ -4,6 +4,7 @@ export type PlayerItem = {
   id: string;
   icon?: { url: string; height?: number; width?: number };
   name?: string;
+  kana?: string;
   youtube_url?: string;
   x_url?: string;
   team?: TeamItem;
