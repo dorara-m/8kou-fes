@@ -60,7 +60,7 @@ export function CreatorsSection() {
   return (
     <section id="creators" className="border-t border-slate-200">
       <div className="mx-auto max-w-6xl px-6 py-16">
-        <h2 className="text-3xl font-bold text-slate-900">クリエイター紹介</h2>
+        <h2 className="text-3xl font-bold text-slate-900">クリエイター様紹介</h2>
         <ul className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
           {CREATORS.map((item, index) => (
             <CreatorCard

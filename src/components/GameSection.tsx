@@ -72,6 +72,11 @@ export function GameSection() {
             <GameList items={CONFIRMED_GAMES} />
           </div>
         )}
+
+        <div className="mt-12 text-center text-sm leading-relaxed text-slate-600">
+          <p>この大会は、任天堂の協賛・提携を受けたものではありません。</p>
+          <p>この大会は、任天堂の<a href="https://www.nintendo.co.jp/tournament_guideline/rules.html" target="_blank" rel="noopener noreferrer" className="text-blue-600">コミュニティ大会への出場および観戦に関する規約</a>に従って開催いたします。</p>
+        </div>
       </div>
     </section>
   );
