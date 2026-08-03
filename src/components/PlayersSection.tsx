@@ -11,6 +11,24 @@ type PlayersSectionProps = {
 
 type SortMode = "random" | "name";
 
+const TEAM_COLOR_ORDER = [
+  "紅蓮",
+  "青波",
+  "桃華",
+  "翠迅",
+  "黄昏",
+  "紫電",
+  "白雪",
+  "黒夜",
+];
+
+function getTeamColorOrderIndex(name: string) {
+  const index = TEAM_COLOR_ORDER.findIndex((teamName) =>
+    name.includes(teamName),
+  );
+  return index === -1 ? TEAM_COLOR_ORDER.length : index;
+}
+
 function shuffleItems<T>(items: T[]): T[] {
   const shuffled = [...items];
   for (let i = shuffled.length - 1; i > 0; i -= 1) {
@@ -136,8 +154,8 @@ export function PlayersSection({ items, error }: PlayersSectionProps) {
         teamMap.set(item.team.id, item.team);
       }
     }
-    return [...teamMap.values()].sort((a, b) =>
-      (a.kana ?? a.name).localeCompare(b.kana ?? b.name, "ja"),
+    return [...teamMap.values()].sort(
+      (a, b) => getTeamColorOrderIndex(a.name) - getTeamColorOrderIndex(b.name),
     );
   }, [items]);
 
@@ -182,7 +200,7 @@ export function PlayersSection({ items, error }: PlayersSectionProps) {
           <div>
             <h2 className="mb-2 text-3xl font-bold tracking-tight">選手紹介</h2>
             <p className="text-slate-600">
-              8色のチームに所属する個性的な選手たち！
+              8色のチームに所属する個性豊かな選手たち！
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
