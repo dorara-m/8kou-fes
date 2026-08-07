@@ -3,7 +3,7 @@ const API_KEY = process.env.NEXT_PUBLIC_CMS_API_KEY;
 
 /**
  * microCMS リストAPIを取得
- * @param endpoint 例: "fan-art"
+ * @param endpoint 例: "gallery"
  */
 export async function fetchMicroCmsList<T>(
   endpoint: string,

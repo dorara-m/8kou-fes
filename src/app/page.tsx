@@ -7,14 +7,12 @@ import { CreatorsSection } from "@/components/CreatorsSection";
 import { EntrySection } from "@/components/EntrySection";
 import { GameSection } from "@/components/GameSection";
 import { StaffSection } from "@/components/StaffSection";
-import { FanArtSection } from "@/components/FanArtSection";
 // import { TimeTableSection } from "@/components/TimeTableSection";
 import { CreditsSection } from "@/components/CreditsSection";
 import { TopSection } from "@/components/TopSection";
 import type { CaptainItem } from "@/types/captain";
 import type { PlayerItem } from "@/types/player";
 import type { StaffItem } from "@/types/staff";
-import type { FanArtItem } from "@/types/fanArt";
 import { CreatorRecruitmentButton } from "@/components/CreatorRecruitmentButton";
 import { useCallback, useEffect, useState } from "react";
 
@@ -27,8 +25,6 @@ export default function HomePage() {
   const [playerError, setPlayerError] = useState<string | null>(null);
   const [staffItems, setStaffItems] = useState<StaffItem[]>([]);
   const [staffError, setStaffError] = useState<string | null>(null);
-  const [fanArtItems, setFanArtItems] = useState<FanArtItem[]>([]);
-  const [fanArtError, setFanArtError] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("/api/captain")
@@ -64,19 +60,6 @@ export default function HomePage() {
       .then(setStaffItems)
       .catch((e) =>
         setStaffError(
-          e instanceof Error ? e.message : "読み込みに失敗しました",
-        ),
-      );
-  }, []);
-
-  useEffect(() => {
-    fetch("/api/fan-art")
-      .then((res) =>
-        res.ok ? res.json() : Promise.reject(new Error(res.statusText)),
-      )
-      .then(setFanArtItems)
-      .catch((e) =>
-        setFanArtError(
           e instanceof Error ? e.message : "読み込みに失敗しました",
         ),
       );
@@ -147,12 +130,12 @@ export default function HomePage() {
       <CaptainsSection items={captainItems} error={captainError} />
       <PlayersSection items={playerItems} error={playerError} />
       <GameSection />
-      <FanArtSection items={fanArtItems} error={fanArtError} />
       <StaffSection items={staffItems} error={staffError} />
       <CreatorsSection />
       <CreditsSection />
       <CreatorRecruitmentButton variant="fixed" />
       {/* <TimeTableSection /> */}
+      {/* <GallerySection items={galleryItems} error={galleryError} /> */}
     </div>
   );
 }
