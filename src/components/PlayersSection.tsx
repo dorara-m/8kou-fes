@@ -1,8 +1,10 @@
 "use client";
 
 import { resolveLabelTextColor } from "@/lib/teamColor";
+import { getYouTubeEmbedUrl } from "@/lib/youtube";
 import type { PlayerItem } from "@/types/player";
 import { useEffect, useMemo, useState } from "react";
+import { VoicePlayerModal } from "./VoicePlayerModal";
 
 type PlayersSectionProps = {
   items: PlayerItem[];
@@ -47,9 +49,16 @@ function getDisplayName(name?: string) {
   return stripHtml(name).trim();
 }
 
-function PlayerCard({ item }: { item: PlayerItem }) {
+function PlayerCard({
+  item,
+  onPlayVoice,
+}: {
+  item: PlayerItem;
+  onPlayVoice: (item: PlayerItem) => void;
+}) {
   const labelTextColor = resolveLabelTextColor(item.team?.color);
   const hasSocialLinks = Boolean(item.x_url || item.youtube_url);
+  const hasVoice = Boolean(getYouTubeEmbedUrl(item.voice_url));
 
   return (
     <li className="group flex flex-col items-center">
@@ -69,6 +78,29 @@ function PlayerCard({ item }: { item: PlayerItem }) {
             className="h-32 w-32 shrink-0 rounded-full bg-slate-100"
             aria-hidden
           />
+        )}
+        {hasVoice && (
+          <button
+            type="button"
+            onClick={() => onPlayVoice(item)}
+            className="absolute -left-1 -top-1 grid h-9 w-9 place-items-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:bg-[#4052a7] hover:text-white focus:outline-none focus:ring-2 focus:ring-violet-600 focus:ring-offset-2"
+            aria-label={`${getDisplayName(item.name)}のボイスを再生`}
+          >
+            <svg
+              className="h-5 w-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden
+            >
+              <path d="M11 5 6 9H2v6h4l5 4z" />
+              <path d="M15.5 8.5a5 5 0 0 1 0 7" />
+              <path d="M19 5a10 10 0 0 1 0 14" />
+            </svg>
+          </button>
         )}
         {hasSocialLinks && (
           <div className="absolute -right-1 -top-1 flex flex-col gap-1">
@@ -146,6 +178,10 @@ export function PlayersSection({ items, error }: PlayersSectionProps) {
   const [sortMode, setSortMode] = useState<SortMode>("random");
   const [selectedTeam, setSelectedTeam] = useState<string>("all");
   const [initialShuffledIds, setInitialShuffledIds] = useState<string[]>([]);
+  const [voicePlayerItem, setVoicePlayerItem] = useState<PlayerItem | null>(
+    null,
+  );
+  const voiceEmbedUrl = getYouTubeEmbedUrl(voicePlayerItem?.voice_url);
 
   const teams = useMemo(() => {
     const teamMap = new Map<string, NonNullable<PlayerItem["team"]>>();
@@ -298,7 +334,11 @@ export function PlayersSection({ items, error }: PlayersSectionProps) {
 
         <ul className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
           {displayedItems.map((item) => (
-            <PlayerCard key={item.id} item={item} />
+            <PlayerCard
+              key={item.id}
+              item={item}
+              onPlayVoice={setVoicePlayerItem}
+            />
           ))}
         </ul>
 
@@ -311,6 +351,14 @@ export function PlayersSection({ items, error }: PlayersSectionProps) {
           </p>
         )}
       </div>
+
+      {voicePlayerItem && voiceEmbedUrl && (
+        <VoicePlayerModal
+          embedUrl={voiceEmbedUrl}
+          name={getDisplayName(voicePlayerItem.name)}
+          onClose={() => setVoicePlayerItem(null)}
+        />
+      )}
     </section>
   );
 }

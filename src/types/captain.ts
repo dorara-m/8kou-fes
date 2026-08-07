@@ -8,5 +8,7 @@ export type CaptainItem = {
   comment?: string;
   x_url?: string;
   youtube_url?: string;
+  /** YouTube動画のURL。団長紹介のボイス再生に使用します。 */
+  voice_url?: string;
   createdAt?: string;
 };

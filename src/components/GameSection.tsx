@@ -3,9 +3,6 @@
 import { CONFIRMED_GAMES } from "@/content/games";
 import type { GameItem } from "@/types/game";
 
-const CANDIDATE_NOTICE =
-  "以下候補から応募フォームのアンケートによって決まります！確定したら告知しますのでお待ちください！";
-
 function GameCard({
   item,
   showImage = true,
@@ -63,7 +60,7 @@ function GameList({
 
 export function GameSection() {
   return (
-    <section id="games" className="border-t border-slate-200 bg-white">
+    <section id="games" className="border-t border-slate-200 bg-slate-100">
       <div className="mx-auto max-w-6xl px-6 py-16">
         <h2 className="text-3xl font-bold text-slate-900">競技紹介</h2>
 

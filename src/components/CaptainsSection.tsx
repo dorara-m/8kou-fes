@@ -1,15 +1,25 @@
 "use client";
 
 import { resolveLabelTextColor } from "@/lib/teamColor";
+import { getYouTubeEmbedUrl } from "@/lib/youtube";
 import type { CaptainItem } from "@/types/captain";
+import { useState } from "react";
+import { VoicePlayerModal } from "./VoicePlayerModal";
 
 type CaptainsSectionProps = {
   items: CaptainItem[];
   error: string | null;
 };
 
-function CaptainCard({ item }: { item: CaptainItem }) {
+function CaptainCard({
+  item,
+  onPlayVoice,
+}: {
+  item: CaptainItem;
+  onPlayVoice: (item: CaptainItem) => void;
+}) {
   const labelTextColor = resolveLabelTextColor(item.team?.color);
+  const hasVoice = Boolean(getYouTubeEmbedUrl(item.voice_url));
 
   return (
     <li className="relative flex flex-col items-center overflow-hidden rounded-lg p-5 md:p-6 pt-10 md:pt-11 bg-white border border-slate-200 shadow-sm">
@@ -25,7 +35,8 @@ function CaptainCard({ item }: { item: CaptainItem }) {
         </span>
       )}
       {item.image ? (
-        <div className="w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden shrink-0 mb-4 border-2 border-slate-200">
+        <div className="relative w-28 h-28 md:w-32 md:h-32 shrink-0 mb-4">
+          <div className="h-full w-full overflow-hidden rounded-full border-2 border-slate-200">
           <img
             src={item.image.url}
             alt={item.name ?? ""}
@@ -33,12 +44,17 @@ function CaptainCard({ item }: { item: CaptainItem }) {
             width={item.image.width}
             height={item.image.height}
           />
+          </div>
+          {hasVoice && <VoiceButton item={item} onPlayVoice={onPlayVoice} />}
         </div>
       ) : (
-        <div
-          className="w-28 h-28 md:w-32 md:h-32 rounded-full shrink-0 mb-4 border-2 border-dashed border-slate-300 bg-slate-50"
-          aria-hidden
-        />
+        <div className="relative w-28 h-28 md:w-32 md:h-32 shrink-0 mb-4">
+          <div
+            className="h-full w-full rounded-full border-2 border-dashed border-slate-300 bg-slate-50"
+            aria-hidden
+          />
+          {hasVoice && <VoiceButton item={item} onPlayVoice={onPlayVoice} />}
+        </div>
       )}
       <h3
         className="text-lg md:text-xl font-bold mb-2 text-slate-900 text-center"
@@ -93,7 +109,44 @@ function CaptainCard({ item }: { item: CaptainItem }) {
   );
 }
 
+function VoiceButton({
+  item,
+  onPlayVoice,
+}: {
+  item: CaptainItem;
+  onPlayVoice: (item: CaptainItem) => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={() => onPlayVoice(item)}
+      className="absolute -left-2 -top-2 grid h-[45px] w-[45px] place-items-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:bg-[#4052a7] hover:text-white focus:outline-none focus:ring-2 focus:ring-violet-600 focus:ring-offset-2"
+      aria-label={`${item.name ?? "団長"}のボイスを再生`}
+    >
+      <svg
+        className="h-6 w-6"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden
+      >
+        <path d="M11 5 6 9H2v6h4l5 4z" />
+        <path d="M15.5 8.5a5 5 0 0 1 0 7" />
+        <path d="M19 5a10 10 0 0 1 0 14" />
+      </svg>
+    </button>
+  );
+}
+
 export function CaptainsSection({ items, error }: CaptainsSectionProps) {
+  const [voicePlayerItem, setVoicePlayerItem] = useState<CaptainItem | null>(
+    null,
+  );
+  const voiceEmbedUrl = getYouTubeEmbedUrl(voicePlayerItem?.voice_url);
+
   return (
     <section id="captains" className="border-t border-slate-200 bg-slate-100">
       <div className="max-w-6xl mx-auto px-6 py-16">
@@ -101,10 +154,21 @@ export function CaptainsSection({ items, error }: CaptainsSectionProps) {
         <p>8色のチームを率いる頼もしい団長たち！</p>
         <ul className="mt-8 grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
           {items.map((item) => (
-            <CaptainCard key={item.id} item={item} />
+            <CaptainCard
+              key={item.id}
+              item={item}
+              onPlayVoice={setVoicePlayerItem}
+            />
           ))}
         </ul>
       </div>
+      {voicePlayerItem && voiceEmbedUrl && (
+        <VoicePlayerModal
+          embedUrl={voiceEmbedUrl}
+          name={voicePlayerItem.name ?? "団長"}
+          onClose={() => setVoicePlayerItem(null)}
+        />
+      )}
     </section>
   );
 }

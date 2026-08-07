@@ -6,6 +6,8 @@ export type PlayerItem = {
   name?: string;
   kana?: string;
   youtube_url?: string;
+  /** YouTube動画のURL。選手紹介のボイス再生に使用します。 */
+  voice_url?: string;
   x_url?: string;
   team?: TeamItem;
   createdAt?: string;
