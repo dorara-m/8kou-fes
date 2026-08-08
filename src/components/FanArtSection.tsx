@@ -40,7 +40,7 @@ export function FanArtSection({ items, error }: FanArtSectionProps) {
           </p>
         </div>
         {error && <p className="text-red-600 text-sm mb-4">{error}</p>}
-        <ul className="grid grid-cols-2 gap-1 overflow-hidden rounded-sm bg-slate-100 sm:grid-cols-3 lg:grid-cols-4">
+        <ul className="grid grid-cols-2 gap-1 overflow-hidden rounded-sm sm:grid-cols-3 lg:grid-cols-4">
           {items.map((item) => {
             return (
               <li key={item.id}>
@@ -48,7 +48,7 @@ export function FanArtSection({ items, error }: FanArtSectionProps) {
                   type="button"
                   onClick={() => item.image && setSelectedItem(item)}
                   disabled={!item.image}
-                  className="group relative block aspect-square w-full overflow-hidden bg-slate-200 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-inset disabled:cursor-default"
+                  className="group relative block aspect-square w-full overflow-hidden bg-slate-100 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-inset disabled:cursor-default"
                   aria-label={
                     item.title ? `${item.title}を拡大表示` : "ファンアートを拡大表示"
                   }
@@ -57,7 +57,7 @@ export function FanArtSection({ items, error }: FanArtSectionProps) {
                     <img
                       src={item.image.url}
                       alt={item.title || "ファンアート"}
-                      className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105 group-focus:scale-105"
+                      className="h-full w-full object-contain transition-[filter] duration-200 group-hover:brightness-95 group-focus:brightness-95"
                       width={item.image.width}
                       height={item.image.height}
                     />
