@@ -64,6 +64,7 @@ code/
 - 運営紹介は `GET /api/staff` 経由で取得。microCMSでAPI `staff` を作成し、フィールド `image`（画像）、`image2`（画像）、`name`（テキスト）、`comment`（テキストエリア）、`x_url`（テキスト）、`youtube_url`（テキスト）を設定
 - 選手紹介は `GET /api/player` 経由で取得。ボイスを表示する場合は、フィールド `voice_url`（テキスト）にYouTubeの動画URLを設定。選手カードのボタンから動画プレイヤーがモーダルで開きます
 - 団長紹介も同様に、`captain` APIの `voice_url`（テキスト）へYouTubeの動画URLを設定するとボイス再生ボタンを表示します
+- 実行委員紹介も同様に、`staff` APIの `voice_url`（テキスト）へYouTubeの動画URLを設定するとボイス再生ボタンを表示します
 - クリエイター紹介はCMSを使わず、`src/content/creators.ts` の `CREATORS` で管理
 - クレジットは `GET /api/credit` 経由で取得。microCMSでAPI `credit` を作成し、フィールド `term`（テキスト）と `items`（リピーター、中に `name` テキスト）を設定
 

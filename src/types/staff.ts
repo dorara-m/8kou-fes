@@ -6,6 +6,7 @@
  * - comment: テキストエリア（コメント）
  * - x_url: テキスト（X (Twitter) URL）
  * - youtube_url: テキスト（YouTube URL）
+ * - voice_url: テキスト（ボイス再生用YouTube URL）
  */
 export type StaffItem = {
   id: string;
@@ -15,5 +16,6 @@ export type StaffItem = {
   comment?: string;
   x_url?: string;
   youtube_url?: string;
+  voice_url?: string;
   createdAt?: string;
 };

@@ -1,7 +1,9 @@
 "use client";
 
+import { getYouTubeEmbedUrl } from "@/lib/youtube";
 import type { StaffItem } from "@/types/staff";
 import { useState } from "react";
+import { VoicePlayerModal } from "./VoicePlayerModal";
 
 type StaffSectionProps = {
   items: StaffItem[];
@@ -12,6 +14,10 @@ export function StaffSection({ items, error }: StaffSectionProps) {
   const [showAlternateImages, setShowAlternateImages] = useState<
     Record<string, boolean>
   >({});
+  const [voicePlayerItem, setVoicePlayerItem] = useState<StaffItem | null>(
+    null,
+  );
+  const voiceEmbedUrl = getYouTubeEmbedUrl(voicePlayerItem?.voice_url);
 
   return (
     <section id="staff" className="border-t border-slate-200 bg-slate-100">
@@ -23,6 +29,7 @@ export function StaffSection({ items, error }: StaffSectionProps) {
             const isOrganizer = index === 0;
             const isAlternateImage = showAlternateImages[item.id] ?? false;
             const hasAlternateImage = Boolean(item.image && item.image2);
+            const hasVoice = Boolean(getYouTubeEmbedUrl(item.voice_url));
 
             return (
               <li
@@ -66,6 +73,29 @@ export function StaffSection({ items, error }: StaffSectionProps) {
                         />
                       )}
                     </div>
+                    {hasVoice && (
+                      <button
+                        type="button"
+                        onClick={() => setVoicePlayerItem(item)}
+                        className="absolute left-1 top-1 grid h-11 w-11 place-items-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:bg-violet-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-violet-600 focus:ring-offset-2"
+                        aria-label={`${item.name ?? "実行委員"}のボイスを再生`}
+                      >
+                        <svg
+                          className="h-5 w-5"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden
+                        >
+                          <path d="M11 5 6 9H2v6h4l5 4z" />
+                          <path d="M15.5 8.5a5 5 0 0 1 0 7" />
+                          <path d="M19 5a10 10 0 0 1 0 14" />
+                        </svg>
+                      </button>
+                    )}
                     {hasAlternateImage && (
                       <button
                         type="button"
@@ -166,6 +196,13 @@ export function StaffSection({ items, error }: StaffSectionProps) {
           <p className="text-slate-500 text-sm mt-6">まだ登録がありません</p>
         )}
       </div>
+      {voicePlayerItem && voiceEmbedUrl && (
+        <VoicePlayerModal
+          embedUrl={voiceEmbedUrl}
+          name={voicePlayerItem.name ?? "実行委員"}
+          onClose={() => setVoicePlayerItem(null)}
+        />
+      )}
     </section>
   );
 }
