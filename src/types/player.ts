@@ -11,4 +11,5 @@ export type PlayerItem = {
   x_url?: string;
   team?: TeamItem;
   createdAt?: string;
+  updatedAt?: string;
 };

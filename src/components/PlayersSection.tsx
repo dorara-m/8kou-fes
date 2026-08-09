@@ -11,7 +11,7 @@ type PlayersSectionProps = {
   error: string | null;
 };
 
-type SortMode = "random" | "name";
+type SortMode = "random" | "name" | "updated";
 
 const TEAM_COLOR_ORDER = [
   "紅蓮",
@@ -216,6 +216,15 @@ export function PlayersSection({ items, error }: PlayersSectionProps) {
       );
     }
 
+    if (sortMode === "updated") {
+      return [...filteredItems].sort((a, b) => {
+        const aUpdatedAt = Date.parse(a.updatedAt ?? a.createdAt ?? "");
+        const bUpdatedAt = Date.parse(b.updatedAt ?? b.createdAt ?? "");
+        return (Number.isNaN(bUpdatedAt) ? 0 : bUpdatedAt) -
+          (Number.isNaN(aUpdatedAt) ? 0 : aUpdatedAt);
+      });
+    }
+
     const orderMap = new Map(
       initialShuffledIds.map((id, index) => [id, index]),
     );
@@ -282,6 +291,18 @@ export function PlayersSection({ items, error }: PlayersSectionProps) {
               aria-pressed={sortMode === "name"}
             >
               名前順
+            </button>
+            <button
+              type="button"
+              onClick={() => setSortMode("updated")}
+              className={`rounded-full px-4 py-2 text-sm font-bold transition ${
+                sortMode === "updated"
+                  ? "bg-slate-900 text-white"
+                  : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+              }`}
+              aria-pressed={sortMode === "updated"}
+            >
+              更新順
             </button>
           </div>
         </div>
