@@ -29,7 +29,7 @@ const staticDataSources = [
   {
     endpoint: "player",
     fileName: "player.json",
-    fields: "id,icon,name,kana,youtube_url,voice_url,x_url,team",
+    fields: "id,icon,name,kana,youtube_url,voice_url,x_url,team,updatedAt",
   },
   {
     endpoint: "staff",
