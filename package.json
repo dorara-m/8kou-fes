@@ -7,8 +7,8 @@
   },
   "scripts": {
     "dev": "next dev",
-    "generate:fan-art": "node scripts/generate-fan-art.mjs",
-    "prebuild": "npm run generate:fan-art",
+    "generate:static-data": "node scripts/generate-static-data.mjs",
+    "prebuild": "npm run generate:static-data",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

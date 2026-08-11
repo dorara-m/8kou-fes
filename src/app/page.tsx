@@ -31,7 +31,7 @@ export default function HomePage() {
   const [fanArtError, setFanArtError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("/api/captain")
+    fetch("/data/captain.json")
       .then((res) =>
         res.ok ? res.json() : Promise.reject(new Error(res.statusText)),
       )
@@ -44,7 +44,7 @@ export default function HomePage() {
   }, []);
 
   useEffect(() => {
-    fetch("/api/player")
+    fetch("/data/player.json")
       .then((res) =>
         res.ok ? res.json() : Promise.reject(new Error(res.statusText)),
       )
@@ -57,7 +57,7 @@ export default function HomePage() {
   }, []);
 
   useEffect(() => {
-    fetch("/api/staff")
+    fetch("/data/staff.json")
       .then((res) =>
         res.ok ? res.json() : Promise.reject(new Error(res.statusText)),
       )
