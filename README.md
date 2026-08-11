@@ -28,14 +28,17 @@ VTuberイベント用のウェブサイトです。
 code/
 ├── README.md                 # 本ドキュメント
 ├── package.json
+├── public/
+│   └── data/
+│       └── fan-art.json      # ビルド時に生成するFAN ARTデータ
+├── scripts/
+│   └── generate-fan-art.mjs  # FAN ART用の静的JSON生成
 ├── src/
 │   ├── app/                  # Next.js App Router
 │   │   ├── layout.tsx        # 共通レイアウト
 │   │   ├── page.tsx          # トップ（スケジュール・ギャラリー・クレジットはセクション）
 │   │   ├── globals.css       # グローバルスタイル
 │   │   └── api/
-│   │       ├── fan-art/      # FAN ART API（microCMS取得）
-│   │       │   └── route.ts
 │   │       ├── qa/           # Q&A API（microCMS取得）
 │   │       │   └── route.ts
 │   │       ├── staff/        # 運営紹介API（microCMS取得）
@@ -58,7 +61,8 @@ code/
 
 - **microCMS** を利用。`src/lib/microcms.ts` でリストAPIを取得
 - 環境変数 `NEXT_PUBLIC_CMS_API_URL`・`NEXT_PUBLIC_CMS_API_KEY` で接続先を指定
-- FAN ARTは `GET /api/fan-art` 経由で取得。microCMSのエンドポイント名は `fan-art`（`src/app/api/fan-art/route.ts` で変更可能）
+- FAN ARTはビルド時にmicroCMSの `fan-art` エンドポイントから `public/data/fan-art.json` を生成し、公開後はこの静的JSONを取得。`npm run generate:fan-art` で手動更新できます。
+- FAN ARTを自動更新するには、microCMSのWebhookにホスティングサービスのDeploy Hookを設定してください。Webhookを受けたデプロイ時に `prebuild` がJSONを再生成します。
 - Q&Aは `GET /api/qa` 経由で取得。microCMSでAPI `qa` を作成し、フィールド `question`（テキスト）と `answer`（テキストエリア）を設定
 - 競技紹介はCMSを使わず、`src/content/games.ts` の `CONFIRMED_GAMES`（確定競技）と `CANDIDATE_GAMES`（候補競技）で管理
 - 運営紹介は `GET /api/staff` 経由で取得。microCMSでAPI `staff` を作成し、フィールド `image`（画像）、`image2`（画像）、`name`（テキスト）、`comment`（テキストエリア）、`x_url`（テキスト）、`youtube_url`（テキスト）を設定

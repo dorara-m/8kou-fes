@@ -70,7 +70,7 @@ export default function HomePage() {
   }, []);
 
   useEffect(() => {
-    fetch("/api/fan-art")
+    fetch("/data/fan-art.json")
       .then((res) =>
         res.ok ? res.json() : Promise.reject(new Error(res.statusText)),
       )
