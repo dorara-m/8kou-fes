@@ -10,7 +10,7 @@ VTuberイベント用のウェブサイトです。
 |-----------|------|-------------------|
 | **Q&A** | よくある質問 | 質問（question）、回答（answer） |
 | **スケジュール** | 未定 |
-| **ギャラリー** | 応援イラスト一覧 | 画像、リンク、クリエイター名 |
+| **FAN ART** | 応援イラスト一覧 | 画像、リンク、クリエイター名 |
 | **競技紹介** | 確定競技・候補競技の一覧 | CMSなし（`src/content/games.ts` で管理） |
 | **運営紹介** | 運営メンバー紹介 | 画像、名前、コメント、X URL、YouTube URL |
 | **クリエイター紹介** | 制作関係者の紹介 | CMSなし（`src/content/creators.ts` で管理） |
@@ -28,14 +28,17 @@ VTuberイベント用のウェブサイトです。
 code/
 ├── README.md                 # 本ドキュメント
 ├── package.json
+├── public/
+│   └── data/
+│       └── fan-art.json      # ビルド時に生成するFAN ARTデータ
+├── scripts/
+│   └── generate-fan-art.mjs  # FAN ART用の静的JSON生成
 ├── src/
 │   ├── app/                  # Next.js App Router
 │   │   ├── layout.tsx        # 共通レイアウト
 │   │   ├── page.tsx          # トップ（スケジュール・ギャラリー・クレジットはセクション）
 │   │   ├── globals.css       # グローバルスタイル
 │   │   └── api/
-│   │       ├── gallery/      # ギャラリーAPI（microCMS取得）
-│   │       │   └── route.ts
 │   │       ├── qa/           # Q&A API（microCMS取得）
 │   │       │   └── route.ts
 │   │       ├── staff/        # 運営紹介API（microCMS取得）
@@ -47,7 +50,7 @@ code/
 │   ├── lib/                  # ユーティリティ・CMS取得
 │   │   └── microcms.ts       # microCMS リストAPI取得
 │   └── types/                # コンテンツ型
-│       ├── gallery.ts        # ギャラリー項目の型
+│       ├── fanArt.ts         # FAN ART項目の型
 │       ├── qa.ts             # Q&A項目の型
 │       ├── staff.ts         # 運営メンバー項目の型
 │       └── credits.ts        # クレジット項目の型
@@ -58,7 +61,8 @@ code/
 
 - **microCMS** を利用。`src/lib/microcms.ts` でリストAPIを取得
 - 環境変数 `NEXT_PUBLIC_CMS_API_URL`・`NEXT_PUBLIC_CMS_API_KEY` で接続先を指定
-- ギャラリーは `GET /api/gallery` 経由で取得。microCMSのエンドポイント名は `gallery`（`src/app/api/gallery/route.ts` で変更可能）
+- FAN ARTはビルド時にmicroCMSの `fan-art` エンドポイントから `public/data/fan-art.json` を生成し、公開後はこの静的JSONを取得。`npm run generate:fan-art` で手動更新できます。
+- FAN ARTを自動更新するには、microCMSのWebhookにホスティングサービスのDeploy Hookを設定してください。Webhookを受けたデプロイ時に `prebuild` がJSONを再生成します。
 - Q&Aは `GET /api/qa` 経由で取得。microCMSでAPI `qa` を作成し、フィールド `question`（テキスト）と `answer`（テキストエリア）を設定
 - 競技紹介はCMSを使わず、`src/content/games.ts` の `CONFIRMED_GAMES`（確定競技）と `CANDIDATE_GAMES`（候補競技）で管理
 - 運営紹介は `GET /api/staff` 経由で取得。microCMSでAPI `staff` を作成し、フィールド `image`（画像）、`image2`（画像）、`name`（テキスト）、`comment`（テキストエリア）、`x_url`（テキスト）、`youtube_url`（テキスト）を設定
