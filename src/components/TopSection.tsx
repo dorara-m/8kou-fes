@@ -180,7 +180,7 @@ export function TopSection({
           </h1>
         </div>
         <p className="block mt-8 font-bold text-center text-xl md:text-2xl font-heading">
-          2026年10月11日(日)<br/><span className="text-lg">9〜23時予定</span>
+          2026年10月11日(日)<br/><span className="text-lg">10:00〜24:00</span>
         </p>
         <p className="mt-4 tabular-nums text-xl">
           あと
