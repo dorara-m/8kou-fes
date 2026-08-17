@@ -38,6 +38,18 @@ const config: Config = {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
         },
+        'bubble-float': {
+          '0%, 100%': { transform: 'translate(0, 0)' },
+          '50%': {
+            transform:
+              'translate(var(--bubble-drift, 16px), var(--bubble-rise, -24px))',
+          },
+        },
+        'bubble-wiggle': {
+          '0%, 100%': { transform: 'rotate(0deg)' },
+          '25%': { transform: 'rotate(-3deg)' },
+          '75%': { transform: 'rotate(3deg)' },
+        },
       },
       animation: {
         'slide-in-left': 'slide-in-left 0.6s ease-out forwards',
@@ -45,6 +57,8 @@ const config: Config = {
         'blur-in': 'blur-in 1.5s ease-out forwards',
         'fade-in-up': 'fade-in-up 0.7s ease-out forwards',
         'fade-in': 'fade-in 0.8s ease-out both',
+        'bubble-float': 'bubble-float 8s ease-in-out infinite',
+        'bubble-wiggle': 'bubble-wiggle 0.3s ease-in-out',
       },
     },
   },

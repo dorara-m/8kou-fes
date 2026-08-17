@@ -4,7 +4,7 @@ import { CaptainsSection } from "@/components/CaptainsSection";
 import { PlayersSection } from "@/components/PlayersSection";
 import { CatchCopySection } from "@/components/CatchCopySection";
 import { CreatorsSection } from "@/components/CreatorsSection";
-import { EntrySection } from "@/components/EntrySection";
+// import { EntrySection } from "@/components/EntrySection";
 import { GameSection } from "@/components/GameSection";
 import { StaffSection } from "@/components/StaffSection";
 import { FanArtSection } from "@/components/FanArtSection";
@@ -142,6 +142,7 @@ export default function HomePage() {
         showCharacters={showSubtitle}
         onTitleAnimationEnd={handleTitleAnimationEnd}
         onLogoAnimationEnd={() => setShowSubtitle(true)}
+        players={playerItems}
       />
       <CatchCopySection />
       <CaptainsSection items={captainItems} error={captainError} />

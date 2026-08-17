@@ -1,11 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { PlayerBubbles } from "./PlayerBubbles";
+import type { PlayerItem } from "@/types/player";
 
 const EVENT_DATE = new Date("2026-10-11T00:00:00+09:00");
 
 /** キャラクター間のフェードイン間隔（秒） */
 const CHARACTER_FADE_IN_STAGGER_S = 0.5;
+/** フェードインアニメーション自体の長さ（秒・tailwind.config.ts の animate-fade-in と合わせる） */
+const CHARACTER_FADE_IN_DURATION_S = 0.8;
 
 type CharacterBg = {
   src: string;
@@ -94,6 +98,7 @@ type TopSectionProps = {
   showCharacters: boolean;
   onTitleAnimationEnd: () => void;
   onLogoAnimationEnd: () => void;
+  players?: PlayerItem[];
 };
 
 export function TopSection({
@@ -101,11 +106,31 @@ export function TopSection({
   showCharacters,
   onTitleAnimationEnd,
   onLogoAnimationEnd,
+  players = [],
 }: TopSectionProps) {
   const { days, hours, minutes, seconds } = useCountdown();
+  const [charactersFadeInDone, setCharactersFadeInDone] = useState(false);
+
+  useEffect(() => {
+    if (!showCharacters) return;
+
+    const maxFadeInOrder = Math.max(...CHARACTERS.map((c) => c.fadeInOrder));
+    const totalMs =
+      (maxFadeInOrder * CHARACTER_FADE_IN_STAGGER_S +
+        CHARACTER_FADE_IN_DURATION_S) *
+      1000;
+    const timer = setTimeout(() => setCharactersFadeInDone(true), totalMs);
+    return () => clearTimeout(timer);
+  }, [showCharacters]);
 
   return (
     <section id="top" className="relative h-screen">
+      <PlayerBubbles
+        items={players}
+        count={10}
+        ready={charactersFadeInDone}
+      />
+
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 z-[1] hidden lg:block"
@@ -135,7 +160,7 @@ export function TopSection({
         </div>
       </div>
 
-      <div className="relative z-10 max-w-4xl mx-auto px-4 h-full flex flex-col items-center justify-center">
+      <div className="pointer-events-none relative z-10 max-w-4xl mx-auto px-4 h-full flex flex-col items-center justify-center">
         <div className="flex flex-col items-center">
           <img
             src="/logo.png"
@@ -155,7 +180,7 @@ export function TopSection({
           </h1>
         </div>
         <p className="block mt-8 font-bold text-center text-xl md:text-2xl font-heading">
-          2026年10月11日(日)<br/><span className="text-lg">9〜23時予定</span>
+          2026年10月11日(日)<br/><span className="text-lg">10:00〜24:00</span>
         </p>
         <p className="mt-4 tabular-nums text-xl">
           あと
