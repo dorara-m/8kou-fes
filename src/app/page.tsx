@@ -142,6 +142,7 @@ export default function HomePage() {
         showCharacters={showSubtitle}
         onTitleAnimationEnd={handleTitleAnimationEnd}
         onLogoAnimationEnd={() => setShowSubtitle(true)}
+        players={playerItems}
       />
       <CatchCopySection />
       <CaptainsSection items={captainItems} error={captainError} />
