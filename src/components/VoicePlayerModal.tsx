@@ -8,11 +8,17 @@ type VoicePlayerModalProps = {
   onClose: () => void;
 };
 
+function getPlainText(value: string) {
+  return value.replace(/<[^>]*>/g, "").trim();
+}
+
 export function VoicePlayerModal({
   embedUrl,
   name,
   onClose,
 }: VoicePlayerModalProps) {
+  const displayName = getPlainText(name);
+
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") onClose();
@@ -35,7 +41,7 @@ export function VoicePlayerModal({
       <div className="w-full max-w-3xl overflow-hidden rounded-xl bg-white shadow-2xl">
         <div className="flex items-center justify-between gap-4 px-4 py-3">
           <h3 id="voice-player-title" className="font-bold text-slate-900">
-            {name} のボイス
+            {displayName} のボイス
           </h3>
           <button
             type="button"
@@ -60,7 +66,7 @@ export function VoicePlayerModal({
           <iframe
             className="h-full w-full"
             src={embedUrl}
-            title={`${name}のボイス動画`}
+            title={`${displayName}のボイス動画`}
             allow="autoplay; encrypted-media; picture-in-picture"
             allowFullScreen
           />
