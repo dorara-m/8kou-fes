@@ -8,8 +8,6 @@ const EVENT_DATE = new Date("2026-10-11T00:00:00+09:00");
 
 /** キャラクター間のフェードイン間隔（秒） */
 const CHARACTER_FADE_IN_STAGGER_S = 0.5;
-/** フェードインアニメーション自体の長さ（秒・tailwind.config.ts の animate-fade-in と合わせる） */
-const CHARACTER_FADE_IN_DURATION_S = 0.8;
 
 type CharacterBg = {
   src: string;
@@ -109,27 +107,10 @@ export function TopSection({
   players = [],
 }: TopSectionProps) {
   const { days, hours, minutes, seconds } = useCountdown();
-  const [charactersFadeInDone, setCharactersFadeInDone] = useState(false);
-
-  useEffect(() => {
-    if (!showCharacters) return;
-
-    const maxFadeInOrder = Math.max(...CHARACTERS.map((c) => c.fadeInOrder));
-    const totalMs =
-      (maxFadeInOrder * CHARACTER_FADE_IN_STAGGER_S +
-        CHARACTER_FADE_IN_DURATION_S) *
-      1000;
-    const timer = setTimeout(() => setCharactersFadeInDone(true), totalMs);
-    return () => clearTimeout(timer);
-  }, [showCharacters]);
 
   return (
     <section id="top" className="relative h-screen">
-      <PlayerBubbles
-        items={players}
-        count={10}
-        ready={charactersFadeInDone}
-      />
+      <PlayerBubbles items={players} count={10} ready={showCharacters} />
 
       <div
         aria-hidden

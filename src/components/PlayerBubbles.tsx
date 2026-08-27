@@ -146,7 +146,7 @@ export function PlayerBubbles({
   return (
     <div
       aria-hidden
-      className={`pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-full lg:h-1/2 ${
+      className={`pointer-events-none absolute inset-x-0 bottom-0 z-[20] h-full lg:z-[2] lg:h-1/2 ${
         shouldShow ? "animate-fade-in" : "opacity-0"
       }`}
     >
