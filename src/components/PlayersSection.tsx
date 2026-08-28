@@ -3,8 +3,11 @@
 import { resolveLabelTextColor } from "@/lib/teamColor";
 import { getYouTubeEmbedUrl } from "@/lib/youtube";
 import type { PlayerItem } from "@/types/player";
-import { useEffect, useMemo, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { VoicePlayerModal } from "./VoicePlayerModal";
+
+const TEAM_QUERY_KEY = "team";
 
 type PlayersSectionProps = {
   items: PlayerItem[];
@@ -174,7 +177,12 @@ function PlayerCard({
   );
 }
 
-export function PlayersSection({ items, error }: PlayersSectionProps) {
+function PlayersSectionInner({ items, error }: PlayersSectionProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const teamParam = searchParams.get(TEAM_QUERY_KEY);
+
   const [sortMode, setSortMode] = useState<SortMode>("random");
   const [selectedTeam, setSelectedTeam] = useState<string>("all");
   const [initialShuffledIds, setInitialShuffledIds] = useState<string[]>([]);
@@ -182,6 +190,7 @@ export function PlayersSection({ items, error }: PlayersSectionProps) {
     null,
   );
   const voiceEmbedUrl = getYouTubeEmbedUrl(voicePlayerItem?.voice_url);
+  const sectionRef = useRef<HTMLElement | null>(null);
 
   const teams = useMemo(() => {
     const teamMap = new Map<string, NonNullable<PlayerItem["team"]>>();
@@ -197,9 +206,35 @@ export function PlayersSection({ items, error }: PlayersSectionProps) {
 
   useEffect(() => {
     setInitialShuffledIds(shuffleItems(items.map((item) => item.id)));
-    setSelectedTeam("all");
+    const matchedTeam = teamParam
+      ? items.find(
+          (item) =>
+            item.team?.id === teamParam || item.team?.name === teamParam,
+        )?.team?.id
+      : undefined;
+    setSelectedTeam(matchedTeam ?? "all");
     setSortMode("random");
+    if (teamParam && items.length > 0) {
+      sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    // teamParam is read only once per items load (from the URL on entry);
+    // it must not re-trigger this reset every time the user picks a team.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items]);
+
+  const selectTeam = (team: { id: string; name: string } | null) => {
+    setSelectedTeam(team?.id ?? "all");
+    const params = new URLSearchParams(searchParams.toString());
+    if (team) {
+      params.set(TEAM_QUERY_KEY, team.name);
+    } else {
+      params.delete(TEAM_QUERY_KEY);
+    }
+    const query = params.toString();
+    router.replace(query ? `${pathname}?${query}` : pathname, {
+      scroll: false,
+    });
+  };
 
   const filteredItems = useMemo(() => {
     if (selectedTeam === "all") return items;
@@ -239,7 +274,11 @@ export function PlayersSection({ items, error }: PlayersSectionProps) {
   };
 
   return (
-    <section id="players" className="border-t border-slate-200 bg-white">
+    <section
+      id="players"
+      ref={sectionRef}
+      className="border-t border-slate-200 bg-white"
+    >
       <div className="max-w-6xl mx-auto px-6 py-16">
         <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
@@ -314,7 +353,7 @@ export function PlayersSection({ items, error }: PlayersSectionProps) {
             </span>
             <button
               type="button"
-              onClick={() => setSelectedTeam("all")}
+              onClick={() => selectTeam(null)}
               className={`rounded-full px-4 py-2 text-sm font-bold transition ${
                 selectedTeam === "all"
                   ? "bg-slate-900 text-white"
@@ -332,7 +371,7 @@ export function PlayersSection({ items, error }: PlayersSectionProps) {
                 <button
                   key={team.id}
                   type="button"
-                  onClick={() => setSelectedTeam(team.id)}
+                  onClick={() => selectTeam(team)}
                   className={`rounded-full px-4 py-2 text-sm font-bold transition ${
                     isSelected
                       ? "ring-2 ring-offset-2 ring-slate-900"
@@ -381,5 +420,13 @@ export function PlayersSection({ items, error }: PlayersSectionProps) {
         />
       )}
     </section>
+  );
+}
+
+export function PlayersSection(props: PlayersSectionProps) {
+  return (
+    <Suspense fallback={null}>
+      <PlayersSectionInner {...props} />
+    </Suspense>
   );
 }
