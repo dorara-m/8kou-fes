@@ -1,5 +1,28 @@
 [
   {
+    "id": "cxons4pnl66",
+    "icon": {
+      "url": "https://images.microcms-assets.io/assets/1d16089db66b4734a5707ac6e77dab36/75c5c8a65ca44b25b8a591a01a7b2195/saki2.png",
+      "height": 600,
+      "width": 600
+    },
+    "name": "今際 サキ",
+    "kana": "いまわ さき",
+    "youtube_url": "https://www.youtube.com/@Saki_Imawa",
+    "x_url": "https://x.com/Saki_Imawa",
+    "team": {
+      "id": "e3li73yojqyq",
+      "createdAt": "2026-07-21T16:27:19.740Z",
+      "updatedAt": "2026-07-21T16:31:05.122Z",
+      "publishedAt": "2026-07-21T16:27:19.740Z",
+      "revisedAt": "2026-07-21T16:31:05.122Z",
+      "name": "紅蓮",
+      "kana": "ぐれん",
+      "color": "#d71f26"
+    },
+    "updatedAt": "2026-08-28T01:20:03.471Z"
+  },
+  {
     "id": "rygag32hd7u",
     "icon": {
       "url": "https://images.microcms-assets.io/assets/1d16089db66b4734a5707ac6e77dab36/4db9f8ece07f4c3c9e385e7692d68f56/09.png",
@@ -191,6 +214,7 @@
     },
     "name": "シエリス・アルクリス",
     "youtube_url": "https://www.youtube.com/@SielisArklis63",
+    "voice_url": "https://youtube.com/shorts/Mz2MDY0fygw?feature=share",
     "x_url": "https://x.com/SielisArklis63",
     "team": {
       "id": "3ehcky1etdw",
@@ -202,7 +226,7 @@
       "kana": "すいじん",
       "color": "#55b047"
     },
-    "updatedAt": "2026-08-02T15:51:27.666Z"
+    "updatedAt": "2026-08-26T18:45:05.768Z"
   },
   {
     "id": "0tgrzdiig4rx",
@@ -303,7 +327,7 @@
       "height": 600,
       "width": 600
     },
-    "name": "子守 にいと",
+    "name": "小守 にいと",
     "kana": "こもり にいと",
     "youtube_url": "https://www.youtube.com/channel/UCRcbZ6UiKREQ4V93dNuMcgg",
     "voice_url": "https://youtube.com/shorts/cCiBA2Qpg9I?feature=share",
@@ -318,7 +342,7 @@
       "kana": "とうか",
       "color": "#d87bae"
     },
-    "updatedAt": "2026-08-19T17:08:46.864Z"
+    "updatedAt": "2026-08-20T05:03:11.975Z"
   },
   {
     "id": "pua_v2lunvcq",
@@ -1535,6 +1559,7 @@
     "name": "雪風 スト",
     "kana": "ゆきかぜ すと",
     "youtube_url": "https://youtube.com/channel/UCA9-hPd9Dfq9Pta8GmaTDqA",
+    "voice_url": "https://youtube.com/shorts/omP00aOkbj4",
     "x_url": "https://x.com/01stripe",
     "team": {
       "id": "e3li73yojqyq",
@@ -1546,7 +1571,7 @@
       "kana": "ぐれん",
       "color": "#d71f26"
     },
-    "updatedAt": "2026-07-24T03:25:38.458Z"
+    "updatedAt": "2026-08-26T18:43:42.596Z"
   },
   {
     "id": "musf2m767",
