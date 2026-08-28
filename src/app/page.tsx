@@ -16,6 +16,7 @@ import type { PlayerItem } from "@/types/player";
 import type { StaffItem } from "@/types/staff";
 import type { FanArtItem } from "@/types/fanArt";
 import { CreatorRecruitmentButton } from "@/components/CreatorRecruitmentButton";
+import { markContentReady } from "@/lib/contentReady";
 import { useCallback, useEffect, useState } from "react";
 
 export default function HomePage() {
@@ -81,6 +82,25 @@ export default function HomePage() {
         ),
       );
   }, []);
+
+  useEffect(() => {
+    const captainsReady = captainItems.length > 0 || captainError !== null;
+    const playersReady = playerItems.length > 0 || playerError !== null;
+    const staffReady = staffItems.length > 0 || staffError !== null;
+    const fanArtReady = fanArtItems.length > 0 || fanArtError !== null;
+    if (captainsReady && playersReady && staffReady && fanArtReady) {
+      markContentReady();
+    }
+  }, [
+    captainItems,
+    captainError,
+    playerItems,
+    playerError,
+    staffItems,
+    staffError,
+    fanArtItems,
+    fanArtError,
+  ]);
 
   const handleTitleAnimationEnd = useCallback(() => {
     import("canvas-confetti").then(({ default: confetti }) => {

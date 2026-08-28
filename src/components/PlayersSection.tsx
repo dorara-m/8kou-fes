@@ -1,5 +1,6 @@
 "use client";
 
+import { onContentReady } from "@/lib/contentReady";
 import { resolveLabelTextColor } from "@/lib/teamColor";
 import { getYouTubeEmbedUrl } from "@/lib/youtube";
 import type { PlayerItem } from "@/types/player";
@@ -26,6 +27,22 @@ const TEAM_COLOR_ORDER = [
   "白雪",
   "黒夜",
 ];
+
+const TEAM_SLUGS: Record<string, string> = {
+  紅蓮: "guren",
+  青波: "aonami",
+  桃華: "touka",
+  翠迅: "suijin",
+  黄昏: "tasogare",
+  紫電: "shiden",
+  白雪: "shirayuki",
+  黒夜: "kokuya",
+};
+
+function getTeamSlug(name: string): string | undefined {
+  const teamName = TEAM_COLOR_ORDER.find((teamName) => name.includes(teamName));
+  return teamName ? TEAM_SLUGS[teamName] : undefined;
+}
 
 function getTeamColorOrderIndex(name: string) {
   const index = TEAM_COLOR_ORDER.findIndex((teamName) =>
@@ -209,24 +226,36 @@ function PlayersSectionInner({ items, error }: PlayersSectionProps) {
     const matchedTeam = teamParam
       ? items.find(
           (item) =>
-            item.team?.id === teamParam || item.team?.name === teamParam,
+            item.team?.id === teamParam ||
+            (item.team?.name && getTeamSlug(item.team.name) === teamParam),
         )?.team?.id
       : undefined;
     setSelectedTeam(matchedTeam ?? "all");
     setSortMode("random");
-    if (teamParam && items.length > 0) {
-      sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
     // teamParam is read only once per items load (from the URL on entry);
     // it must not re-trigger this reset every time the user picks a team.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items]);
 
+  const hasScrolledRef = useRef(false);
+  useEffect(() => {
+    if (hasScrolledRef.current) return;
+    if (!teamParam || items.length === 0) return;
+    hasScrolledRef.current = true;
+
+    // 団長セクション等、上部コンテンツの読み込みが完了してレイアウトが
+    // 確定してから1回だけスクロールすることで、スクロール先が手前で
+    // 止まってしまうのを防ぐ。
+    return onContentReady(() => {
+      sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }, [items, teamParam]);
+
   const selectTeam = (team: { id: string; name: string } | null) => {
     setSelectedTeam(team?.id ?? "all");
     const params = new URLSearchParams(searchParams.toString());
     if (team) {
-      params.set(TEAM_QUERY_KEY, team.name);
+      params.set(TEAM_QUERY_KEY, getTeamSlug(team.name) ?? team.id);
     } else {
       params.delete(TEAM_QUERY_KEY);
     }

@@ -2,6 +2,7 @@
 
 import type { MouseEvent } from 'react';
 import { useState, useEffect } from 'react';
+import { scrollToSection } from '@/lib/contentReady';
 
 const navItems = [
   { href: "#top", label: "TOP" },
@@ -41,9 +42,7 @@ export function Header() {
   ) => {
     event.preventDefault();
     closeMenu();
-
-    const target = document.querySelector(href);
-    target?.scrollIntoView({ behavior: "smooth", block: "start" });
+    scrollToSection(href.slice(1));
   };
 
   const headerTransition =

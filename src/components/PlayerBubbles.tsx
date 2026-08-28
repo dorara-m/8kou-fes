@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { PlayerItem } from "@/types/player";
+import { scrollToSection } from "@/lib/contentReady";
 
 type PlayerBubblesProps = {
   items: PlayerItem[];
@@ -27,7 +28,7 @@ type Bubble = {
 const BUBBLE_GAP_PX = 10;
 
 function scrollToPlayers() {
-  document.getElementById("players")?.scrollIntoView({ behavior: "smooth" });
+  scrollToSection("players");
 }
 
 function shuffle<T>(items: T[]): T[] {
