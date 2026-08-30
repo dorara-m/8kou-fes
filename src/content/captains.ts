@@ -1,9 +1,9 @@
 import type { CaptainItem } from "@/types/captain";
 import { getTeam } from "./teams";
+import { withIds } from "./withIds";
 
-export const CAPTAINS: CaptainItem[] = [
+export const CAPTAINS: CaptainItem[] = withIds<Omit<CaptainItem, "id">>([
   {
-    id: "j25qrptugbc",
     image: {
       url: "/images/captain/j25qrptugbc.png",
       height: 850,
@@ -17,7 +17,6 @@ export const CAPTAINS: CaptainItem[] = [
     voice_url: "https://youtube.com/shorts/cD71QQToqXw?feature=share",
   },
   {
-    id: "z-nylbuhomt9",
     image: {
       url: "/images/captain/z-nylbuhomt9.png",
       height: 850,
@@ -30,7 +29,6 @@ export const CAPTAINS: CaptainItem[] = [
     youtube_url: "https://t.co/SfSh7DoFw8",
   },
   {
-    id: "32__382savcp",
     image: {
       url: "/images/captain/32__382savcp.png",
       height: 850,
@@ -44,7 +42,6 @@ export const CAPTAINS: CaptainItem[] = [
     voice_url: "https://youtube.com/shorts/HF2_Nv8OA84?feature=share",
   },
   {
-    id: "grqchzvv5zf",
     image: {
       url: "/images/captain/grqchzvv5zf.png",
       height: 850,
@@ -58,7 +55,6 @@ export const CAPTAINS: CaptainItem[] = [
     voice_url: "https://youtube.com/shorts/pkxdimvypDs?feature=share",
   },
   {
-    id: "crk_iqvgr",
     image: {
       url: "/images/captain/crk_iqvgr.png",
       height: 706,
@@ -72,7 +68,6 @@ export const CAPTAINS: CaptainItem[] = [
     voice_url: "https://youtube.com/shorts/IMNqLAh3Igs",
   },
   {
-    id: "z5ghlpzoequf",
     image: {
       url: "/images/captain/z5ghlpzoequf.png",
       height: 850,
@@ -85,7 +80,6 @@ export const CAPTAINS: CaptainItem[] = [
     youtube_url: "https://www.youtube.com/channel/UCJuY8wAxkABbzPGkn-JsdHA",
   },
   {
-    id: "24zvaidaq5",
     image: {
       url: "/images/captain/24zvaidaq5.png",
       height: 850,
@@ -98,7 +92,6 @@ export const CAPTAINS: CaptainItem[] = [
     youtube_url: "https://www.youtube.com/@KAnaguRAKURI",
   },
   {
-    id: "2ecbk7tl_n",
     image: {
       url: "/images/captain/2ecbk7tl_n.png",
       height: 850,
@@ -111,4 +104,4 @@ export const CAPTAINS: CaptainItem[] = [
     youtube_url: "https://www.youtube.com/@murekotobuki",
     voice_url: "https://youtube.com/shorts/3Hw9UujITp8?feature=share",
   },
-];
+]);

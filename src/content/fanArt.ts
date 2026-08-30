@@ -1,8 +1,8 @@
 import type { FanArtItem } from "@/types/fanArt";
+import { withIds } from "./withIds";
 
-export const FAN_ART: FanArtItem[] = [
+export const FAN_ART: FanArtItem[] = withIds<Omit<FanArtItem, "id">>([
   {
-    id: "n17",
     image: {
       url: "/images/fan-art/suijin03.jpeg",
     },
@@ -10,7 +10,6 @@ export const FAN_ART: FanArtItem[] = [
     title: "ノクターン・ヴェルティーナ",
   },
   {
-    id: "n16",
     image: {
       url: "/images/fan-art/suijin02.jpeg",
     },
@@ -18,7 +17,6 @@ export const FAN_ART: FanArtItem[] = [
     title: "ノクターン・ヴェルティーナ",
   },
   {
-    id: "n15",
     image: {
       url: "/images/fan-art/suijin01.jpeg",
     },
@@ -26,7 +24,6 @@ export const FAN_ART: FanArtItem[] = [
     title: "ノクターン・ヴェルティーナ",
   },
   {
-    id: "n14",
     image: {
       url: "/images/fan-art/HQ3uqAwa8AA-aeu.jpeg",
     },
@@ -34,7 +31,6 @@ export const FAN_ART: FanArtItem[] = [
     title: "ノクターン・ヴェルティーナ",
   },
   {
-    id: "n13",
     image: {
       url: "/images/fan-art/HQzMFk8agAAawsv.jpeg",
     },
@@ -42,7 +38,6 @@ export const FAN_ART: FanArtItem[] = [
     title: "ノクターン・ヴェルティーナ",
   },
   {
-    id: "n12",
     image: {
       url: "/images/fan-art/HQ0rXWFaYAANgdb.jpeg",
     },
@@ -50,7 +45,6 @@ export const FAN_ART: FanArtItem[] = [
     title: "N番囚人のえぬた",
   },
   {
-    id: "n11",
     image: {
       url: "/images/fan-art/HQt0naXaoAAMuQU.jpeg",
     },
@@ -58,7 +52,6 @@ export const FAN_ART: FanArtItem[] = [
     title: "ノクターン・ヴェルティーナ",
   },
   {
-    id: "n10",
     image: {
       url: "/images/fan-art/HQt0Wm3aIAE85ok.jpeg",
     },
@@ -66,7 +59,6 @@ export const FAN_ART: FanArtItem[] = [
     title: "ノクターン・ヴェルティーナ",
   },
   {
-    id: "t2zzun1o468",
     image: {
       url: "/images/fan-art/t2zzun1o468.jpeg",
       height: 1000,
@@ -76,7 +68,6 @@ export const FAN_ART: FanArtItem[] = [
     title: "ノクターン・ヴェルティーナ",
   },
   {
-    id: "u1fh5v73jl",
     image: {
       url: "/images/fan-art/u1fh5v73jl.jpeg",
       height: 1000,
@@ -86,7 +77,6 @@ export const FAN_ART: FanArtItem[] = [
     title: "ノクターン・ヴェルティーナ",
   },
   {
-    id: "7zb9v3poentm",
     image: {
       url: "/images/fan-art/7zb9v3poentm.jpeg",
       height: 1000,
@@ -96,7 +86,6 @@ export const FAN_ART: FanArtItem[] = [
     title: "ノクターン・ヴェルティーナ",
   },
   {
-    id: "oazizuk_zbd5",
     image: {
       url: "/images/fan-art/oazizuk_zbd5.jpeg",
       height: 1000,
@@ -106,7 +95,6 @@ export const FAN_ART: FanArtItem[] = [
     title: "ノクターン・ヴェルティーナ",
   },
   {
-    id: "3lz2kemq20",
     image: {
       url: "/images/fan-art/3lz2kemq20.jpeg",
       height: 1200,
@@ -116,7 +104,6 @@ export const FAN_ART: FanArtItem[] = [
     title: "ロゼッタ･アヴァール･アストロロギア･ソシエール･フェリス･ル･ディアブル･テッラ･アス(文字数)",
   },
   {
-    id: "p8eleiw8qdy",
     image: {
       url: "/images/fan-art/p8eleiw8qdy.jpeg",
       height: 1200,
@@ -126,7 +113,6 @@ export const FAN_ART: FanArtItem[] = [
     title: " 海栗つばさ",
   },
   {
-    id: "xdkzts1ydt",
     image: {
       url: "/images/fan-art/xdkzts1ydt.jpeg",
       height: 4096,
@@ -136,7 +122,6 @@ export const FAN_ART: FanArtItem[] = [
     title: "名無しのゆいつん",
   },
   {
-    id: "divgmmsx4",
     image: {
       url: "/images/fan-art/divgmmsx4.jpeg",
       height: 680,
@@ -146,7 +131,6 @@ export const FAN_ART: FanArtItem[] = [
     title: "椎乃。",
   },
   {
-    id: "vpiqw49e6go7",
     image: {
       url: "/images/fan-art/vpiqw49e6go7.jpeg",
       height: 4096,
@@ -156,7 +140,6 @@ export const FAN_ART: FanArtItem[] = [
     title: "名無しのゆいつん",
   },
   {
-    id: "gfpv36lbts",
     image: {
       url: "/images/fan-art/gfpv36lbts.jpeg",
       height: 4096,
@@ -166,7 +149,6 @@ export const FAN_ART: FanArtItem[] = [
     title: "名無しのゆいつん",
   },
   {
-    id: "mtjngqef20z",
     image: {
       url: "/images/fan-art/mtjngqef20z.jpeg",
       height: 1536,
@@ -175,4 +157,4 @@ export const FAN_ART: FanArtItem[] = [
     url: "https://x.com/rosetta_kawaiiV/status/2084928982978597301?s=20",
     title: "ロゼッタ･アヴァール･アストロロギア･ソシエール･フェリス･ル･ディアブル･テッラ･アス(文字数)",
   },
-];
+]);

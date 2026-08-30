@@ -1,8 +1,8 @@
 import type { StaffItem } from "@/types/staff";
+import { withIds } from "./withIds";
 
-export const STAFF: StaffItem[] = [
+export const STAFF: StaffItem[] = withIds<Omit<StaffItem, "id">>([
   {
-    id: "vylinrw-nu",
     image: {
       url: "/images/staff/vylinrw-nu.png",
       height: 800,
@@ -20,7 +20,6 @@ export const STAFF: StaffItem[] = [
     voice_url: "https://youtube.com/shorts/BHg06EFqA18",
   },
   {
-    id: "g4ojrh9v81",
     image: {
       url: "/images/staff/g4ojrh9v81.png",
       height: 800,
@@ -37,7 +36,6 @@ export const STAFF: StaffItem[] = [
     youtube_url: "https://www.youtube.com/c/numechaaa",
   },
   {
-    id: "lfoaxyt2mf",
     image: {
       url: "/images/staff/lfoaxyt2mf.png",
       height: 800,
@@ -55,7 +53,6 @@ export const STAFF: StaffItem[] = [
     voice_url: "https://youtube.com/shorts/ndI_xQC1KRs?feature=share",
   },
   {
-    id: "7m2mnm2oj",
     image: {
       url: "/images/staff/7m2mnm2oj.png",
       height: 800,
@@ -72,7 +69,6 @@ export const STAFF: StaffItem[] = [
     youtube_url: "https://www.youtube.com/@gaming_Vandal",
   },
   {
-    id: "b3x25gz5z",
     image: {
       url: "/images/staff/b3x25gz5z.png",
       height: 800,
@@ -88,4 +84,4 @@ export const STAFF: StaffItem[] = [
     x_url: "https://x.com/n_yumesakivt?s=21",
     youtube_url: "https://www.youtube.com/@noah.yumesaki_vt",
   },
-];
+]);

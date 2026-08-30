@@ -1,9 +1,9 @@
 import type { PlayerItem } from "@/types/player";
 import { getTeam } from "./teams";
+import { withIds } from "./withIds";
 
-export const PLAYERS: PlayerItem[] = [
+export const PLAYERS: PlayerItem[] = withIds<Omit<PlayerItem, "id">>([
   {
-    id: "cxons4pnl66",
     icon: {
       url: "/images/player/cxons4pnl66.png",
       height: 600,
@@ -17,7 +17,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-28T01:20:03.471Z",
   },
   {
-    id: "rygag32hd7u",
     icon: {
       url: "/images/player/rygag32hd7u.png",
       height: 600,
@@ -32,7 +31,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-12T09:39:42.994Z",
   },
   {
-    id: "svnmfd0ltnc",
     icon: {
       url: "/images/player/svnmfd0ltnc.png",
       height: 600,
@@ -46,7 +44,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-02T16:34:13.314Z",
   },
   {
-    id: "y-slnijqt1s",
     icon: {
       url: "/images/player/y-slnijqt1s.png",
       height: 600,
@@ -61,7 +58,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-15T14:13:16.897Z",
   },
   {
-    id: "w5hk8xd6k",
     icon: {
       url: "/images/player/w5hk8xd6k.png",
       height: 600,
@@ -75,7 +71,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-02T16:23:30.355Z",
   },
   {
-    id: "ag8mf-dmbj",
     icon: {
       url: "/images/player/ag8mf-dmbj.png",
       height: 600,
@@ -89,7 +84,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-02T16:17:54.385Z",
   },
   {
-    id: "qo0jftvjmzku",
     icon: {
       url: "/images/player/qo0jftvjmzku.png",
       height: 600,
@@ -102,7 +96,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-02T16:14:06.413Z",
   },
   {
-    id: "wygz9w3fr4x",
     icon: {
       url: "/images/player/wygz9w3fr4x.png",
       height: 600,
@@ -115,7 +108,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-02T16:06:46.463Z",
   },
   {
-    id: "e329wcgzb",
     icon: {
       url: "/images/player/e329wcgzb.png",
       height: 600,
@@ -128,7 +120,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-02T16:03:58.762Z",
   },
   {
-    id: "vk3jz4yt9-pk",
     icon: {
       url: "/images/player/vk3jz4yt9-pk.png",
       height: 600,
@@ -142,7 +133,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-26T18:45:05.768Z",
   },
   {
-    id: "0tgrzdiig4rx",
     icon: {
       url: "/images/player/0tgrzdiig4rx.png",
       height: 600,
@@ -156,7 +146,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-02T15:43:57.766Z",
   },
   {
-    id: "zcsrqk67o",
     icon: {
       url: "/images/player/zcsrqk67o.png",
       height: 600,
@@ -170,7 +159,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-02T15:43:15.863Z",
   },
   {
-    id: "9elurqp2pjev",
     icon: {
       url: "/images/player/9elurqp2pjev.png",
       height: 600,
@@ -184,7 +172,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-02T15:42:33.280Z",
   },
   {
-    id: "pwtu44x4_98j",
     icon: {
       url: "/images/player/pwtu44x4_98j.png",
       height: 600,
@@ -198,7 +185,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-02T15:41:42.659Z",
   },
   {
-    id: "n1rc--iec4",
     icon: {
       url: "/images/player/n1rc--iec4.png",
       height: 600,
@@ -213,7 +199,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-20T05:03:11.975Z",
   },
   {
-    id: "pua_v2lunvcq",
     icon: {
       url: "/images/player/pua_v2lunvcq.png",
       height: 600,
@@ -227,7 +212,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-03T09:51:24.687Z",
   },
   {
-    id: "l52nd3mkm1kc",
     icon: {
       url: "/images/player/l52nd3mkm1kc.png",
       height: 600,
@@ -241,7 +225,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-03T09:51:35.594Z",
   },
   {
-    id: "gz5dvr0pfn",
     icon: {
       url: "/images/player/gz5dvr0pfn.png",
       height: 600,
@@ -255,7 +238,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-15T14:16:11.422Z",
   },
   {
-    id: "s0lcp_ouii6",
     icon: {
       url: "/images/player/s0lcp_ouii6.png",
       height: 600,
@@ -268,7 +250,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-02T15:36:28.840Z",
   },
   {
-    id: "3dfoo73upk3",
     icon: {
       url: "/images/player/3dfoo73upk3.png",
       height: 600,
@@ -283,7 +264,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-08T09:53:15.822Z",
   },
   {
-    id: "l5rni6gyvc",
     icon: {
       url: "/images/player/l5rni6gyvc.png",
       height: 600,
@@ -298,7 +278,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-12T09:34:09.150Z",
   },
   {
-    id: "y9vkwvw3uxp",
     icon: {
       url: "/images/player/y9vkwvw3uxp.png",
       height: 600,
@@ -313,7 +292,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-09T18:45:19.055Z",
   },
   {
-    id: "407zc6whcy0",
     icon: {
       url: "/images/player/407zc6whcy0.png",
       height: 600,
@@ -328,7 +306,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-09T18:43:48.609Z",
   },
   {
-    id: "38pfgqnu7u",
     icon: {
       url: "/images/player/38pfgqnu7u.png",
       height: 600,
@@ -343,7 +320,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-09T18:46:39.137Z",
   },
   {
-    id: "459ygpqvj6sf",
     icon: {
       url: "/images/player/459ygpqvj6sf.png",
       height: 600,
@@ -358,7 +334,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-08T09:47:28.037Z",
   },
   {
-    id: "y3bqo369ms",
     icon: {
       url: "/images/player/y3bqo369ms.png",
       height: 600,
@@ -372,7 +347,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-03T09:52:21.332Z",
   },
   {
-    id: "14upeho5xr",
     icon: {
       url: "/images/player/14upeho5xr.png",
       height: 600,
@@ -385,7 +359,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-02T15:20:13.075Z",
   },
   {
-    id: "7r1osmxoac1",
     icon: {
       url: "/images/player/7r1osmxoac1.png",
       height: 600,
@@ -398,7 +371,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-02T15:18:25.185Z",
   },
   {
-    id: "4cds5aztcd",
     icon: {
       url: "/images/player/4cds5aztcd.png",
       height: 600,
@@ -413,7 +385,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-15T14:15:06.869Z",
   },
   {
-    id: "p8la1-t9yfs",
     icon: {
       url: "/images/player/p8la1-t9yfs.png",
       height: 600,
@@ -427,7 +398,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-03T09:52:36.104Z",
   },
   {
-    id: "2y47ur5bp",
     icon: {
       url: "/images/player/2y47ur5bp.png",
       height: 600,
@@ -442,7 +412,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-15T14:13:38.734Z",
   },
   {
-    id: "mm7kfztjxb1",
     icon: {
       url: "/images/player/mm7kfztjxb1.png",
       height: 600,
@@ -456,7 +425,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-03T09:57:37.706Z",
   },
   {
-    id: "cfq5-doc_iu",
     icon: {
       url: "/images/player/cfq5-doc_iu.png",
       height: 600,
@@ -470,7 +438,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-01T04:49:05.309Z",
   },
   {
-    id: "b51kj79qp",
     icon: {
       url: "/images/player/b51kj79qp.png",
       height: 600,
@@ -485,7 +452,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-12T09:35:51.867Z",
   },
   {
-    id: "g4y4883zk54p",
     icon: {
       url: "/images/player/g4y4883zk54p.png",
       height: 600,
@@ -499,7 +465,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-03T09:57:54.785Z",
   },
   {
-    id: "dwk-oj_q5",
     icon: {
       url: "/images/player/dwk-oj_q5.png",
       height: 600,
@@ -513,7 +478,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-03T09:58:03.358Z",
   },
   {
-    id: "qssisb3-aeec",
     icon: {
       url: "/images/player/qssisb3-aeec.png",
       height: 600,
@@ -527,7 +491,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-15T14:14:53.040Z",
   },
   {
-    id: "9a-_d6i1wrf",
     icon: {
       url: "/images/player/9a-_d6i1wrf.png",
       height: 600,
@@ -541,7 +504,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-03T09:58:33.188Z",
   },
   {
-    id: "381tftsyjz",
     icon: {
       url: "/images/player/381tftsyjz.png",
       height: 600,
@@ -555,7 +517,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-03T09:58:45.658Z",
   },
   {
-    id: "gr3bvtfw4dg",
     icon: {
       url: "/images/player/gr3bvtfw4dg.png",
       height: 600,
@@ -570,7 +531,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-19T17:09:05.358Z",
   },
   {
-    id: "i8c4936d1n0q",
     icon: {
       url: "/images/player/i8c4936d1n0q.png",
       height: 600,
@@ -584,7 +544,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-03T09:59:44.941Z",
   },
   {
-    id: "v717-gwdzn",
     icon: {
       url: "/images/player/v717-gwdzn.png",
       height: 600,
@@ -598,7 +557,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-03T09:59:51.294Z",
   },
   {
-    id: "znqkjy3sw77i",
     icon: {
       url: "/images/player/znqkjy3sw77i.png",
       height: 600,
@@ -612,7 +570,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-15T14:15:39.678Z",
   },
   {
-    id: "f169qa0de8av",
     icon: {
       url: "/images/player/f169qa0de8av.png",
       height: 600,
@@ -625,7 +582,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-07-26T13:36:46.473Z",
   },
   {
-    id: "i0glx9p-upc",
     icon: {
       url: "/images/player/i0glx9p-upc.png",
       height: 600,
@@ -638,7 +594,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-09T17:44:48.176Z",
   },
   {
-    id: "7kadwq3m4",
     icon: {
       url: "/images/player/7kadwq3m4.png",
       height: 600,
@@ -651,7 +606,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-07-26T13:30:26.695Z",
   },
   {
-    id: "bqmb51olq",
     icon: {
       url: "/images/player/bqmb51olq.png",
       height: 600,
@@ -665,7 +619,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-03T09:59:59.717Z",
   },
   {
-    id: "g54qdf2syw7",
     icon: {
       url: "/images/player/g54qdf2syw7.png",
       height: 600,
@@ -679,7 +632,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-03T10:00:19.334Z",
   },
   {
-    id: "04kr6npc7a20",
     icon: {
       url: "/images/player/04kr6npc7a20.png",
       height: 600,
@@ -693,7 +645,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-03T10:00:31.014Z",
   },
   {
-    id: "ig1bfjx11ux8",
     icon: {
       url: "/images/player/ig1bfjx11ux8.png",
       height: 600,
@@ -707,7 +658,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-07-26T13:23:08.338Z",
   },
   {
-    id: "d5lz7u_sry",
     icon: {
       url: "/images/player/d5lz7u_sry.png",
       height: 600,
@@ -721,7 +671,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-03T10:00:50.227Z",
   },
   {
-    id: "akiu3uvfe",
     icon: {
       url: "/images/player/akiu3uvfe.png",
       height: 600,
@@ -735,7 +684,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-03T10:01:43.633Z",
   },
   {
-    id: "gy1p-7wogb",
     icon: {
       url: "/images/player/gy1p-7wogb.png",
       height: 600,
@@ -749,7 +697,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-03T10:04:40.535Z",
   },
   {
-    id: "mt4hhse-au2",
     icon: {
       url: "/images/player/mt4hhse-au2.png",
       height: 600,
@@ -763,7 +710,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-03T10:04:48.036Z",
   },
   {
-    id: "eno5d6lpczyk",
     icon: {
       url: "/images/player/eno5d6lpczyk.png",
       height: 600,
@@ -777,7 +723,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-03T10:04:54.418Z",
   },
   {
-    id: "x8pc2qqjvyu",
     icon: {
       url: "/images/player/x8pc2qqjvyu.png",
       height: 600,
@@ -792,7 +737,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-08T09:55:38.116Z",
   },
   {
-    id: "m3p1ho3j84v6",
     icon: {
       url: "/images/player/m3p1ho3j84v6.png",
       height: 600,
@@ -807,7 +751,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-15T14:14:17.735Z",
   },
   {
-    id: "r3f3c4z-wb",
     icon: {
       url: "/images/player/r3f3c4z-wb.png",
       height: 600,
@@ -821,7 +764,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-03T10:05:04.080Z",
   },
   {
-    id: "9qc-ad2n5",
     icon: {
       url: "/images/player/9qc-ad2n5.png",
       height: 600,
@@ -835,7 +777,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-07-26T12:55:44.217Z",
   },
   {
-    id: "inwaatrgbrj",
     icon: {
       url: "/images/player/inwaatrgbrj.png",
       height: 600,
@@ -850,7 +791,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-19T17:09:28.786Z",
   },
   {
-    id: "egwqko_47ik",
     icon: {
       url: "/images/player/egwqko_47ik.png",
       height: 600,
@@ -864,7 +804,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-07-24T03:17:04.564Z",
   },
   {
-    id: "8etp0d5snn1t",
     icon: {
       url: "/images/player/8etp0d5snn1t.png",
       height: 600,
@@ -878,7 +817,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-03T10:05:24.134Z",
   },
   {
-    id: "s6o75uul8-n",
     icon: {
       url: "/images/player/s6o75uul8-n.png",
       height: 600,
@@ -892,7 +830,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-15T14:15:24.094Z",
   },
   {
-    id: "k7x0v2c3f",
     icon: {
       url: "/images/player/k7x0v2c3f.png",
       height: 600,
@@ -907,7 +844,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-09T18:47:37.548Z",
   },
   {
-    id: "s6vwzcmikb",
     icon: {
       url: "/images/player/s6vwzcmikb.png",
       height: 600,
@@ -921,7 +857,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-03T10:01:08.624Z",
   },
   {
-    id: "rzeym6q4bz",
     icon: {
       url: "/images/player/rzeym6q4bz.png",
       height: 600,
@@ -936,7 +871,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-08T09:51:36.598Z",
   },
   {
-    id: "1413e9clrk7",
     icon: {
       url: "/images/player/1413e9clrk7.png",
       height: 600,
@@ -950,7 +884,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-07-24T03:24:52.245Z",
   },
   {
-    id: "1sw3p45_xl",
     icon: {
       url: "/images/player/1sw3p45_xl.png",
       height: 600,
@@ -965,7 +898,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-26T18:43:42.596Z",
   },
   {
-    id: "musf2m767",
     icon: {
       url: "/images/player/musf2m767.png",
       height: 600,
@@ -979,7 +911,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-07-24T03:25:52.301Z",
   },
   {
-    id: "76gqr48i5_ov",
     icon: {
       url: "/images/player/76gqr48i5_ov.png",
       height: 600,
@@ -992,7 +923,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-07-21T17:05:33.487Z",
   },
   {
-    id: "83zoxdam322",
     icon: {
       url: "/images/player/83zoxdam322.png",
       height: 600,
@@ -1006,7 +936,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-08-08T09:45:38.318Z",
   },
   {
-    id: "0y4tozx85cjo",
     icon: {
       url: "/images/player/0y4tozx85cjo.png",
       height: 600,
@@ -1020,7 +949,6 @@ export const PLAYERS: PlayerItem[] = [
     updatedAt: "2026-07-24T03:22:21.323Z",
   },
   {
-    id: "q3du2s3hsuaz",
     icon: {
       url: "/images/player/q3du2s3hsuaz.png",
       height: 600,
@@ -1033,4 +961,4 @@ export const PLAYERS: PlayerItem[] = [
     team: getTeam("e3li73yojqyq"),
     updatedAt: "2026-08-08T09:41:52.939Z",
   },
-];
+]);
