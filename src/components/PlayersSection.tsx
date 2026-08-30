@@ -11,7 +11,6 @@ import { VoicePlayerModal } from "./VoicePlayerModal";
 
 type PlayersSectionProps = {
   items: PlayerItem[];
-  error: string | null;
 };
 
 type SortMode = "random" | "name" | "updated";
@@ -166,7 +165,7 @@ function PlayerCard({
   );
 }
 
-function PlayersSectionInner({ items, error }: PlayersSectionProps) {
+function PlayersSectionInner({ items }: PlayersSectionProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -400,8 +399,6 @@ function PlayersSectionInner({ items, error }: PlayersSectionProps) {
           </div>
         )}
 
-        {error && <p className="mb-4 text-sm text-red-600">{error}</p>}
-
         <ul className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
           {displayedItems.map((item) => (
             <PlayerCard
@@ -412,10 +409,10 @@ function PlayersSectionInner({ items, error }: PlayersSectionProps) {
           ))}
         </ul>
 
-        {!error && items.length === 0 && (
+        {items.length === 0 && (
           <p className="mt-6 text-sm text-slate-500">まだ登録がありません</p>
         )}
-        {!error && items.length > 0 && displayedItems.length === 0 && (
+        {items.length > 0 && displayedItems.length === 0 && (
           <p className="mt-6 text-sm text-slate-500">
             選択したチームの選手はいません
           </p>

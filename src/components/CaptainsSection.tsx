@@ -8,7 +8,6 @@ import { VoicePlayerModal } from "./VoicePlayerModal";
 
 type CaptainsSectionProps = {
   items: CaptainItem[];
-  error: string | null;
 };
 
 function CaptainCard({
@@ -141,7 +140,7 @@ function VoiceButton({
   );
 }
 
-export function CaptainsSection({ items, error }: CaptainsSectionProps) {
+export function CaptainsSection({ items }: CaptainsSectionProps) {
   const [voicePlayerItem, setVoicePlayerItem] = useState<CaptainItem | null>(
     null,
   );

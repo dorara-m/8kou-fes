@@ -7,10 +7,9 @@ import { VoicePlayerModal } from "./VoicePlayerModal";
 
 type StaffSectionProps = {
   items: StaffItem[];
-  error: string | null;
 };
 
-export function StaffSection({ items, error }: StaffSectionProps) {
+export function StaffSection({ items }: StaffSectionProps) {
   const [showAlternateImages, setShowAlternateImages] = useState<
     Record<string, boolean>
   >({});
@@ -23,7 +22,6 @@ export function StaffSection({ items, error }: StaffSectionProps) {
     <section id="staff" className="border-t border-slate-200 bg-slate-100">
       <div className="max-w-6xl mx-auto px-6 py-16">
         <h2 className="text-3xl font-bold mb-8">実行委員紹介</h2>
-        {error && <p className="text-red-600 text-sm mb-4">{error}</p>}
         <ul className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr]  gap-6">
           {items.map((item, index) => {
             const isOrganizer = index === 0;
@@ -192,7 +190,7 @@ export function StaffSection({ items, error }: StaffSectionProps) {
             );
           })}
         </ul>
-        {!error && items.length === 0 && (
+        {items.length === 0 && (
           <p className="text-slate-500 text-sm mt-6">まだ登録がありません</p>
         )}
       </div>

@@ -11,10 +11,10 @@ import { FanArtSection } from "@/components/FanArtSection";
 // import { TimeTableSection } from "@/components/TimeTableSection";
 import { CreditsSection } from "@/components/CreditsSection";
 import { TopSection } from "@/components/TopSection";
-import type { CaptainItem } from "@/types/captain";
-import type { PlayerItem } from "@/types/player";
-import type { StaffItem } from "@/types/staff";
-import type { FanArtItem } from "@/types/fanArt";
+import { CAPTAINS } from "@/content/captains";
+import { PLAYERS } from "@/content/players";
+import { STAFF } from "@/content/staff";
+import { FAN_ART } from "@/content/fanArt";
 import { CreatorRecruitmentButton } from "@/components/CreatorRecruitmentButton";
 import { markContentReady } from "@/lib/contentReady";
 import { useCallback, useEffect, useState } from "react";
@@ -22,85 +22,10 @@ import { useCallback, useEffect, useState } from "react";
 export default function HomePage() {
   const [showLogo, setShowLogo] = useState(false);
   const [showSubtitle, setShowSubtitle] = useState(false);
-  const [captainItems, setCaptainItems] = useState<CaptainItem[]>([]);
-  const [captainError, setCaptainError] = useState<string | null>(null);
-  const [playerItems, setPlayerItems] = useState<PlayerItem[]>([]);
-  const [playerError, setPlayerError] = useState<string | null>(null);
-  const [staffItems, setStaffItems] = useState<StaffItem[]>([]);
-  const [staffError, setStaffError] = useState<string | null>(null);
-  const [fanArtItems, setFanArtItems] = useState<FanArtItem[]>([]);
-  const [fanArtError, setFanArtError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("/data/captain.json")
-      .then((res) =>
-        res.ok ? res.json() : Promise.reject(new Error(res.statusText)),
-      )
-      .then(setCaptainItems)
-      .catch((e) =>
-        setCaptainError(
-          e instanceof Error ? e.message : "読み込みに失敗しました",
-        ),
-      );
+    markContentReady();
   }, []);
-
-  useEffect(() => {
-    fetch("/data/player.json")
-      .then((res) =>
-        res.ok ? res.json() : Promise.reject(new Error(res.statusText)),
-      )
-      .then(setPlayerItems)
-      .catch((e) =>
-        setPlayerError(
-          e instanceof Error ? e.message : "読み込みに失敗しました",
-        ),
-      );
-  }, []);
-
-  useEffect(() => {
-    fetch("/data/staff.json")
-      .then((res) =>
-        res.ok ? res.json() : Promise.reject(new Error(res.statusText)),
-      )
-      .then(setStaffItems)
-      .catch((e) =>
-        setStaffError(
-          e instanceof Error ? e.message : "読み込みに失敗しました",
-        ),
-      );
-  }, []);
-
-  useEffect(() => {
-    fetch("/data/fan-art.json")
-      .then((res) =>
-        res.ok ? res.json() : Promise.reject(new Error(res.statusText)),
-      )
-      .then(setFanArtItems)
-      .catch((e) =>
-        setFanArtError(
-          e instanceof Error ? e.message : "読み込みに失敗しました",
-        ),
-      );
-  }, []);
-
-  useEffect(() => {
-    const captainsReady = captainItems.length > 0 || captainError !== null;
-    const playersReady = playerItems.length > 0 || playerError !== null;
-    const staffReady = staffItems.length > 0 || staffError !== null;
-    const fanArtReady = fanArtItems.length > 0 || fanArtError !== null;
-    if (captainsReady && playersReady && staffReady && fanArtReady) {
-      markContentReady();
-    }
-  }, [
-    captainItems,
-    captainError,
-    playerItems,
-    playerError,
-    staffItems,
-    staffError,
-    fanArtItems,
-    fanArtError,
-  ]);
 
   const handleTitleAnimationEnd = useCallback(() => {
     import("canvas-confetti").then(({ default: confetti }) => {
@@ -162,14 +87,14 @@ export default function HomePage() {
         showCharacters={showSubtitle}
         onTitleAnimationEnd={handleTitleAnimationEnd}
         onLogoAnimationEnd={() => setShowSubtitle(true)}
-        players={playerItems}
+        players={PLAYERS}
       />
       <CatchCopySection />
-      <CaptainsSection items={captainItems} error={captainError} />
-      <PlayersSection items={playerItems} error={playerError} />
+      <CaptainsSection items={CAPTAINS} />
+      <PlayersSection items={PLAYERS} />
       <GameSection />
-      <FanArtSection items={fanArtItems} error={fanArtError} />
-      <StaffSection items={staffItems} error={staffError} />
+      <FanArtSection items={FAN_ART} />
+      <StaffSection items={STAFF} />
       <CreatorsSection />
       <CreditsSection />
       <CreatorRecruitmentButton variant="fixed" />

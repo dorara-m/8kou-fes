@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 
 type FanArtSectionProps = {
   items: FanArtItem[];
-  error: string | null;
 };
 
 function formatArtistName(title?: string) {
@@ -13,7 +12,7 @@ function formatArtistName(title?: string) {
   return artistName ? `${artistName} さん` : "ファンアート";
 }
 
-export function FanArtSection({ items, error }: FanArtSectionProps) {
+export function FanArtSection({ items }: FanArtSectionProps) {
   const [selectedItem, setSelectedItem] = useState<FanArtItem | null>(null);
 
   useEffect(() => {
@@ -47,7 +46,6 @@ export function FanArtSection({ items, error }: FanArtSectionProps) {
             みなさんから届いた素敵な作品
           </p>
         </div>
-        {error && <p className="text-red-600 text-sm mb-4">{error}</p>}
         <ul className="grid grid-cols-2 gap-1 overflow-hidden rounded-sm sm:grid-cols-3 lg:grid-cols-4">
           {items.map((item) => {
             return (
@@ -87,7 +85,7 @@ export function FanArtSection({ items, error }: FanArtSectionProps) {
             );
           })}
         </ul>
-        {!error && items.length === 0 && (
+        {items.length === 0 && (
           <p className="mt-6 text-sm text-slate-500">まだアイテムがありません</p>
         )}
       </div>
