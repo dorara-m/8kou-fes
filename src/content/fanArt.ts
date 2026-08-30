@@ -2,6 +2,70 @@ import type { FanArtItem } from "@/types/fanArt";
 
 export const FAN_ART: FanArtItem[] = [
   {
+    id: "n17",
+    image: {
+      url: "/images/fan-art/suijin03.jpeg",
+    },
+    url: "https://x.com/NocturneVertina/status/2093608798615392390?s=20",
+    title: "ノクターン・ヴェルティーナ",
+  },
+  {
+    id: "n16",
+    image: {
+      url: "/images/fan-art/suijin02.jpeg",
+    },
+    url: "https://x.com/NocturneVertina/status/2093608798615392390?s=20",
+    title: "ノクターン・ヴェルティーナ",
+  },
+  {
+    id: "n15",
+    image: {
+      url: "/images/fan-art/suijin01.jpeg",
+    },
+    url: "https://x.com/NocturneVertina/status/2093608798615392390?s=20",
+    title: "ノクターン・ヴェルティーナ",
+  },
+  {
+    id: "n14",
+    image: {
+      url: "/images/fan-art/HQ3uqAwa8AA-aeu.jpeg",
+    },
+    url: "https://x.com/NocturneVertina/status/2093591812455968905?s=20",
+    title: "ノクターン・ヴェルティーナ",
+  },
+  {
+    id: "n13",
+    image: {
+      url: "/images/fan-art/HQzMFk8agAAawsv.jpeg",
+    },
+    url: "https://x.com/NocturneVertina/status/2093272337999433961?s=20",
+    title: "ノクターン・ヴェルティーナ",
+  },
+  {
+    id: "n12",
+    image: {
+      url: "/images/fan-art/HQ0rXWFaYAANgdb.jpeg",
+    },
+    url: "https://x.com/pano_N_pticon/status/2093377335009706441",
+    title: "N番囚人のえぬた",
+  },
+  {
+    id: "n11",
+    image: {
+      url: "/images/fan-art/HQt0naXaoAAMuQU.jpeg",
+    },
+    url: "https://x.com/NocturneVertina/status/2092894725829521745?s=20",
+    title: "ノクターン・ヴェルティーナ",
+  },
+  {
+    id: "n10",
+    image: {
+      url: "/images/fan-art/HQt0Wm3aIAE85ok.jpeg",
+    },
+    url: "https://x.com/NocturneVertina/status/2092894416474403137?s=20",
+    title: "ノクターン・ヴェルティーナ",
+  },
+  {
     id: "t2zzun1o468",
     image: {
       url: "/images/fan-art/t2zzun1o468.jpeg",
