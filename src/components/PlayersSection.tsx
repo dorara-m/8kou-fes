@@ -2,13 +2,12 @@
 
 import { onContentReady } from "@/lib/contentReady";
 import { resolveLabelTextColor } from "@/lib/teamColor";
+import { getTeamSlug, TEAM_COLOR_ORDER, TEAM_QUERY_KEY } from "@/lib/teamSlug";
 import { getYouTubeEmbedUrl } from "@/lib/youtube";
 import type { PlayerItem } from "@/types/player";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { VoicePlayerModal } from "./VoicePlayerModal";
-
-const TEAM_QUERY_KEY = "team";
 
 type PlayersSectionProps = {
   items: PlayerItem[];
@@ -16,33 +15,6 @@ type PlayersSectionProps = {
 };
 
 type SortMode = "random" | "name" | "updated";
-
-const TEAM_COLOR_ORDER = [
-  "紅蓮",
-  "青波",
-  "桃華",
-  "翠迅",
-  "黄昏",
-  "紫電",
-  "白雪",
-  "黒夜",
-];
-
-const TEAM_SLUGS: Record<string, string> = {
-  紅蓮: "guren",
-  青波: "aonami",
-  桃華: "touka",
-  翠迅: "suijin",
-  黄昏: "tasogare",
-  紫電: "shiden",
-  白雪: "shirayuki",
-  黒夜: "kokuya",
-};
-
-function getTeamSlug(name: string): string | undefined {
-  const teamName = TEAM_COLOR_ORDER.find((teamName) => name.includes(teamName));
-  return teamName ? TEAM_SLUGS[teamName] : undefined;
-}
 
 function getTeamColorOrderIndex(name: string) {
   const index = TEAM_COLOR_ORDER.findIndex((teamName) =>
@@ -223,6 +195,12 @@ function PlayersSectionInner({ items, error }: PlayersSectionProps) {
 
   useEffect(() => {
     setInitialShuffledIds(shuffleItems(items.map((item) => item.id)));
+    setSortMode("random");
+  }, [items]);
+
+  // team指定のURL(自分のボタン操作でも、泡クリック等の外部からの遷移でも)に
+  // 追従してチーム絞り込み状態を同期する。
+  useEffect(() => {
     const matchedTeam = teamParam
       ? items.find(
           (item) =>
@@ -231,16 +209,19 @@ function PlayersSectionInner({ items, error }: PlayersSectionProps) {
         )?.team?.id
       : undefined;
     setSelectedTeam(matchedTeam ?? "all");
-    setSortMode("random");
-    // teamParam is read only once per items load (from the URL on entry);
-    // it must not re-trigger this reset every time the user picks a team.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [items]);
+  }, [items, teamParam]);
 
+  // ページ表示時点でURLにteamが指定されていた場合のみ、選手セクションへ
+  // 自動スクロールする。以後teamParamが変化しても(ボタン操作や泡クリック)
+  // この効果は再発火させない。
+  const initialTeamParamRef = useRef<string | null | undefined>(undefined);
+  if (initialTeamParamRef.current === undefined) {
+    initialTeamParamRef.current = teamParam;
+  }
   const hasScrolledRef = useRef(false);
   useEffect(() => {
     if (hasScrolledRef.current) return;
-    if (!teamParam || items.length === 0) return;
+    if (!initialTeamParamRef.current || items.length === 0) return;
     hasScrolledRef.current = true;
 
     // 団長セクション等、上部コンテンツの読み込みが完了してレイアウトが
@@ -249,7 +230,7 @@ function PlayersSectionInner({ items, error }: PlayersSectionProps) {
     return onContentReady(() => {
       sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
-  }, [items, teamParam]);
+  }, [items]);
 
   const selectTeam = (team: { id: string; name: string } | null) => {
     setSelectedTeam(team?.id ?? "all");

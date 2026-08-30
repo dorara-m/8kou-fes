@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import type { PlayerItem } from "@/types/player";
 import { scrollToSection } from "@/lib/contentReady";
+import { getTeamSlug, TEAM_QUERY_KEY } from "@/lib/teamSlug";
 
 type PlayerBubblesProps = {
   items: PlayerItem[];
@@ -22,14 +24,11 @@ type Bubble = {
   delay: number;
   drift: number;
   rise: number;
+  teamSlug?: string;
 };
 
 /** 泡同士の最低間隔(px) */
 const BUBBLE_GAP_PX = 10;
-
-function scrollToPlayers() {
-  scrollToSection("players");
-}
 
 function shuffle<T>(items: T[]): T[] {
   const shuffled = [...items];
@@ -93,6 +92,8 @@ export function PlayerBubbles({
 }: PlayerBubblesProps) {
   const [bubbles, setBubbles] = useState<Bubble[]>([]);
   const [isMobile, setIsMobile] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const withIcon = items.filter((item) => item.icon?.url);
@@ -134,10 +135,20 @@ export function PlayerBubbles({
         delay: random(0, 5),
         drift: random(-20, 20),
         rise: random(-28, -14),
+        teamSlug: item.team?.name ? getTeamSlug(item.team.name) : undefined,
       };
     });
     setBubbles(next);
   }, [items, count]);
+
+  const handleBubbleClick = (bubble: Bubble) => {
+    if (bubble.teamSlug) {
+      const params = new URLSearchParams(window.location.search);
+      params.set(TEAM_QUERY_KEY, bubble.teamSlug);
+      router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+    }
+    scrollToSection("players");
+  };
 
   if (bubbles.length === 0) return null;
 
@@ -154,7 +165,7 @@ export function PlayerBubbles({
       {bubbles.map((bubble) => (
         <div
           key={bubble.id}
-          onClick={scrollToPlayers}
+          onClick={() => handleBubbleClick(bubble)}
           className={`absolute cursor-pointer hover:animate-bubble-wiggle ${
             shouldShow ? "pointer-events-auto" : "pointer-events-none"
           }`}
