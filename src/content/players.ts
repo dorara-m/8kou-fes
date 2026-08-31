@@ -589,9 +589,9 @@ export const PLAYERS: PlayerItem[] = withIds<Omit<PlayerItem, "id">>([
     },
     name: "チャーはん",
     youtube_url: "https://youtube.com/@chahan-is-good",
-    x_url: "https://x.com/chahanisgood",
+    x_url: "https://x.com/tyaahann0505050",
     team: getTeam("n5qmogp5h_z"),
-    updatedAt: "2026-08-09T17:44:48.176Z",
+    updatedAt: "2026-08-31",
   },
   {
     icon: {
