@@ -27,6 +27,7 @@ export const CAPTAINS: CaptainItem[] = withIds<Omit<CaptainItem, "id">>([
     comment: "メンバーの皆様をたくさん盛り上げてみんなで楽しく一つのチームにしていきたいです！\nよろしくお願いします！！",
     x_url: "https://x.com/yozora_pierrot",
     youtube_url: "https://t.co/SfSh7DoFw8",
+    voice_url: "https://youtube.com/shorts/1M3HWTU0VGg",
   },
   {
     image: {

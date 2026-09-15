@@ -39,9 +39,10 @@ export const PLAYERS: PlayerItem[] = withIds<Omit<PlayerItem, "id">>([
     name: "発条 テクト",
     kana: "ぜんまい てくと",
     youtube_url: "http://www.youtube.com/@textecto",
+    voice_url: "https://youtube.com/shorts/U_vYP7mGaWc",
     x_url: "https://x.com/tekuto0822",
     team: getTeam("3ehcky1etdw"),
-    updatedAt: "2026-08-02T16:34:13.314Z",
+    updatedAt: "2026-09-15",
   },
   {
     icon: {
@@ -66,9 +67,10 @@ export const PLAYERS: PlayerItem[] = withIds<Omit<PlayerItem, "id">>([
     name: "瀬戸内 神威",
     kana: "せとうち かむい",
     youtube_url: "https://www.youtube.com/@setouchikamui",
+    voice_url: "https://youtube.com/shorts/JnzXkXRIOVE",
     x_url: "https://x.com/setonokamui",
     team: getTeam("3ehcky1etdw"),
-    updatedAt: "2026-08-02T16:23:30.355Z",
+    updatedAt: "2026-09-15",
   },
   {
     icon: {
@@ -91,9 +93,10 @@ export const PLAYERS: PlayerItem[] = withIds<Omit<PlayerItem, "id">>([
     },
     name: "はるのもり",
     youtube_url: "https://www.youtube.com/@はるのもり-n4u",
+    voice_url: "https://youtube.com/shorts/2ogb9EdTBr4",
     x_url: "https://x.com/_halunomori",
     team: getTeam("3ehcky1etdw"),
-    updatedAt: "2026-08-02T16:14:06.413Z",
+    updatedAt: "2026-09-15",
   },
   {
     icon: {
@@ -116,8 +119,9 @@ export const PLAYERS: PlayerItem[] = withIds<Omit<PlayerItem, "id">>([
     name: "ジョカ・ジョカ",
     youtube_url: "https://www.youtube.com/@cafe-o9topus",
     x_url: "https://x.com/jj_o9topus",
+    voice_url: "https://youtube.com/shorts/ZSZZOQiZ44E",
     team: getTeam("3ehcky1etdw"),
-    updatedAt: "2026-08-02T16:03:58.762Z",
+    updatedAt: "2026-09-15",
   },
   {
     icon: {
@@ -167,9 +171,10 @@ export const PLAYERS: PlayerItem[] = withIds<Omit<PlayerItem, "id">>([
     name: "桃宮 弥生",
     kana: "ももみや やよい",
     youtube_url: "https://www.youtube.com/@Yayoi_Momomiya",
+    voice_url: "https://youtube.com/shorts/W1kM8XYzq6g",
     x_url: "https://x.com/Momomiya_Yayoi",
     team: getTeam("92q7vscgxo"),
-    updatedAt: "2026-08-02T15:42:33.280Z",
+    updatedAt: "2026-09-15",
   },
   {
     icon: {
@@ -246,8 +251,9 @@ export const PLAYERS: PlayerItem[] = withIds<Omit<PlayerItem, "id">>([
     name: "いおりょぎ",
     youtube_url: "https://www.youtube.com/@ioryogichang",
     x_url: "https://x.com/ioryogichang",
+    voice_url: "https://youtube.com/shorts/IMu0DNGvvEc",
     team: getTeam("92q7vscgxo"),
-    updatedAt: "2026-08-02T15:36:28.840Z",
+    updatedAt: "2026-09-15",
   },
   {
     icon: {
@@ -461,8 +467,9 @@ export const PLAYERS: PlayerItem[] = withIds<Omit<PlayerItem, "id">>([
     kana: "うりわり れいん",
     youtube_url: "https://www.youtube.com/@Rainchannel0601",
     x_url: "https://x.com/Rain9ame",
+    voice_url: "https://youtube.com/shorts/EZEc1PEzLXQ",
     team: getTeam("4l9vzx4a9gz"),
-    updatedAt: "2026-08-03T09:57:54.785Z",
+    updatedAt: "2026-09-15",
   },
   {
     icon: {
@@ -944,9 +951,10 @@ export const PLAYERS: PlayerItem[] = withIds<Omit<PlayerItem, "id">>([
     name: "白金 燐",
     kana: "しろがね りん",
     youtube_url: "https://www.youtube.com/@ojo1206",
+    voice_url: "https://youtube.com/shorts/mIe7cc3XRzU",
     x_url: "https://x.com/akairo_ojo",
     team: getTeam("e3li73yojqyq"),
-    updatedAt: "2026-07-24T03:22:21.323Z",
+    updatedAt: "2026-09-15",
   },
   {
     icon: {
@@ -956,9 +964,9 @@ export const PLAYERS: PlayerItem[] = withIds<Omit<PlayerItem, "id">>([
     },
     name: "ガルゼル",
     youtube_url: "https://youtube.com/channel/UCQ6B-a2reuCb_ZdHUwaGedw",
-    voice_url: "https://youtube.com/shorts/7be1OPR1uY8",
+    voice_url: "https://youtube.com/shorts/WoVemY7oZ-U",
     x_url: "https://x.com/garuzeru",
     team: getTeam("e3li73yojqyq"),
-    updatedAt: "2026-08-08T09:41:52.939Z",
+    updatedAt: "2026-09-15",
   },
 ]);
