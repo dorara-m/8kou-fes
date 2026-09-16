@@ -4,6 +4,55 @@ import { withIds } from "./withIds";
 export const FAN_ART: FanArtItem[] = withIds<Omit<FanArtItem, "id">>([
   {
     image: {
+      url: "/images/fan-art/riona3.jpeg",
+    },
+    url: "https://x.com/Keroy_Matsurios/status/2099080553828085816?s=20",
+    title: "けろにぃ🎀🏮👘",
+  },
+  {
+    image: {
+      url: "/images/fan-art/riona2.jpeg",
+    },
+    url: "https://x.com/UbjaNRUjcN81218/status/2098455836612051214?s=20",
+    title: "メール22通中20通がフルーツジュース抽出中",
+  },
+  {
+    image: {
+      url: "/images/fan-art/asterisk.jpeg",
+    },
+    url: "https://x.com/asterisk_vtuber/status/2098768341892804657?s=46&t=BUaApeGPqBDCogVvdrl7OA",
+    title: "アスタリスク🌟✨",
+  },
+  {
+    image: {
+      url: "/images/fan-art/eye-red.jpeg",
+    },
+    url: "https://x.com/pano_N_pticon/status/2098476014980722813?s=20",
+    title: "N番囚人のえぬた",
+  },
+  {
+    image: {
+      url: "/images/fan-art/riona1.jpeg",
+    },
+    url: "https://x.com/mizt777/status/2097242747040346481?s=20",
+    title: "mizt_2",
+  },
+  {
+    image: {
+      url: "/images/fan-art/eye-blue.jpeg",
+    },
+    url: "https://x.com/pano_N_pticon/status/2096555095790153950?s=20",
+    title: "N番囚人のえぬた",
+  },
+  {
+    image: {
+      url: "/images/fan-art/mousou.jpeg",
+    },
+    url: "https://x.com/pano_n_pticon/status/2094801705841856812?s=46&t=BUaApeGPqBDCogVvdrl7OA",
+    title: "N番囚人のえぬた",
+  },
+  {
+    image: {
       url: "/images/fan-art/suijin03.jpeg",
     },
     url: "https://x.com/NocturneVertina/status/2093608798615392390?s=20",
