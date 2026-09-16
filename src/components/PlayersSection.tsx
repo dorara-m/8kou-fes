@@ -193,7 +193,11 @@ function PlayersSectionInner({ items }: PlayersSectionProps) {
   }, [items]);
 
   useEffect(() => {
-    setInitialShuffledIds(shuffleItems(items.map((item) => item.id)));
+    setInitialShuffledIds(
+      shuffleItems(
+        items.filter((item) => !item.withdrawn).map((item) => item.id),
+      ),
+    );
     setSortMode("random");
   }, [items]);
 
@@ -250,9 +254,19 @@ function PlayersSectionInner({ items }: PlayersSectionProps) {
     return items.filter((item) => item.team?.id === selectedTeam);
   }, [items, selectedTeam]);
 
+  // 脱退済みメンバーは並び替え機能の対象外とし、常に一覧の末尾に固定表示する。
+  const activeFilteredItems = useMemo(
+    () => filteredItems.filter((item) => !item.withdrawn),
+    [filteredItems],
+  );
+  const withdrawnFilteredItems = useMemo(
+    () => filteredItems.filter((item) => item.withdrawn),
+    [filteredItems],
+  );
+
   const displayedItems = useMemo(() => {
     if (sortMode === "name") {
-      return [...filteredItems].sort((a, b) =>
+      return [...activeFilteredItems].sort((a, b) =>
         (a.kana ?? getDisplayName(a.name)).localeCompare(
           b.kana ?? getDisplayName(b.name),
           "ja",
@@ -261,7 +275,7 @@ function PlayersSectionInner({ items }: PlayersSectionProps) {
     }
 
     if (sortMode === "updated") {
-      return [...filteredItems].sort((a, b) => {
+      return [...activeFilteredItems].sort((a, b) => {
         const aUpdatedAt = Date.parse(a.updatedAt ?? a.createdAt ?? "");
         const bUpdatedAt = Date.parse(b.updatedAt ?? b.createdAt ?? "");
         return (Number.isNaN(bUpdatedAt) ? 0 : bUpdatedAt) -
@@ -272,14 +286,18 @@ function PlayersSectionInner({ items }: PlayersSectionProps) {
     const orderMap = new Map(
       initialShuffledIds.map((id, index) => [id, index]),
     );
-    return [...filteredItems].sort(
+    return [...activeFilteredItems].sort(
       (a, b) => (orderMap.get(a.id) ?? 0) - (orderMap.get(b.id) ?? 0),
     );
-  }, [filteredItems, sortMode, initialShuffledIds]);
+  }, [activeFilteredItems, sortMode, initialShuffledIds]);
 
   const handleRandomSort = () => {
     setSortMode("random");
-    setInitialShuffledIds(shuffleItems(items.map((item) => item.id)));
+    setInitialShuffledIds(
+      shuffleItems(
+        items.filter((item) => !item.withdrawn).map((item) => item.id),
+      ),
+    );
   };
 
   return (
@@ -412,10 +430,26 @@ function PlayersSectionInner({ items }: PlayersSectionProps) {
         {items.length === 0 && (
           <p className="mt-6 text-sm text-slate-500">まだ登録がありません</p>
         )}
-        {items.length > 0 && displayedItems.length === 0 && (
-          <p className="mt-6 text-sm text-slate-500">
-            選択したチームの選手はいません
-          </p>
+        {items.length > 0 &&
+          displayedItems.length === 0 &&
+          withdrawnFilteredItems.length === 0 && (
+            <p className="mt-6 text-sm text-slate-500">
+              選択したチームの選手はいません
+            </p>
+          )}
+
+        {withdrawnFilteredItems.length > 0 && (
+          <div className="mt-12 border-t border-slate-200 pt-8">
+            <ul className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+              {withdrawnFilteredItems.map((item) => (
+                <PlayerCard
+                  key={item.id}
+                  item={item}
+                  onPlayVoice={setVoicePlayerItem}
+                />
+              ))}
+            </ul>
+          </div>
         )}
       </div>
 

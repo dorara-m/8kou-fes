@@ -84,6 +84,7 @@ export const PLAYERS: PlayerItem[] = withIds<Omit<PlayerItem, "id">>([
     x_url: "https://x.com/taro_fu_taro",
     team: getTeam("3ehcky1etdw"),
     updatedAt: "2026-08-02T16:17:54.385Z",
+    withdrawn: true,
   },
   {
     icon: {
@@ -663,6 +664,7 @@ export const PLAYERS: PlayerItem[] = withIds<Omit<PlayerItem, "id">>([
     x_url: "https://x.com/Hakubou_Izune",
     team: getTeam("qz8mg90j4"),
     updatedAt: "2026-07-26T13:23:08.338Z",
+    withdrawn: true,
   },
   {
     icon: {
@@ -916,6 +918,7 @@ export const PLAYERS: PlayerItem[] = withIds<Omit<PlayerItem, "id">>([
     x_url: "https://x.com/kengayuu",
     team: getTeam("e3li73yojqyq"),
     updatedAt: "2026-07-24T03:25:52.301Z",
+    withdrawn: true,
   },
   {
     icon: {

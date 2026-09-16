@@ -12,4 +12,6 @@ export type PlayerItem = {
   team?: TeamItem;
   createdAt?: string;
   updatedAt?: string;
+  /** true の場合、脱退済みメンバーとして扱う(並び替え対象外・一覧の末尾に固定表示)。 */
+  withdrawn?: boolean;
 };

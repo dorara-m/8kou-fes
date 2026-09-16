@@ -96,7 +96,7 @@ export function PlayerBubbles({
   const pathname = usePathname();
 
   useEffect(() => {
-    const withIcon = items.filter((item) => item.icon?.url);
+    const withIcon = items.filter((item) => item.icon?.url && !item.withdrawn);
     if (withIcon.length === 0) {
       setBubbles([]);
       return;
