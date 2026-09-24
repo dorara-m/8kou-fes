@@ -78,6 +78,7 @@ export const CAPTAINS: CaptainItem[] = withIds<Omit<CaptainItem, "id">>([
     team: getTeam("sfypgr-1p35"),
     comment: "終わりたくなくなるぐらい楽しんでいきたいと思います!!",
     x_url: "https://x.com/shikou_yura",
+    voice_url: "https://youtube.com/shorts/esT3-gfjLHg",
     youtube_url: "https://www.youtube.com/channel/UCJuY8wAxkABbzPGkn-JsdHA",
   },
   {

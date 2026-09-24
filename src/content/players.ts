@@ -768,9 +768,10 @@ export const PLAYERS: PlayerItem[] = withIds<Omit<PlayerItem, "id">>([
     name: "瀬々名 ルビー",
     kana: "せせな るびー",
     youtube_url: "https://www.youtube.com/@Sesenaruby",
+    voice_url: "https://youtube.com/shorts/TJA-bPOBc5Q",
     x_url: "https://x.com/HaaMvq",
     team: getTeam("sfypgr-1p35"),
-    updatedAt: "2026-08-03T10:05:04.080Z",
+    updatedAt: "2026-09-24",
   },
   {
     icon: {
@@ -781,9 +782,10 @@ export const PLAYERS: PlayerItem[] = withIds<Omit<PlayerItem, "id">>([
     name: "検察側の証人",
     kana: "けんさつがわのしょうにん",
     youtube_url: "https://www.youtube.com/@kensatsu_syonin",
+    voice_url: "https://youtube.com/shorts/_l7I0_CTjq8",
     x_url: "https://x.com/kensatsu_syonin",
     team: getTeam("sfypgr-1p35"),
-    updatedAt: "2026-07-26T12:55:44.217Z",
+    updatedAt: "2026-09-24",
   },
   {
     icon: {
@@ -822,8 +824,9 @@ export const PLAYERS: PlayerItem[] = withIds<Omit<PlayerItem, "id">>([
     kana: "えがき ざびまる",
     youtube_url: "https://youtube.com/channel/UCk2GVt5-E6mPM-zYIzs_l1Q?si=W8G3BY06fOWURU2m",
     x_url: "https://x.com/ZABIMALL_VT",
+    voice_url: "https://youtube.com/shorts/MyX7o7zM8G8",
     team: getTeam("sfypgr-1p35"),
-    updatedAt: "2026-08-03T10:05:24.134Z",
+    updatedAt: "2026-09-24",
   },
   {
     icon: {
