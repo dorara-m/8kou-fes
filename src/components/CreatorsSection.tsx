@@ -72,12 +72,12 @@ export function CreatorsSection() {
         {CREATORS.length === 0 && (
           <p className="mt-6 text-sm text-slate-500">まだ登録がありません</p>
         )}
-        <div className="mt-12 text-center">
+        {/* <div className="mt-12 text-center">
           <p className="mb-6 text-sm md:text-base text-slate-600 leading-relaxed">
             {CREATOR_RECRUITMENT_CAPTION}
           </p>
           <CreatorRecruitmentButton />
-        </div>
+        </div> */}
       </div>
     </section>
   );

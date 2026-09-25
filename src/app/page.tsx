@@ -97,7 +97,7 @@ export default function HomePage() {
       <StaffSection items={STAFF} />
       <CreatorsSection />
       <CreditsSection />
-      <CreatorRecruitmentButton variant="fixed" />
+      {/* <CreatorRecruitmentButton variant="fixed" /> */}
       {/* <TimeTableSection /> */}
     </div>
   );
