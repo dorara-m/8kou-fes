@@ -4,6 +4,20 @@ import { withIds } from "./withIds";
 export const FAN_ART: FanArtItem[] = withIds<Omit<FanArtItem, "id">>([
   {
     image: {
+      url: "/images/fan-art/eye-green.jpeg",
+    },
+    url: "https://x.com/pano_N_pticon/status/2102075933230572015?s=20",
+    title: "N番囚人のえぬた",
+  },
+  {
+    image: {
+      url: "/images/fan-art/eye-pink.jpeg",
+    },
+    url: "https://x.com/pano_N_pticon/status/2100263381286736372?s=20",
+    title: "N番囚人のえぬた",
+  },
+  {
+    image: {
       url: "/images/fan-art/riona3.jpeg",
     },
     url: "https://x.com/Keroy_Matsurios/status/2099080553828085816?s=20",
