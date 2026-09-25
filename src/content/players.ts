@@ -265,10 +265,10 @@ export const PLAYERS: PlayerItem[] = withIds<Omit<PlayerItem, "id">>([
     name: "幽羽 戒人",
     kana: "ゆわ かいと",
     youtube_url: "https://www.youtube.com/@__YouWeRE_LEGNE",
-    voice_url: "https://youtube.com/shorts/2tkKxWygYp8",
+    voice_url: "https://youtube.com/shorts/nHDVvl_C0DE",
     x_url: "https://x.com/__YouWeRE_LEGNE",
     team: getTeam("ilrg1xnh0"),
-    updatedAt: "2026-08-08T09:53:15.822Z",
+    updatedAt: "2026-09-25",
   },
   {
     icon: {
@@ -520,9 +520,10 @@ export const PLAYERS: PlayerItem[] = withIds<Omit<PlayerItem, "id">>([
     name: "小花 ぺち",
     kana: "こはな ぺち",
     youtube_url: "https://www.youtube.com/@pechi_kohana",
+    voice_url: "https://youtube.com/shorts/r5fMRqStSkk",
     x_url: "https://x.com/pechi_kohana",
     team: getTeam("n5qmogp5h_z"),
-    updatedAt: "2026-08-03T09:58:45.658Z",
+    updatedAt: "2026-09-25",
   },
   {
     icon: {
@@ -560,9 +561,10 @@ export const PLAYERS: PlayerItem[] = withIds<Omit<PlayerItem, "id">>([
     name: "卯月 春兎",
     kana: "うづき はると",
     youtube_url: "https://www.youtube.com/@HarutoU0410",
+    voice_url: "https://youtube.com/shorts/mlMXP7-hXDw",
     x_url: "https://x.com/haruto_u0410",
     team: getTeam("n5qmogp5h_z"),
-    updatedAt: "2026-08-03T09:59:51.294Z",
+    updatedAt: "2026-09-25",
   },
   {
     icon: {
@@ -572,10 +574,10 @@ export const PLAYERS: PlayerItem[] = withIds<Omit<PlayerItem, "id">>([
     },
     name: "リトリッパー",
     youtube_url: "https://m.youtube.com/channel/UCEJ4rm6dX_R97WuiGFyS6Vg",
-    voice_url: "https://youtube.com/shorts/6kNcFB4tmxU?feature=share",
+    voice_url: "https://youtube.com/shorts/qJsJAPrVR2I",
     x_url: "https://x.com/retsan_12",
     team: getTeam("n5qmogp5h_z"),
-    updatedAt: "2026-08-15T14:15:39.678Z",
+    updatedAt: "2026-09-25",
   },
   {
     icon: {
@@ -597,9 +599,10 @@ export const PLAYERS: PlayerItem[] = withIds<Omit<PlayerItem, "id">>([
     },
     name: "チャーはん",
     youtube_url: "https://youtube.com/@chahan-is-good",
+    voice_url: "https://youtube.com/shorts/y7FkH6gGsOY",
     x_url: "https://x.com/tyaahann0505050",
     team: getTeam("n5qmogp5h_z"),
-    updatedAt: "2026-08-31",
+    updatedAt: "2026-09-25",
   },
   {
     icon: {
@@ -609,9 +612,10 @@ export const PLAYERS: PlayerItem[] = withIds<Omit<PlayerItem, "id">>([
     },
     name: "イザナミアヌ",
     youtube_url: "https://youtube.com/channel/UCH7QRxCsd_Dt-CI6ZH78TVQ",
+    voice_url: "https://youtube.com/shorts/uH8t3Elprb0",
     x_url: "https://x.com/izanami_anu0x0",
     team: getTeam("n5qmogp5h_z"),
-    updatedAt: "2026-07-26T13:30:26.695Z",
+    updatedAt: "2026-09-25",
   },
   {
     icon: {
