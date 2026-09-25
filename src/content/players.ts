@@ -639,9 +639,10 @@ export const PLAYERS: PlayerItem[] = withIds<Omit<PlayerItem, "id">>([
     name: "夜見月 アルト",
     kana: "よみづき あると",
     youtube_url: "https://www.youtube.com/@yomizuki_aluto",
+    voice_url: "https://youtube.com/shorts/vwl2wDHlP14",
     x_url: "https://x.com/Aluto_yomizuki",
     team: getTeam("qz8mg90j4"),
-    updatedAt: "2026-08-03T10:00:19.334Z",
+    updatedAt: "2026-09-26",
   },
   {
     icon: {
@@ -652,9 +653,10 @@ export const PLAYERS: PlayerItem[] = withIds<Omit<PlayerItem, "id">>([
     name: "餅乃 ふぉか",
     kana: "もちの ふぉか",
     youtube_url: "https://www.youtube.com/@mochino_foca",
+    voice_url: "https://youtube.com/shorts/cn1ZJH_V6LE",
     x_url: "https://x.com/mochino_foca84",
     team: getTeam("qz8mg90j4"),
-    updatedAt: "2026-08-03T10:00:31.014Z",
+    updatedAt: "2026-09-26",
   },
   {
     icon: {
@@ -680,8 +682,9 @@ export const PLAYERS: PlayerItem[] = withIds<Omit<PlayerItem, "id">>([
     kana: "そうびゃくし れお",
     youtube_url: "https://www.youtube.com/@soubyakushi-leo",
     x_url: "https://x.com/leo_soubyakushi",
+    voice_url: "https://youtube.com/shorts/vxIBl9dya_I",
     team: getTeam("qz8mg90j4"),
-    updatedAt: "2026-08-03T10:00:50.227Z",
+    updatedAt: "2026-09-26",
   },
   {
     icon: {
@@ -705,9 +708,10 @@ export const PLAYERS: PlayerItem[] = withIds<Omit<PlayerItem, "id">>([
     name: "小羽音 いこい",
     kana: "ささはね いこい",
     youtube_url: "https://www.youtube.com/@sasahane_ikoi",
+    voice_url: "https://youtube.com/shorts/dDnlr3qRUJo",
     x_url: "https://x.com/sasahane151",
     team: getTeam("qz8mg90j4"),
-    updatedAt: "2026-08-03T10:04:40.535Z",
+    updatedAt: "2026-09-26",
   },
   {
     icon: {
@@ -731,9 +735,10 @@ export const PLAYERS: PlayerItem[] = withIds<Omit<PlayerItem, "id">>([
     name: "花里 透",
     kana: "はなさと とおる",
     youtube_url: "https://youtube.com/channel/UClmUkjzZ6f4XvTNiMcdEm6A",
+    voice_url: "https://youtube.com/shorts/GoEzUN7Azv4",
     x_url: "https://x.com/hanasato_tooru",
     team: getTeam("qz8mg90j4"),
-    updatedAt: "2026-08-03T10:04:54.418Z",
+    updatedAt: "2026-09-26",
   },
   {
     icon: {

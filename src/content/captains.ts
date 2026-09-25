@@ -91,6 +91,7 @@ export const CAPTAINS: CaptainItem[] = withIds<Omit<CaptainItem, "id">>([
     team: getTeam("qz8mg90j4"),
     comment: "全部を白一色に染めてやるのは僕たち白雪チーム！！\nそして団長は僕！いっぱい走る気満々の怪物だっ\nさあ行こっ！僕たちのわくわくと優勝はすぐそこだ！！！",
     x_url: "https://x.com/karakurinagu_V",
+    voice_url: "https://youtube.com/shorts/5-nNsNqWfDI",
     youtube_url: "https://www.youtube.com/@KAnaguRAKURI",
   },
   {
