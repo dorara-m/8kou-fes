@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { PlayerBubbles } from "./PlayerBubbles";
 import type { PlayerItem } from "@/types/player";
 
-const EVENT_DATE = new Date("2026-10-11T00:00:00+09:00");
+const EVENT_DATE = new Date("2026-10-11T10:00:00+09:00");
 
 /** キャラクター間のフェードイン間隔（秒） */
 const CHARACTER_FADE_IN_STAGGER_S = 0.5;
@@ -58,7 +58,6 @@ const CHARACTERS: CharacterBg[] = [
 
 function useCountdown() {
   const [diff, setDiff] = useState({
-    days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0,
@@ -70,13 +69,12 @@ function useCountdown() {
       const ms = EVENT_DATE.getTime() - now.getTime();
 
       if (ms <= 0) {
-        setDiff({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        setDiff({ hours: 0, minutes: 0, seconds: 0 });
         return;
       }
 
       setDiff({
-        days: Math.floor(ms / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((ms / (1000 * 60 * 60)) % 24),
+        hours: Math.floor(ms / (1000 * 60 * 60)),
         minutes: Math.floor((ms / (1000 * 60)) % 60),
         seconds: Math.floor((ms / 1000) % 60),
       });
@@ -106,7 +104,7 @@ export function TopSection({
   onLogoAnimationEnd,
   players = [],
 }: TopSectionProps) {
-  const { days, hours, minutes, seconds } = useCountdown();
+  const { hours, minutes, seconds } = useCountdown();
 
   return (
     <section id="top" className="relative h-screen">
@@ -165,7 +163,15 @@ export function TopSection({
         </p>
         <p className="mt-4 tabular-nums text-xl">
           あと
-          <span className="font-bold text-3xl text-red-600">{days}</span>日
+          <span className="font-bold text-3xl text-red-600">{hours}</span>時間
+          <span className="font-bold text-3xl text-red-600">
+            {String(minutes).padStart(2, "0")}
+          </span>
+          分
+          <span className="font-bold text-3xl text-red-600">
+            {String(seconds).padStart(2, "0")}
+          </span>
+          秒
         </p>
       </div>
     </section>
