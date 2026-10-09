@@ -16,7 +16,7 @@ import { CAPTAINS } from "@/content/captains";
 import { PLAYERS } from "@/content/players";
 import { STAFF } from "@/content/staff";
 import { FAN_ART } from "@/content/fanArt";
-import { STREAMS } from "@/content/streams";
+import { RELATED_STREAMS, STREAMS } from "@/content/streams";
 import { CreatorRecruitmentButton } from "@/components/CreatorRecruitmentButton";
 import { StreamLinkButton } from "@/components/StreamLinkButton";
 import { markContentReady } from "@/lib/contentReady";
@@ -92,7 +92,7 @@ export default function HomePage() {
         onLogoAnimationEnd={() => setShowSubtitle(true)}
         players={PLAYERS}
       />
-      <StreamsSection items={STREAMS} />
+      <StreamsSection items={STREAMS} relatedItems={RELATED_STREAMS} />
       <CatchCopySection />
       <TimeTableSection />
       <CaptainsSection items={CAPTAINS} />

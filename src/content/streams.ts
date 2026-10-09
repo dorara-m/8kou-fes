@@ -11,3 +11,9 @@ export const STREAMS: StreamItem[] = withIds<Omit<StreamItem, "id">>([
   { url: "https://www.youtube.com/live/6MiiKFuKkYs?si=paye3Ard3cMXfJjH", title: "21:30〜 クイズ" },
   { url: "https://www.youtube.com/live/e3HKmk2saEE?si=gDfdhN8DZM0lFYz4", title: "23:00〜 閉会式" },
 ]);
+
+/** 本配信の下に小さく並べる関連配信。url が未設定の枠は「配信準備中」と表示されます。 */
+export const RELATED_STREAMS: StreamItem[] = withIds<Omit<StreamItem, "id">>([
+  { url: "https://www.youtube.com/live/6WYbqlzZfmI?si=OLXQK5cnIvVubT8x", title: "前夜祭" },
+  // { url: "", title: "後夜祭" },
+]);

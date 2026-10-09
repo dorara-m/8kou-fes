@@ -10,12 +10,16 @@ import { useState } from "react";
 
 type StreamsSectionProps = {
   items: StreamItem[];
+  relatedItems?: StreamItem[];
 };
 
 /** YouTube が「画像なし」の代わりに返すプレースホルダー画像の幅 */
 const YOUTUBE_PLACEHOLDER_WIDTH = 120;
 
-export function StreamsSection({ items }: StreamsSectionProps) {
+export function StreamsSection({
+  items,
+  relatedItems = [],
+}: StreamsSectionProps) {
   return (
     <section id="streams" className="border-t border-slate-200 bg-slate-100">
       <div className="max-w-6xl mx-auto px-6 py-16 md:pt-40">
@@ -36,6 +40,23 @@ export function StreamsSection({ items }: StreamsSectionProps) {
             </li>
           ))}
         </ul>
+        {relatedItems.length > 0 && (
+          <div className="mt-12">
+            <h3 className="text-lg font-bold mb-4 text-center">関連配信</h3>
+            <ul className="flex flex-wrap justify-center gap-4">
+              {relatedItems.map((item) => (
+                <li key={item.id} className="w-[calc((100%-1rem)/2)] md:w-60">
+                  <StreamPlayer item={item} />
+                  {item.title && (
+                    <p className="mt-2 text-xs font-bold text-slate-900 text-center">
+                      {item.title}
+                    </p>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </section>
   );
@@ -87,7 +108,9 @@ function StreamPlayer({ item }: { item: StreamItem }) {
             loading="lazy"
             onError={tryNextThumbnail}
             onLoad={(event) => {
-              if (event.currentTarget.naturalWidth <= YOUTUBE_PLACEHOLDER_WIDTH) {
+              if (
+                event.currentTarget.naturalWidth <= YOUTUBE_PLACEHOLDER_WIDTH
+              ) {
                 tryNextThumbnail();
               }
             }}
