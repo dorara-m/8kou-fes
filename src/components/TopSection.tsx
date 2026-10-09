@@ -3,8 +3,7 @@
 import { useEffect, useState } from "react";
 import { PlayerBubbles } from "./PlayerBubbles";
 import type { PlayerItem } from "@/types/player";
-
-const EVENT_DATE = new Date("2026-10-11T10:00:00+09:00");
+import { EVENT_START } from "@/lib/event";
 
 /** キャラクター間のフェードイン間隔（秒） */
 const CHARACTER_FADE_IN_STAGGER_S = 0.5;
@@ -58,6 +57,7 @@ const CHARACTERS: CharacterBg[] = [
 
 function useCountdown() {
   const [diff, setDiff] = useState({
+    isOver: false,
     hours: 0,
     minutes: 0,
     seconds: 0,
@@ -66,14 +66,15 @@ function useCountdown() {
   useEffect(() => {
     const tick = () => {
       const now = new Date();
-      const ms = EVENT_DATE.getTime() - now.getTime();
+      const ms = EVENT_START.getTime() - now.getTime();
 
       if (ms <= 0) {
-        setDiff({ hours: 0, minutes: 0, seconds: 0 });
+        setDiff({ isOver: true, hours: 0, minutes: 0, seconds: 0 });
         return;
       }
 
       setDiff({
+        isOver: false,
         hours: Math.floor(ms / (1000 * 60 * 60)),
         minutes: Math.floor((ms / (1000 * 60)) % 60),
         seconds: Math.floor((ms / 1000) % 60),
@@ -104,7 +105,7 @@ export function TopSection({
   onLogoAnimationEnd,
   players = [],
 }: TopSectionProps) {
-  const { hours, minutes, seconds } = useCountdown();
+  const { isOver, hours, minutes, seconds } = useCountdown();
 
   return (
     <section id="top" className="relative h-screen">
@@ -159,20 +160,24 @@ export function TopSection({
           </h1>
         </div>
         <p className="block mt-8 font-bold text-center text-xl md:text-2xl font-heading">
-          2026年10月11日(日)<br/><span className="text-lg">10:00〜24:00</span>
+          2026年10月11日(日)
+          <br />
+          <span className="text-lg">10:00〜24:00</span>
         </p>
-        <p className="mt-4 tabular-nums text-xl">
-          あと
-          <span className="font-bold text-3xl text-red-600">{hours}</span>時間
-          <span className="font-bold text-3xl text-red-600">
-            {String(minutes).padStart(2, "0")}
-          </span>
-          分
-          <span className="font-bold text-3xl text-red-600">
-            {String(seconds).padStart(2, "0")}
-          </span>
-          秒
-        </p>
+        {!isOver && (
+          <p className="mt-4 tabular-nums text-xl">
+            あと
+            <span className="font-bold text-3xl text-red-600">{hours}</span>時間
+            <span className="font-bold text-3xl text-red-600">
+              {String(minutes).padStart(2, "0")}
+            </span>
+            分
+            <span className="font-bold text-3xl text-red-600">
+              {String(seconds).padStart(2, "0")}
+            </span>
+            秒
+          </p>
+        )}
       </div>
     </section>
   );

@@ -3,6 +3,7 @@
 import { CaptainsSection } from "@/components/CaptainsSection";
 import { PlayersSection } from "@/components/PlayersSection";
 import { CatchCopySection } from "@/components/CatchCopySection";
+import { StreamsSection } from "@/components/StreamsSection";
 import { CreatorsSection } from "@/components/CreatorsSection";
 // import { EntrySection } from "@/components/EntrySection";
 import { GameSection } from "@/components/GameSection";
@@ -15,7 +16,9 @@ import { CAPTAINS } from "@/content/captains";
 import { PLAYERS } from "@/content/players";
 import { STAFF } from "@/content/staff";
 import { FAN_ART } from "@/content/fanArt";
+import { STREAMS } from "@/content/streams";
 import { CreatorRecruitmentButton } from "@/components/CreatorRecruitmentButton";
+import { StreamLinkButton } from "@/components/StreamLinkButton";
 import { markContentReady } from "@/lib/contentReady";
 import { useCallback, useEffect, useState } from "react";
 
@@ -89,6 +92,7 @@ export default function HomePage() {
         onLogoAnimationEnd={() => setShowSubtitle(true)}
         players={PLAYERS}
       />
+      <StreamsSection items={STREAMS} />
       <CatchCopySection />
       <CaptainsSection items={CAPTAINS} />
       <PlayersSection items={PLAYERS} />
@@ -97,6 +101,7 @@ export default function HomePage() {
       <StaffSection items={STAFF} />
       <CreatorsSection />
       <CreditsSection />
+      <StreamLinkButton />
       {/* <CreatorRecruitmentButton variant="fixed" /> */}
       {/* <TimeTableSection /> */}
     </div>

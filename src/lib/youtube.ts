@@ -1,4 +1,4 @@
-export function getYouTubeEmbedUrl(url?: string) {
+export function getYouTubeVideoId(url?: string) {
   if (!url) return null;
 
   try {
@@ -21,10 +21,22 @@ export function getYouTubeEmbedUrl(url?: string) {
       }
     }
 
-    return videoId && /^[A-Za-z0-9_-]{11}$/.test(videoId)
-      ? `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`
-      : null;
+    return videoId && /^[A-Za-z0-9_-]{11}$/.test(videoId) ? videoId : null;
   } catch {
     return null;
   }
+}
+
+export function getYouTubeEmbedUrl(url?: string) {
+  const videoId = getYouTubeVideoId(url);
+  return videoId
+    ? `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`
+    : null;
+}
+
+/** 高画質順のサムネイル候補。存在しない解像度があるため上から順に試す。 */
+export function getYouTubeThumbnailUrls(videoId: string) {
+  return ["maxresdefault", "sddefault", "hqdefault"].map(
+    (name) => `https://i.ytimg.com/vi/${videoId}/${name}.jpg`,
+  );
 }
