@@ -3,7 +3,7 @@ import { EntryFormButton } from "@/components/EntryFormButton";
 export function CatchCopySection() {
   return (
     <section id="concept" className="border-t border-slate-200 bg-white">
-      <div className="max-w-4xl mx-auto px-6 py-20 md:pt-40">
+      <div className="max-w-4xl mx-auto px-6 py-20">
         <p className="font-heading text-2xl md:text-4xl font-bold leading-relaxed text-slate-900 text-center">
           「やりたいことを、<br className="md:hidden" />きみと一緒に。」
         </p>

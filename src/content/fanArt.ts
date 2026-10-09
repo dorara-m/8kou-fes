@@ -4,6 +4,48 @@ import { withIds } from "./withIds";
 export const FAN_ART: FanArtItem[] = withIds<Omit<FanArtItem, "id">>([
   {
     image: {
+      url: "/images/fan-art/aonami.jpeg",
+    },
+    url: "https://x.com/fu_mi_rutune/status/2107803130008072517?s=46&t=BUaApeGPqBDCogVvdrl7OA",
+    title: "風海 ルツネ",
+  },
+  {
+    image: {
+      url: "/images/fan-art/main-staff.jpeg",
+    },
+    url: "https://x.com/pano_N_pticon/status/2106697658870153654?s=20",
+    title: "N番囚人のえぬた",
+  },
+  {
+    image: {
+      url: "/images/fan-art/eye-black.jpeg",
+    },
+    url: "https://x.com/pano_n_pticon/status/2106088329712472397?s=46",
+    title: "N番囚人のえぬた",
+  },
+  {
+    image: {
+      url: "/images/fan-art/eye-white.jpeg",
+    },
+    url: "https://x.com/pano_N_pticon/status/2105356667756134493?s=20",
+    title: "N番囚人のえぬた",
+  },
+  {
+    image: {
+      url: "/images/fan-art/eye-purple.jpeg",
+    },
+    url: "https://x.com/pano_n_pticon/status/2104794665082077187?s=46",
+    title: "N番囚人のえぬた",
+  },
+  {
+    image: {
+      url: "/images/fan-art/eye-yellow.jpeg",
+    },
+    url: "https://x.com/pano_N_pticon/status/2103891820212359169?s=20",
+    title: "N番囚人のえぬた",
+  },
+  {
+    image: {
       url: "/images/fan-art/eye-green.jpeg",
     },
     url: "https://x.com/pano_N_pticon/status/2102075933230572015?s=20",
