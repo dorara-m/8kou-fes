@@ -9,7 +9,7 @@ import { CreatorsSection } from "@/components/CreatorsSection";
 import { GameSection } from "@/components/GameSection";
 import { StaffSection } from "@/components/StaffSection";
 import { FanArtSection } from "@/components/FanArtSection";
-// import { TimeTableSection } from "@/components/TimeTableSection";
+import { TimeTableSection } from "@/components/TimeTableSection";
 import { CreditsSection } from "@/components/CreditsSection";
 import { TopSection } from "@/components/TopSection";
 import { CAPTAINS } from "@/content/captains";
@@ -94,6 +94,7 @@ export default function HomePage() {
       />
       <StreamsSection items={STREAMS} />
       <CatchCopySection />
+      <TimeTableSection />
       <CaptainsSection items={CAPTAINS} />
       <PlayersSection items={PLAYERS} />
       <GameSection />
@@ -103,7 +104,6 @@ export default function HomePage() {
       <CreditsSection />
       <StreamLinkButton />
       {/* <CreatorRecruitmentButton variant="fixed" /> */}
-      {/* <TimeTableSection /> */}
     </div>
   );
 }

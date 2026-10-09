@@ -1,59 +1,134 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
+type TimeTableImage = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+};
+
+const TIME_TABLE_IMAGES: TimeTableImage[] = [
+  {
+    src: "/timetable1.jpeg",
+    alt: "タイムテーブル 1",
+    width: 1200,
+    height: 1350,
+  },
+  {
+    src: "/timetable2.jpeg",
+    alt: "タイムテーブル 2",
+    width: 1200,
+    height: 1350,
+  },
+];
+
+/** tailwind の md ブレークポイント */
+const MD_MEDIA_QUERY = "(min-width: 768px)";
+
 export function TimeTableSection() {
+  const [selectedImage, setSelectedImage] = useState<TimeTableImage | null>(
+    null,
+  );
+
+  useEffect(() => {
+    if (!selectedImage) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSelectedImage(null);
+    };
+
+    const originalOverflow = document.body.style.overflow;
+    document.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [selectedImage]);
+
   return (
-    <section id="time-table" className="border-t border-slate-200">
-      <div className="max-w-6xl mx-auto px-4 py-16">
-        <h2 className="text-3xl font-bold mb-8">TIME TABLE</h2>
-        <ul className="space-y-8">
-          <li>
-            <h3 className="text-xl font-bold mb-1">7:00 - </h3>
-            <p className="text-slate-600">開会</p>
-          </li>
-          <li>
-            <h3 className="text-xl font-bold mb-1">8:00 - 9:00</h3>
-            <p className="text-slate-600">各チーム凸待ち</p>
-          </li>
-          <li>
-            <h3 className="text-xl font-bold mb-1">9:00 - 10:00</h3>
-            <p className="text-slate-600">「マリオカート ワールド」第１試合</p>
-          </li>
-          <li>
-            <h3 className="text-xl font-bold mb-1">10:00 - 11:00</h3>
-            <p className="text-slate-600">「マリオカート ワールド」第２試合</p>
-          </li>
-          <li>
-            <h3 className="text-xl font-bold mb-1">12:00 - 13:00</h3>
-            <p className="text-slate-600">昼休憩（応援団動画上映）</p>
-          </li>
-          <li>
-            <h3 className="text-xl font-bold mb-1">13:00 - 15:30</h3>
-            <p className="text-slate-600">「スプラトゥーン3」</p>
-          </li>
-          <li>
-            <h3 className="text-xl font-bold mb-1">18:00 - 19:00</h3>
-            <p className="text-slate-600">司会進行</p>
-          </li>
-          <li>
-            <h3 className="text-xl font-bold mb-1">19:00 - 19:30</h3>
-            <p className="text-slate-600">協力者紹介</p>
-          </li>
-          <li>
-            <h3 className="text-xl font-bold mb-1">19:30 - 21:00</h3>
-            <p className="text-slate-600">「テトリス99」</p>
-          </li>
-          <li>
-            <h3 className="text-xl font-bold mb-1">21:00 - 23:00</h3>
-            <p className="text-slate-600">クイズ大会</p>
-          </li>
-          <li>
-            <h3 className="text-xl font-bold mb-1">23:00 - 00:00</h3>
-            <p className="text-slate-600">結果発表・賞品紹介</p>
-          </li>
-          <li>
-            <h3 className="text-xl font-bold mb-1">00:00 - </h3>
-            <p className="text-slate-600">閉会</p>
-          </li>
+    <section id="time-table" className="border-t border-slate-200 bg-white">
+      <div className="max-w-6xl mx-auto px-6 py-16">
+        <h2 className="text-3xl font-bold mb-8">タイムテーブル</h2>
+        <ul className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          {TIME_TABLE_IMAGES.map((image) => (
+            <li key={image.src}>
+              <button
+                type="button"
+                onClick={() => {
+                  // SP では拡大しない（md 未満は画像が画面幅いっぱいに表示されるため）
+                  if (window.matchMedia(MD_MEDIA_QUERY).matches) {
+                    setSelectedImage(image);
+                  }
+                }}
+                className="group relative block w-full cursor-default overflow-hidden rounded-lg border border-slate-200 md:cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900"
+                aria-label={`${image.alt}を拡大表示`}
+              >
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="h-auto w-full transition-[filter] duration-200 md:group-hover:brightness-95"
+                  width={image.width}
+                  height={image.height}
+                />
+                <span
+                  className="absolute bottom-3 right-3 hidden h-10 w-10 place-items-center rounded-full bg-slate-900/75 text-white shadow-lg transition group-hover:bg-slate-900 md:grid"
+                  aria-hidden
+                >
+                  <svg
+                    className="h-5 w-5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <circle cx="11" cy="11" r="7" />
+                    <path d="m20 20-4-4" />
+                    <path d="M11 8v6" />
+                    <path d="M8 11h6" />
+                  </svg>
+                </span>
+              </button>
+            </li>
+          ))}
         </ul>
       </div>
+      {selectedImage && (
+        // 縦長の画像なので、画面高さに収めず原寸幅まで広げて縦スクロールで見せる
+        <div
+          className="fixed inset-0 z-50 overflow-y-auto bg-black/85 p-4 sm:p-8"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${selectedImage.alt}の拡大表示`}
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setSelectedImage(null);
+          }}
+        >
+          <div className="relative mx-auto max-w-[1200px]">
+            <img
+              src={selectedImage.src}
+              alt={selectedImage.alt}
+              className="h-auto w-full rounded-sm shadow-2xl"
+              width={selectedImage.width}
+              height={selectedImage.height}
+            />
+            <button
+              type="button"
+              autoFocus
+              onClick={() => setSelectedImage(null)}
+              className="absolute -right-2 -top-2 grid h-10 w-10 place-items-center rounded-full bg-white text-2xl leading-none text-slate-900 shadow-lg transition hover:bg-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              aria-label="モーダルを閉じる"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
