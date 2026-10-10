@@ -15,6 +15,7 @@ import { CAPTAINS } from "@/content/captains";
 import { PLAYERS } from "@/content/players";
 import { STAFF } from "@/content/staff";
 import { FAN_ART } from "@/content/fanArt";
+import { BUBBLE_ITEMS } from "@/content/bubbles";
 import { RELATED_STREAMS, STREAMS } from "@/content/streams";
 import { CreatorRecruitmentButton } from "@/components/CreatorRecruitmentButton";
 import { StreamLinkButton } from "@/components/StreamLinkButton";
@@ -89,7 +90,7 @@ export default function HomePage() {
         showCharacters={showSubtitle}
         onTitleAnimationEnd={handleTitleAnimationEnd}
         onLogoAnimationEnd={() => setShowSubtitle(true)}
-        players={PLAYERS}
+        bubbles={BUBBLE_ITEMS}
       />
       <StreamsSection items={STREAMS} relatedItems={RELATED_STREAMS} />
       <CatchCopySection />

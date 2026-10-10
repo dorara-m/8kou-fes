@@ -2,12 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import type { PlayerItem } from "@/types/player";
+import type { BubbleItem } from "@/types/bubble";
 import { scrollToSection } from "@/lib/contentReady";
-import { getTeamSlug, TEAM_QUERY_KEY } from "@/lib/teamSlug";
+import { TEAM_QUERY_KEY } from "@/lib/teamSlug";
 
 type PlayerBubblesProps = {
-  items: PlayerItem[];
+  items: BubbleItem[];
   count?: number;
   /** PC表示時、この値が true になるまで泡を表示しない（スマホでは常に表示） */
   ready?: boolean;
@@ -24,6 +24,7 @@ type Bubble = {
   delay: number;
   drift: number;
   rise: number;
+  sectionId: string;
   teamSlug?: string;
 };
 
@@ -96,8 +97,7 @@ export function PlayerBubbles({
   const pathname = usePathname();
 
   useEffect(() => {
-    const withIcon = items.filter((item) => item.icon?.url && !item.withdrawn);
-    if (withIcon.length === 0) {
+    if (items.length === 0) {
       setBubbles([]);
       return;
     }
@@ -110,7 +110,7 @@ export function PlayerBubbles({
     const centerAvoidThreshold = mobile ? 0.78 : 0.45;
     const [minSize, maxSize] = mobile ? [56, 84] : [80, 120];
 
-    const picked = shuffle(withIcon).slice(0, count);
+    const picked = shuffle(items).slice(0, count);
     const placed: { x: number; y: number; radius: number }[] = [];
     const next: Bubble[] = picked.map((item) => {
       const size = Math.round(random(minSize, maxSize));
@@ -126,8 +126,8 @@ export function PlayerBubbles({
 
       return {
         id: item.id,
-        url: item.icon!.url,
-        alt: item.name ?? "",
+        url: item.iconUrl,
+        alt: item.name,
         size,
         topPx: y - radius,
         leftPx: x - radius,
@@ -135,7 +135,8 @@ export function PlayerBubbles({
         delay: random(0, 5),
         drift: random(-20, 20),
         rise: random(-28, -14),
-        teamSlug: item.team?.name ? getTeamSlug(item.team.name) : undefined,
+        sectionId: item.sectionId,
+        teamSlug: item.teamSlug,
       };
     });
     setBubbles(next);
@@ -147,7 +148,7 @@ export function PlayerBubbles({
       params.set(TEAM_QUERY_KEY, bubble.teamSlug);
       router.replace(`${pathname}?${params.toString()}`, { scroll: false });
     }
-    scrollToSection("players");
+    scrollToSection(bubble.sectionId);
   };
 
   if (bubbles.length === 0) return null;

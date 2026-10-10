@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { PlayerBubbles } from "./PlayerBubbles";
-import type { PlayerItem } from "@/types/player";
+import type { BubbleItem } from "@/types/bubble";
 import { EVENT_START } from "@/lib/event";
 
 /** キャラクター間のフェードイン間隔（秒） */
@@ -95,7 +95,7 @@ type TopSectionProps = {
   showCharacters: boolean;
   onTitleAnimationEnd: () => void;
   onLogoAnimationEnd: () => void;
-  players?: PlayerItem[];
+  bubbles?: BubbleItem[];
 };
 
 export function TopSection({
@@ -103,13 +103,13 @@ export function TopSection({
   showCharacters,
   onTitleAnimationEnd,
   onLogoAnimationEnd,
-  players = [],
+  bubbles = [],
 }: TopSectionProps) {
   const { isOver, hours, minutes, seconds } = useCountdown();
 
   return (
     <section id="top" className="relative h-screen">
-      <PlayerBubbles items={players} count={10} ready={showCharacters} />
+      <PlayerBubbles items={bubbles} count={10} ready={showCharacters} />
 
       <div
         aria-hidden
