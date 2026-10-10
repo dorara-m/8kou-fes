@@ -152,8 +152,8 @@ export function CaptainsSection({ items }: CaptainsSectionProps) {
       className="relative overflow-hidden border-t border-slate-200 bg-slate-100"
     >
       <div
-        className="pointer-events-none absolute inset-0 bg-[length:100%_auto] bg-center bg-no-repeat opacity-15"
-        style={{ backgroundImage: "url(/images/fan-art/captains.jpeg)" }}
+        className="pointer-events-none absolute inset-x-0 top-0 aspect-[4096/2122] bg-[length:100%_auto] bg-top bg-no-repeat opacity-15 [mask-image:linear-gradient(to_bottom,black_40%,transparent)] md:inset-0 md:aspect-auto md:bg-center md:[mask-image:none]"
+        style={{ backgroundImage: "url(/images/fan-art/captains.png)" }}
         aria-hidden
       />
       <div className="relative max-w-6xl mx-auto px-6 py-16">

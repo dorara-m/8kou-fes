@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 import { scrollToSection } from '@/lib/contentReady';
 
 const navItems = [
-  { href: "#top", label: "TOP" },
   { href: "#streams", label: "本配信" },
   { href: "#concept", label: "八煌フェスとは？" },
   { href: "#time-table", label: "タイムテーブル" },
@@ -14,6 +13,7 @@ const navItems = [
   { href: "#creators", label: "クリエイター" },
   { href: "#fan-art", label: "ファンアート" },
   { href: "#staff", label: "実行委員" },
+  { href: "#credits", label:"クレジット" }
 ];
 
 const SCROLL_THRESHOLD = 80;

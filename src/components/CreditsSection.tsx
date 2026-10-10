@@ -14,7 +14,15 @@ function CreditPeople({
     <div className={`space-y-2 ${className}`}>
       {items.map((person, i) => (
         <div key={i} className="[overflow-wrap:anywhere]">
-          <p>{person.name}</p>
+          <p>
+            {person.highlight ? (
+              <span className="bg-[linear-gradient(transparent_60%,#fde047_60%)] [box-decoration-break:clone] [-webkit-box-decoration-break:clone]">
+                {person.name}
+              </span>
+            ) : (
+              person.name
+            )}
+          </p>
           {person.note && (
             <p className="text-sm text-slate-500">{person.note}</p>
           )}

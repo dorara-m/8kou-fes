@@ -4,7 +4,7 @@ import { withIds } from "./withIds";
 export const FAN_ART: FanArtItem[] = withIds<Omit<FanArtItem, "id">>([
   {
     image: {
-      url: "/images/fan-art/captains.jpeg",
+      url: "/images/fan-art/captains.png",
     },
     url: "https://x.com/krikuyuu17/status/2108939925911732454?s=20",
     title: "リク祐",

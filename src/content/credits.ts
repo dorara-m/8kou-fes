@@ -233,7 +233,10 @@ export const CREDITS: CreditItem[] = [
   {
     title: "Special Thanks",
     items: [
-      { name: "私たちの『やりたいこと』を応援してくれた『きみ』" },
+      {
+        name: "私たちの『やりたいこと』を応援してくれた『きみ』",
+        highlight: true,
+      },
     ],
   },
 ];
