@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { PlayerBubbles } from "./PlayerBubbles";
 import type { BubbleItem } from "@/types/bubble";
-import { EVENT_START } from "@/lib/event";
+import { EVENT_CLOSED, EVENT_START } from "@/lib/event";
 
 /** キャラクター間のフェードイン間隔（秒） */
 const CHARACTER_FADE_IN_STAGGER_S = 0.5;
@@ -58,6 +58,7 @@ const CHARACTERS: CharacterBg[] = [
 function useCountdown() {
   const [diff, setDiff] = useState({
     isOver: false,
+    isClosed: false,
     hours: 0,
     minutes: 0,
     seconds: 0,
@@ -69,12 +70,19 @@ function useCountdown() {
       const ms = EVENT_START.getTime() - now.getTime();
 
       if (ms <= 0) {
-        setDiff({ isOver: true, hours: 0, minutes: 0, seconds: 0 });
+        setDiff({
+          isOver: true,
+          isClosed: now.getTime() >= EVENT_CLOSED.getTime(),
+          hours: 0,
+          minutes: 0,
+          seconds: 0,
+        });
         return;
       }
 
       setDiff({
         isOver: false,
+        isClosed: false,
         hours: Math.floor(ms / (1000 * 60 * 60)),
         minutes: Math.floor((ms / (1000 * 60)) % 60),
         seconds: Math.floor((ms / 1000) % 60),
@@ -105,7 +113,7 @@ export function TopSection({
   onLogoAnimationEnd,
   bubbles = [],
 }: TopSectionProps) {
-  const { isOver, hours, minutes, seconds } = useCountdown();
+  const { isOver, isClosed, hours, minutes, seconds } = useCountdown();
 
   return (
     <section id="top" className="relative h-screen">
@@ -159,11 +167,13 @@ export function TopSection({
             〜V体育祭〜
           </h1>
         </div>
-        <p className="block mt-8 font-bold text-center text-xl md:text-2xl font-heading">
-          2026年10月11日(日)
-          <br />
-          <span className="text-lg">10:00〜24:00</span>
-        </p>
+        {!isClosed && (
+          <p className="block mt-8 font-bold text-center text-xl md:text-2xl font-heading">
+            2026年10月11日(日)
+            <br />
+            <span className="text-lg">10:00〜24:00</span>
+          </p>
+        )}
         {!isOver && (
           <p className="mt-4 tabular-nums text-xl">
             あと
@@ -176,6 +186,19 @@ export function TopSection({
               {String(seconds).padStart(2, "0")}
             </span>
             秒
+          </p>
+        )}
+        {isClosed && (
+          <p className="mt-8 text-center font-bold leading-relaxed text-base md:text-xl">
+            <span className="text-red-600">本イベントは終了しました。</span>
+            <br />
+            関係者の皆様、本当におつかれさまでした！！
+            <br />
+            視聴者の皆様、本当にありがとう！！！
+            <br />
+            みんなでつくれたかな？！
+            <br />
+            <span className="text-red-600 text-xl md:text-2xl">最高の体育祭！</span>
           </p>
         )}
       </div>
