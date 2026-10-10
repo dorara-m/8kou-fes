@@ -86,7 +86,7 @@ function CreatorCard({
       <h4 className="mt-3 w-full truncate px-3 text-base font-bold text-slate-900 md:text-xl">
         {item.name}
       </h4>
-      <p className="mt-1 line-clamp-2 px-3 text-xs leading-tight text-slate-600 md:text-sm">
+      <p className="mt-1 px-3 text-xs leading-tight text-slate-600 md:text-sm">
         {item.role}
       </p>
       {item.xUrl && (
