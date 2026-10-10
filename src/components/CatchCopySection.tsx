@@ -32,7 +32,6 @@ export function CatchCopySection() {
             <br/>
             そんな「みんなでつくる体育祭」を目指した企画です。
           </p>
-          <p>素晴らしい活躍をされた方には、<br/>MVP賞としてオリジナルイラストをプレゼント予定！</p>
         </div>
       </div>
     </section>

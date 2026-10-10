@@ -11,11 +11,10 @@ const navItems = [
   { href: "#time-table", label: "タイムテーブル" },
   { href: "#captains", label: "団長" },
   { href: "#players", label: "選手" },
+  { href: "#creators", label: "クリエイター" },
   { href: "#games", label: "競技" },
   { href: "#fan-art", label: "ファンアート" },
   { href: "#staff", label: "実行委員" },
-  { href: "#creators", label: "クリエイター" },
-  { href: "#credits", label: "クレジット" },
 ];
 
 const SCROLL_THRESHOLD = 80;

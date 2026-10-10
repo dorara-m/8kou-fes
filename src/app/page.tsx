@@ -97,10 +97,10 @@ export default function HomePage() {
       <TimeTableSection />
       <CaptainsSection items={CAPTAINS} />
       <PlayersSection items={PLAYERS} />
+      <CreatorsSection />
       <GameSection />
       <FanArtSection items={FAN_ART} />
       <StaffSection items={STAFF} />
-      <CreatorsSection />
       <CreditsSection />
       <StreamLinkButton />
       {/* <CreatorRecruitmentButton variant="fixed" /> */}
