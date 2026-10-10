@@ -52,7 +52,7 @@ export const CREATORS: CreatorItem[] = [
   },
   {
     department: "美術部",
-    role: "カウントダウン画像",
+    role: "チラシ風画像、カウントダウン画像、トーナメント表",
     name: "波宮-Hamia-",
     image: "/images/player/x8pc2qqjvyu.png",
     xUrl: "https://x.com/slp_hamia",

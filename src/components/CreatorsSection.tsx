@@ -106,7 +106,7 @@ function CreatorCard({
 
 export function CreatorsSection() {
   return (
-    <section id="creators" className="border-t border-slate-200">
+    <section id="creators" className="border-t border-slate-200 bg-slate-100">
       <div className="mx-auto max-w-6xl px-6 py-16">
         <h2 className="text-3xl font-bold text-slate-900">クリエイター紹介</h2>
         <div className="mt-8 space-y-12">
