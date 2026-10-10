@@ -79,6 +79,13 @@ export const CREATORS: CreatorItem[] = [
     xUrl: "https://x.com/yomidori_37",
   },
   {
+    department: "美術部",
+    role: "ファンアート",
+    name: "リク祐",
+    image: "/images/creator/bakunyuruta.png",
+    xUrl: "https://x.com/krikuyuu17",
+  },
+  {
     department: "放送部",
     role: "マリオカート8DX実況・解説",
     name: "アルカ・トーニッツ",
