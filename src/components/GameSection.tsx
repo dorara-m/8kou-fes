@@ -11,7 +11,7 @@ function GameCard({
   showImage?: boolean;
 }) {
   return (
-    <li className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
+    <li className="w-[calc((100%-1.5rem)/3)] overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm md:w-40">
       {showImage && item.image ? (
         <img
           src={item.image}
@@ -24,12 +24,12 @@ function GameCard({
           aria-hidden
         />
       ) : null}
-      <div className="p-3">
-        <h4 className="text-base font-bold text-slate-900">
+      <div className="p-2">
+        <h4 className="text-sm font-bold text-slate-900">
           {item.title ?? "（タイトル未登録）"}
         </h4>
         {item.description && (
-          <p className="mt-2 text-sm leading-relaxed text-slate-600">
+          <p className="mt-1 text-xs leading-relaxed text-slate-600">
             {item.description}
           </p>
         )}
@@ -46,7 +46,7 @@ function GameList({
   showImages?: boolean;
 }) {
   return (
-    <ul className="grid grid-cols-2 gap-4 md:grid-cols-5">
+    <ul className="flex flex-wrap justify-center gap-3">
       {items.map((item, index) => (
         <GameCard
           key={`${item.title ?? "game"}-${item.image ?? index}`}
@@ -58,23 +58,33 @@ function GameList({
   );
 }
 
+/** タイムテーブルセクション内の h3 ブロックとして表示する */
 export function GameSection() {
   return (
-    <section id="games" className="border-t border-slate-200 bg-slate-100">
-      <div className="mx-auto max-w-6xl px-6 py-16">
-        <h2 className="text-3xl font-bold text-slate-900">競技紹介</h2>
+    <div id="games" className="mt-16 scroll-mt-20">
+      <h3 className="text-xl font-bold text-slate-900">競技</h3>
 
-        {CONFIRMED_GAMES.length > 0 && (
-          <div className="mt-8">
-            <GameList items={CONFIRMED_GAMES} />
-          </div>
-        )}
-
-        <div className="mt-12 text-center text-sm leading-relaxed text-slate-600">
-          <p>この大会は、任天堂の協賛・提携を受けたものではありません。</p>
-          <p>この大会は、任天堂の<a href="https://www.nintendo.co.jp/tournament_guideline/rules.html" target="_blank" rel="noopener noreferrer" className="text-blue-600">コミュニティ大会への出場および観戦に関する規約</a>に従って開催いたします。</p>
+      {CONFIRMED_GAMES.length > 0 && (
+        <div className="mt-6">
+          <GameList items={CONFIRMED_GAMES} />
         </div>
+      )}
+
+      <div className="mt-8 text-center text-sm leading-relaxed text-slate-600">
+        <p>この大会は、任天堂の協賛・提携を受けたものではありません。</p>
+        <p>
+          この大会は、任天堂の
+          <a
+            href="https://www.nintendo.co.jp/tournament_guideline/rules.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600"
+          >
+            コミュニティ大会への出場および観戦に関する規約
+          </a>
+          に従って開催いたします。
+        </p>
       </div>
-    </section>
+    </div>
   );
 }

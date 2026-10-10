@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { GameSection } from "./GameSection";
 
 type TimeTableImage = {
   src: string;
@@ -97,6 +98,7 @@ export function TimeTableSection() {
             </li>
           ))}
         </ul>
+        <GameSection />
       </div>
       {selectedImage && (
         // 縦長の画像なので、画面高さに収めず原寸幅まで広げて縦スクロールで見せる

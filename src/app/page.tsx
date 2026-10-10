@@ -6,7 +6,6 @@ import { CatchCopySection } from "@/components/CatchCopySection";
 import { StreamsSection } from "@/components/StreamsSection";
 import { CreatorsSection } from "@/components/CreatorsSection";
 // import { EntrySection } from "@/components/EntrySection";
-import { GameSection } from "@/components/GameSection";
 import { StaffSection } from "@/components/StaffSection";
 import { FanArtSection } from "@/components/FanArtSection";
 import { TimeTableSection } from "@/components/TimeTableSection";
@@ -98,7 +97,6 @@ export default function HomePage() {
       <CaptainsSection items={CAPTAINS} />
       <PlayersSection items={PLAYERS} />
       <CreatorsSection />
-      <GameSection />
       <FanArtSection items={FAN_ART} />
       <StaffSection items={STAFF} />
       <CreditsSection />
