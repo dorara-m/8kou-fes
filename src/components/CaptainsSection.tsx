@@ -147,8 +147,16 @@ export function CaptainsSection({ items }: CaptainsSectionProps) {
   const voiceEmbedUrl = getYouTubeEmbedUrl(voicePlayerItem?.voice_url);
 
   return (
-    <section id="captains" className="border-t border-slate-200 bg-slate-100">
-      <div className="max-w-6xl mx-auto px-6 py-16">
+    <section
+      id="captains"
+      className="relative overflow-hidden border-t border-slate-200 bg-slate-100"
+    >
+      <div
+        className="pointer-events-none absolute inset-0 bg-[length:100%_auto] bg-center bg-no-repeat opacity-15"
+        style={{ backgroundImage: "url(/images/fan-art/captains.jpeg)" }}
+        aria-hidden
+      />
+      <div className="relative max-w-6xl mx-auto px-6 py-16">
         <h2 className="text-3xl font-bold mb-2">団長紹介</h2>
         <p>8色のチームを率いる頼もしい団長たち！</p>
         <ul className="mt-8 grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
