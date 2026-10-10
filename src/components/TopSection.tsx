@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PlayerBubbles } from "./PlayerBubbles";
 import type { BubbleItem } from "@/types/bubble";
 import { EVENT_CLOSED, EVENT_START } from "@/lib/event";
@@ -114,10 +114,24 @@ export function TopSection({
   bubbles = [],
 }: TopSectionProps) {
   const { isOver, isClosed, hours, minutes, seconds } = useCountdown();
+  const countdownRef = useRef<HTMLParagraphElement>(null);
+  const logoRef = useRef<HTMLImageElement>(null);
+  // ロゴの高さが決まるまでカウントダウンの位置が定まらないので、泡の配置を待つ
+  const [logoLoaded, setLogoLoaded] = useState(false);
+
+  useEffect(() => {
+    if (logoRef.current?.complete) setLogoLoaded(true);
+  }, []);
 
   return (
     <section id="top" className="relative h-screen">
-      <PlayerBubbles items={bubbles} count={10} ready={showCharacters} />
+      <PlayerBubbles
+        items={bubbles}
+        count={10}
+        ready={showCharacters}
+        avoidRef={countdownRef}
+        layoutReady={logoLoaded}
+      />
 
       <div
         aria-hidden
@@ -151,12 +165,15 @@ export function TopSection({
       <div className="pointer-events-none relative z-10 max-w-4xl mx-auto px-4 h-full flex flex-col items-center justify-center">
         <div className="flex flex-col items-center">
           <img
+            ref={logoRef}
             src="/logo.png"
             alt="八煌フェス"
             className={`max-h-[min(40vh,300px)] w-auto object-contain mb-8 ${
               showLogo ? "animate-blur-in" : "opacity-0"
             }`}
             onAnimationEnd={onLogoAnimationEnd}
+            onLoad={() => setLogoLoaded(true)}
+            onError={() => setLogoLoaded(true)}
           />
           <h1
             className="text-3xl md:text-5xl font-bold mb-2 animate-fade-in-up text-center"
@@ -175,7 +192,7 @@ export function TopSection({
           </p>
         )}
         {!isOver && (
-          <p className="mt-4 tabular-nums text-xl">
+          <p ref={countdownRef} className="mt-4 tabular-nums text-xl">
             あと
             <span className="font-bold text-3xl text-red-600">{hours}</span>時間
             <span className="font-bold text-3xl text-red-600">

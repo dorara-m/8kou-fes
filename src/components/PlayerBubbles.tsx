@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type RefObject } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import type { BubbleItem } from "@/types/bubble";
 import { scrollToSection } from "@/lib/contentReady";
@@ -11,6 +11,10 @@ type PlayerBubblesProps = {
   count?: number;
   /** PC表示時、この値が true になるまで泡を表示しない（スマホでは常に表示） */
   ready?: boolean;
+  /** 泡を重ねたくない要素（カウントダウンなど）。配置時にこの要素の範囲を避ける */
+  avoidRef?: RefObject<HTMLElement | null>;
+  /** false の間は配置を待つ（ロゴ読み込みで avoidRef の位置がずれるため） */
+  layoutReady?: boolean;
 };
 
 type Bubble = {
@@ -31,6 +35,21 @@ type Bubble = {
 /** 泡同士の最低間隔(px) */
 const BUBBLE_GAP_PX = 10;
 
+/** 浮遊アニメーションで左右に揺れる最大幅(px)。画面外へはみ出さないよう配置時の余白にも使う */
+const BUBBLE_DRIFT_MAX_PX = 20;
+
+/** 浮遊アニメーションで上に浮く最大幅(px) */
+const BUBBLE_RISE_MAX_PX = 28;
+
+type Rect = { left: number; top: number; right: number; bottom: number };
+
+/** 円が矩形と重なるか（矩形は pad だけ広げて判定） */
+function overlapsRect(x: number, y: number, radius: number, rect: Rect, pad: number) {
+  const nearestX = Math.min(Math.max(x, rect.left - pad), rect.right + pad);
+  const nearestY = Math.min(Math.max(y, rect.top - pad), rect.bottom + pad);
+  return Math.hypot(x - nearestX, y - nearestY) < radius;
+}
+
 function shuffle<T>(items: T[]): T[] {
   const shuffled = [...items];
   for (let i = shuffled.length - 1; i > 0; i -= 1) {
@@ -50,6 +69,7 @@ function random(min: number, max: number) {
  * 下部（画面下端寄り）ほど全幅に広げてテキストとの衝突を避ける。
  * centerAvoidThreshold はコンテナ内で「中央寄せを避ける」境界(0-1)。
  * 既に配置済みの泡とは重ならないよう、円同士の距離をチェックしながら抽選する。
+ * avoidRect（カウントダウンなど）とは必ず重ならない位置を優先する。
  */
 function pickPosition(
   width: number,
@@ -57,6 +77,7 @@ function pickPosition(
   radius: number,
   existing: { x: number; y: number; radius: number }[],
   centerAvoidThreshold: number,
+  avoidRect: Rect | null,
 ) {
   const maxAttempts = 200;
   let best: { x: number; y: number } | null = null;
@@ -70,7 +91,22 @@ function pickPosition(
           ? random(0, width * 0.16)
           : random(width * 0.84, width)
         : random(width * 0.02, width * 0.98);
-    const clampedX = Math.min(Math.max(x, radius), Math.max(width - radius, radius));
+    const margin = radius + BUBBLE_DRIFT_MAX_PX;
+    const clampedX = Math.min(Math.max(x, margin), Math.max(width - margin, margin));
+
+    // 浮遊アニメーションで動いても重ならないよう、揺れ幅分の余白を取る
+    if (
+      avoidRect &&
+      overlapsRect(
+        clampedX,
+        y,
+        radius,
+        avoidRect,
+        BUBBLE_GAP_PX + Math.max(BUBBLE_DRIFT_MAX_PX, BUBBLE_RISE_MAX_PX),
+      )
+    ) {
+      continue;
+    }
 
     const overlaps = existing.some((b) => {
       const dx = b.x - clampedX;
@@ -82,7 +118,7 @@ function pickPosition(
     best = { x: clampedX, y };
   }
 
-  // 妥協案: 最後に試した位置をそのまま使う（多少重なる可能性あり）
+  // 妥協案: avoidRect を避けられた最後の位置を使う（泡同士は多少重なる可能性あり）
   return best ?? { x: radius, y: radius };
 }
 
@@ -90,9 +126,12 @@ export function PlayerBubbles({
   items,
   count = 10,
   ready = true,
+  avoidRef,
+  layoutReady = true,
 }: PlayerBubblesProps) {
   const [bubbles, setBubbles] = useState<Bubble[]>([]);
   const [isMobile, setIsMobile] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -101,12 +140,28 @@ export function PlayerBubbles({
       setBubbles([]);
       return;
     }
+    if (!layoutReady) return;
 
     // lg ブレークポイント(1024px)未満はスマホ扱い: 全画面・やや小さめサイズで配置
     const mobile = window.innerWidth < 1024;
     setIsMobile(mobile);
-    const width = window.innerWidth;
-    const height = mobile ? window.innerHeight : window.innerHeight / 2;
+    const containerRect = containerRef.current?.getBoundingClientRect();
+    const width = containerRect?.width ?? window.innerWidth;
+    const height =
+      containerRect?.height ??
+      (mobile ? window.innerHeight : window.innerHeight / 2);
+
+    // 避ける要素の範囲を、泡のコンテナ基準の座標に変換する
+    const avoidElRect = avoidRef?.current?.getBoundingClientRect();
+    const avoidRect: Rect | null =
+      avoidElRect && containerRect
+        ? {
+            left: avoidElRect.left - containerRect.left,
+            top: avoidElRect.top - containerRect.top,
+            right: avoidElRect.right - containerRect.left,
+            bottom: avoidElRect.bottom - containerRect.top,
+          }
+        : null;
     const centerAvoidThreshold = mobile ? 0.78 : 0.45;
     const [minSize, maxSize] = mobile ? [56, 84] : [80, 120];
 
@@ -121,6 +176,7 @@ export function PlayerBubbles({
         radius,
         placed,
         centerAvoidThreshold,
+        avoidRect,
       );
       placed.push({ x, y, radius });
 
@@ -133,14 +189,14 @@ export function PlayerBubbles({
         leftPx: x - radius,
         duration: random(7, 13),
         delay: random(0, 5),
-        drift: random(-20, 20),
-        rise: random(-28, -14),
+        drift: random(-BUBBLE_DRIFT_MAX_PX, BUBBLE_DRIFT_MAX_PX),
+        rise: random(-BUBBLE_RISE_MAX_PX, -14),
         sectionId: item.sectionId,
         teamSlug: item.teamSlug,
       };
     });
     setBubbles(next);
-  }, [items, count]);
+  }, [items, count, avoidRef, layoutReady]);
 
   const handleBubbleClick = (bubble: Bubble) => {
     if (bubble.teamSlug) {
@@ -151,15 +207,14 @@ export function PlayerBubbles({
     scrollToSection(bubble.sectionId);
   };
 
-  if (bubbles.length === 0) return null;
-
   // PC ではキャラクターのフェードインが終わるまで表示しない。スマホは即表示。
   const shouldShow = isMobile || ready;
 
   return (
     <div
+      ref={containerRef}
       aria-hidden
-      className={`pointer-events-none absolute inset-x-0 bottom-0 z-[20] h-full lg:z-[2] lg:h-1/2 ${
+      className={`pointer-events-none absolute inset-x-0 bottom-0 z-[20] h-full overflow-x-clip lg:z-[2] lg:h-1/2 ${
         shouldShow ? "animate-fade-in" : "opacity-0"
       }`}
     >

@@ -39,7 +39,7 @@ export function FanArtSection({ items }: FanArtSectionProps) {
           <h2 className="text-3xl font-bold tracking-tight">
             ファンアート
             <span className="text-lg text-slate-600">
-              #八煌掲示板
+              <a href="https://x.com/hashtag/%E5%85%AB%E7%85%8C%E6%8E%B2%E7%A4%BA%E6%9D%BF?src=hashtag_click">#八煌掲示板</a>
             </span>
           </h2>
           <p className="mt-2 text-sm text-slate-600">
