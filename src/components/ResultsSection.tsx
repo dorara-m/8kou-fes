@@ -27,12 +27,13 @@ function ResultImages({
   }
 
   // row: PC で全画像を1列（SP は2列）。
-  // それ以外: 1枚なら大きめに中央表示、複数なら PC で2列。
+  // stack / 1枚: 大きめに中央表示（複数なら縦に積む）。
+  // それ以外: PC で2列。
   // いずれも奇数の最後の1枚は中央寄せ
   const itemClassName =
     layout === "row"
       ? "w-[calc((100%-1rem)/2)] md:w-auto md:flex-1 md:min-w-0"
-      : images.length === 1
+      : layout === "stack" || images.length === 1
         ? "w-full max-w-4xl"
         : "w-full md:w-[calc((100%-1.5rem)/2)]";
 

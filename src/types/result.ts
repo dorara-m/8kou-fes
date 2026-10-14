@@ -14,8 +14,11 @@ export type ResultSubGroup = {
 /** 結果発表の見出し（h3）ごとの画像 */
 export type ResultGroup = {
   title: string;
-  /** "row" のとき PC で全画像を1列に並べる（MVP賞など） */
-  layout?: "row";
+  /**
+   * "row": PC で全画像を横1列に並べる（MVP賞など）
+   * "stack": 全画像を大きく縦に積む（総合結果など）
+   */
+  layout?: "row" | "stack";
   images?: ResultImage[];
   /** 指定するとh4で区切って表示する（images より優先） */
   subGroups?: ResultSubGroup[];

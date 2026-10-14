@@ -36,7 +36,8 @@ export const RESULT_GROUPS: ResultGroup[] = [
       ] },
     ],
   },
-  { title: "総合結果", images: [
+  { title: "総合結果", layout: "stack", images: [
+    { src: "/images/result/chukan.jpeg", alt: "中間結果", width: 1280, height: 720 },
     { src: "/images/result/last.png", alt: "最終結果", width: 1280, height: 720 },
   ] },
 ];
