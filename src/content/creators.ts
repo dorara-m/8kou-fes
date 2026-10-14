@@ -11,7 +11,7 @@ export const CREATORS: CreatorItem[] = [
   {
     department: "美術部",
     role: "準優勝商品、live2Dアイテム",
-    name: "糸泉綿子",
+    name: "糸泉線子",
     image: "/images/creator/senko.png",
     xUrl: "https://x.com/itoizumi_senko",
   },
@@ -144,7 +144,7 @@ export const CREATORS: CreatorItem[] = [
   {
     department: "軽音部",
     role: "テーマソング",
-    name: "のまいげ",
+    name: "のいまげ",
     image: "/images/creator/nomaige.png",
     xUrl: "https://x.com/eZ2leZTlGL64536",
   },
