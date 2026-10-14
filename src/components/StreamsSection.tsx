@@ -23,7 +23,7 @@ export function StreamsSection({
   return (
     <section id="streams" className="border-t border-slate-200 bg-white">
       <div className="max-w-6xl mx-auto px-6 py-16 md:pt-40">
-        <h2 className="text-3xl font-bold mb-8">本配信</h2>
+        <h2 className="text-3xl font-bold mb-8">本配信アーカイブ</h2>
         {/* lg 以上で 4 列。flex-wrap + justify-center で 7 枠が 4・3 の中央揃えになる */}
         <ul className="flex flex-wrap justify-center gap-6">
           {items.map((item) => (
