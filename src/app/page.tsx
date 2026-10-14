@@ -9,6 +9,7 @@ import { CreatorsSection } from "@/components/CreatorsSection";
 import { StaffSection } from "@/components/StaffSection";
 import { FanArtSection } from "@/components/FanArtSection";
 import { TimeTableSection } from "@/components/TimeTableSection";
+import { ResultsSection } from "@/components/ResultsSection";
 import { CreditsSection } from "@/components/CreditsSection";
 import { TopSection } from "@/components/TopSection";
 import { CAPTAINS } from "@/content/captains";
@@ -94,6 +95,7 @@ export default function HomePage() {
       />
       <StreamsSection items={STREAMS} relatedItems={RELATED_STREAMS} />
       <CatchCopySection />
+      <ResultsSection />
       <TimeTableSection />
       <CaptainsSection items={CAPTAINS} />
       <PlayersSection items={PLAYERS} />

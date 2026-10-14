@@ -7,6 +7,7 @@ import { scrollToSection } from '@/lib/contentReady';
 const navItems = [
   { href: "#streams", label: "本配信" },
   { href: "#concept", label: "八煌フェスとは？" },
+  { href: "#results", label: "結果発表" },
   { href: "#time-table", label: "タイムテーブル" },
   { href: "#captains", label: "団長" },
   { href: "#players", label: "選手" },
