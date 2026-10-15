@@ -16,8 +16,17 @@ export const RESULT_GROUPS: ResultGroup[] = [
   {
     title: "競技",
     subGroups: [
-      { title: "スプラトゥーン3", images: [] },
-      { title: "マリオカート8DX", images: [] },
+      { title: "スプラトゥーン3", images: [
+        { src: "/images/result/nawabari-t.png", alt: "ナワバリトーナメント", width: 1280, height: 720 },
+        { src: "/images/result/nawabari-r.png", alt: "ナワバリ点数", width: 1280, height: 720 },
+        { src: "/images/result/area-t.png", alt: "ガチエリアトーナメント", width: 1280, height: 720 },
+        { src: "/images/result/area-r.png", alt: "ガチエリア点数", width: 1280, height: 720 },
+      ] },
+      { title: "マリオカート8DX", images: [
+        { src: "/images/result/marica1.png", alt: "マリカ①", width: 1280, height: 720 },
+        { src: "/images/result/marica2.png", alt: "マリカ②", width: 1280, height: 720 },
+        { src: "/images/result/marica-sum.png", alt: "マリカ総合", width: 1280, height: 720 },
+      ] },
       { title: "ファーストペンギン", images: [
         { src: "/images/result/faspen1-1.png", alt: "ファーストペンギン1-1", width: 1280, height: 720 },
         { src: "/images/result/faspen1-2.png", alt: "ファーストペンギン1-2", width: 1280, height: 720 },
@@ -25,7 +34,11 @@ export const RESULT_GROUPS: ResultGroup[] = [
         { src: "/images/result/faspen2-2.png", alt: "ファーストペンギン2-2", width: 1280, height: 720 },
       ] },
       { title: "テトリス99", images: [
-        { src: "/images/result/tetris.png", alt: "テトリス", width: 1280, height: 720 },
+        { src: "/images/result/tetris1.png", alt: "テトリス1", width: 1280, height: 720 },
+        { src: "/images/result/tetris2.png", alt: "テトリス2", width: 1280, height: 720 },
+        { src: "/images/result/tetris3.png", alt: "テトリス3", width: 1280, height: 720 },
+        { src: "/images/result/tetris-team.png", alt: "テトリスチーム総合", width: 1280, height: 720 },
+        { src: "/images/result/tetris-person.png", alt: "テトリス個人総合", width: 1280, height: 720 },
       ] },
       { title: "クイズ大会", images: [
         { src: "/images/result/quiz.png", alt: "クイズ", width: 1280, height: 720 },
