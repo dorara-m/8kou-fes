@@ -20,6 +20,7 @@ import { BUBBLE_ITEMS } from "@/content/bubbles";
 import { RELATED_STREAMS, STREAMS } from "@/content/streams";
 import { CreatorRecruitmentButton } from "@/components/CreatorRecruitmentButton";
 import { StreamLinkButton } from "@/components/StreamLinkButton";
+import { NetPrintButton } from "@/components/NetPrintButton";
 import { markContentReady } from "@/lib/contentReady";
 import { useCallback, useEffect, useState } from "react";
 
@@ -104,6 +105,7 @@ export default function HomePage() {
       <StaffSection items={STAFF} />
       <CreditsSection />
       <StreamLinkButton />
+      <NetPrintButton />
       {/* <CreatorRecruitmentButton variant="fixed" /> */}
     </div>
   );
