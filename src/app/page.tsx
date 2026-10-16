@@ -80,7 +80,7 @@ export default function HomePage() {
   return (
     <div className="relative">
       <img
-        src="/okumono_sora2.png"
+        src="/images/okumono_sora2.png"
         alt=""
         className="absolute inset-0 z-0 h-[100vh] md:h-[110vh] w-full object-cover"
         aria-hidden

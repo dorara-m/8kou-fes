@@ -19,35 +19,35 @@ type CharacterBg = {
 
 const CHARACTERS: CharacterBg[] = [
   {
-    src: "/ralulu.png",
+    src: "/images/ralulu.png",
     alt: "ラルル",
     className: "bottom-[-130px] left-[7%] w-[360px]",
     zIndex: 7,
     fadeInOrder: 4,
   },
   {
-    src: "/mipen.png",
+    src: "/images/mipen.png",
     alt: "みぺん",
     className: "bottom-[-20px] left-[1%] w-[370px]",
     zIndex: 6,
     fadeInOrder: 3,
   },
   {
-    src: "/numecha.png",
+    src: "/images/numecha.png",
     alt: "ぬめちゃ",
     className: "bottom-[-100px] right-[12%] w-[370px]",
     zIndex: 6,
     fadeInOrder: 1,
   },
   {
-    src: "/van.png",
+    src: "/images/van.png",
     alt: "ゔぁん。",
     className: "bottom-[40px] right-[2%] w-[290px]",
     zIndex: 5,
     fadeInOrder: 0,
   },
   {
-    src: "/noa.png",
+    src: "/images/noa.png",
     alt: "のあ",
     className: "bottom-[90px] left-[15%] w-[320px]",
     zIndex: 5,
@@ -166,7 +166,7 @@ export function TopSection({
         <div className="flex flex-col items-center">
           <img
             ref={logoRef}
-            src="/logo.png"
+            src="/images/logo.png"
             alt="八煌フェス"
             className={`max-h-[min(40vh,300px)] w-auto object-contain mb-8 ${
               showLogo ? "animate-blur-in" : "opacity-0"

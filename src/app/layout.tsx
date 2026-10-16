@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   title: '八煌フェス〜V体育祭〜',
   description: '「やりたいことを、きみと一緒に。」',
   openGraph: {
-    images: ['/ogp.jpg']
+    images: ['/images/ogp.jpg']
   }
 };
 

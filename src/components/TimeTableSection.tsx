@@ -11,13 +11,13 @@ import {
 
 const TIME_TABLE_IMAGES: ZoomableImageData[] = [
   {
-    src: "/timetable1.jpeg",
+    src: "/images/timetable1.jpeg",
     alt: "タイムテーブル 1",
     width: 1200,
     height: 1350,
   },
   {
-    src: "/timetable2.jpeg",
+    src: "/images/timetable2.jpeg",
     alt: "タイムテーブル 2",
     width: 1200,
     height: 1350,
