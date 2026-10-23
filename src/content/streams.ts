@@ -12,8 +12,16 @@ export const STREAMS: StreamItem[] = withIds<Omit<StreamItem, "id">>([
   { url: "https://www.youtube.com/live/e3HKmk2saEE?si=gDfdhN8DZM0lFYz4", title: "23:00〜 閉会式" },
 ]);
 
-/** 本配信の下に小さく並べる関連配信。url が未設定の枠は「配信準備中」と表示されます。 */
-export const RELATED_STREAMS: StreamItem[] = withIds<Omit<StreamItem, "id">>([
+/** 本配信の下に並べる前夜祭の配信。url が未設定の枠は「配信準備中」と表示されます。 */
+export const PRE_PARTY_STREAMS: StreamItem[] = withIds<Omit<StreamItem, "id">>([
   { url: "https://www.youtube.com/live/6WYbqlzZfmI?si=OLXQK5cnIvVubT8x", title: "前夜祭" },
-  // { url: "", title: "後夜祭" },
+]);
+
+/**
+ * 前夜祭の下に並べる後夜祭歌枠リレーのプレイリスト。
+ * url は「プレイリストの1本目の動画 + list」の形式（サムネイルに1本目の動画を使うため）。
+ */
+export const AFTER_PARTY_PLAYLISTS: StreamItem[] = withIds<Omit<StreamItem, "id">>([
+  { url: "https://www.youtube.com/watch?v=uUCYxbCSmFA&list=PLHOMRMOzHElk", title: "DAY1" },
+  { url: "https://www.youtube.com/watch?v=ztpgpBmPohE&list=PLc_tK9geJ8PA", title: "DAY2" },
 ]);

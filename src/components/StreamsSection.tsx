@@ -2,6 +2,7 @@
 
 import {
   getYouTubeEmbedUrl,
+  getYouTubePlaylistUrl,
   getYouTubeThumbnailUrls,
   getYouTubeVideoId,
 } from "@/lib/youtube";
@@ -10,7 +11,10 @@ import { useState } from "react";
 
 type StreamsSectionProps = {
   items: StreamItem[];
-  relatedItems?: StreamItem[];
+  /** 前夜祭の配信 */
+  prePartyItems?: StreamItem[];
+  /** 後夜祭歌枠リレーのプレイリスト */
+  afterPartyItems?: StreamItem[];
 };
 
 /** YouTube が「画像なし」の代わりに返すプレースホルダー画像の幅 */
@@ -18,7 +22,8 @@ const YOUTUBE_PLACEHOLDER_WIDTH = 120;
 
 export function StreamsSection({
   items,
-  relatedItems = [],
+  prePartyItems = [],
+  afterPartyItems = [],
 }: StreamsSectionProps) {
   return (
     <section id="streams" className="border-t border-slate-200 bg-white">
@@ -40,18 +45,36 @@ export function StreamsSection({
             </li>
           ))}
         </ul>
-        {relatedItems.length > 0 && (
+        {prePartyItems.length > 0 && (
           <div className="mt-12">
-            <h3 className="text-lg font-bold mb-4 text-center">関連配信</h3>
-            <ul className="flex flex-wrap justify-center gap-4">
-              {relatedItems.map((item) => (
-                <li key={item.id} className="w-[calc((100%-1rem)/2)] md:w-60">
+            <SubHeading>前夜祭</SubHeading>
+            <ul className="mx-auto flex max-w-3xl flex-wrap justify-center gap-6">
+              {prePartyItems.map((item) => (
+                <li
+                  key={item.id}
+                  className="w-full sm:w-[calc((100%-1.5rem)/2)]"
+                >
                   <StreamPlayer item={item} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        {afterPartyItems.length > 0 && (
+          <div className="mt-12">
+            <SubHeading>後夜祭 歌枠リレー</SubHeading>
+            <ul className="mx-auto grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-2">
+              {afterPartyItems.map((item) => (
+                <li key={item.id} className="flex flex-col items-center">
+                  <div className="w-full">
+                    <StreamPlayer item={item} />
+                  </div>
                   {item.title && (
-                    <p className="mt-2 text-xs font-bold text-slate-900 text-center">
+                    <p className="mt-2 text-sm font-bold text-slate-900 text-center">
                       {item.title}
                     </p>
                   )}
+                  <PlaylistLink url={item.url} />
                 </li>
               ))}
             </ul>
@@ -59,6 +82,45 @@ export function StreamsSection({
         )}
       </div>
     </section>
+  );
+}
+
+function SubHeading({ children }: { children: React.ReactNode }) {
+  return (
+    <h3 className="mb-4 flex items-center justify-center gap-3 text-lg font-bold">
+      <span className="h-px w-8 bg-slate-300" aria-hidden />
+      {children}
+      <span className="h-px w-8 bg-slate-300" aria-hidden />
+    </h3>
+  );
+}
+
+function PlaylistLink({ url }: { url?: string }) {
+  const playlistUrl = getYouTubePlaylistUrl(url);
+  if (!playlistUrl) return null;
+
+  return (
+    <a
+      href={playlistUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="mt-2 inline-flex items-center gap-1.5 rounded-full border border-slate-300 px-4 py-1.5 text-xs font-bold text-slate-700 transition hover:border-red-600 hover:text-red-600"
+    >
+      <svg
+        className="h-4 w-4"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden
+      >
+        <path d="M3 6h13M3 12h13M3 18h8" />
+        <path d="m16 15 5 3-5 3z" />
+      </svg>
+      YouTubeで一覧を見る
+    </a>
   );
 }
 

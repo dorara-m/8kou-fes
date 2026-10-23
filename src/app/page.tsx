@@ -17,7 +17,11 @@ import { PLAYERS } from "@/content/players";
 import { STAFF } from "@/content/staff";
 import { FAN_ART } from "@/content/fanArt";
 import { BUBBLE_ITEMS } from "@/content/bubbles";
-import { RELATED_STREAMS, STREAMS } from "@/content/streams";
+import {
+  AFTER_PARTY_PLAYLISTS,
+  PRE_PARTY_STREAMS,
+  STREAMS,
+} from "@/content/streams";
 import { CreatorRecruitmentButton } from "@/components/CreatorRecruitmentButton";
 import { StreamLinkButton } from "@/components/StreamLinkButton";
 import { NetPrintButton } from "@/components/NetPrintButton";
@@ -94,7 +98,11 @@ export default function HomePage() {
         onLogoAnimationEnd={() => setShowSubtitle(true)}
         bubbles={BUBBLE_ITEMS}
       />
-      <StreamsSection items={STREAMS} relatedItems={RELATED_STREAMS} />
+      <StreamsSection
+        items={STREAMS}
+        prePartyItems={PRE_PARTY_STREAMS}
+        afterPartyItems={AFTER_PARTY_PLAYLISTS}
+      />
       <CatchCopySection />
       <ResultsSection />
       <TimeTableSection />

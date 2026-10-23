@@ -27,11 +27,36 @@ export function getYouTubeVideoId(url?: string) {
   }
 }
 
+/** URL の list パラメータ（プレイリストID）。なければ null */
+export function getYouTubePlaylistId(url?: string) {
+  if (!url) return null;
+
+  try {
+    const playlistId = new URL(url).searchParams.get("list");
+    return playlistId && /^[A-Za-z0-9_-]+$/.test(playlistId)
+      ? playlistId
+      : null;
+  } catch {
+    return null;
+  }
+}
+
+export function getYouTubePlaylistUrl(url?: string) {
+  const playlistId = getYouTubePlaylistId(url);
+  return playlistId
+    ? `https://www.youtube.com/playlist?list=${playlistId}`
+    : null;
+}
+
+/** list パラメータ付きの URL はその動画から始まるプレイリストとして埋め込む */
 export function getYouTubeEmbedUrl(url?: string) {
   const videoId = getYouTubeVideoId(url);
-  return videoId
-    ? `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`
-    : null;
+  if (!videoId) return null;
+
+  const playlistId = getYouTubePlaylistId(url);
+  return `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0${
+    playlistId ? `&list=${playlistId}` : ""
+  }`;
 }
 
 /** 高画質順のサムネイル候補。存在しない解像度があるため上から順に試す。 */
