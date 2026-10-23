@@ -4,6 +4,7 @@ import { resolveLabelTextColor } from "@/lib/teamColor";
 import { getYouTubeEmbedUrl } from "@/lib/youtube";
 import type { CaptainItem } from "@/types/captain";
 import { useState } from "react";
+import { CaptainMessageModal } from "./CaptainMessageModal";
 import { VoicePlayerModal } from "./VoicePlayerModal";
 
 type CaptainsSectionProps = {
@@ -13,9 +14,11 @@ type CaptainsSectionProps = {
 function CaptainCard({
   item,
   onPlayVoice,
+  onOpenMessage,
 }: {
   item: CaptainItem;
   onPlayVoice: (item: CaptainItem) => void;
+  onOpenMessage: (item: CaptainItem) => void;
 }) {
   const labelTextColor = resolveLabelTextColor(item.team?.color);
   const hasVoice = Boolean(getYouTubeEmbedUrl(item.voice_url));
@@ -64,8 +67,11 @@ function CaptainCard({
           {item.comment}
         </p>
       )}
+      {item.message_image && (
+        <MessageButton item={item} onOpenMessage={onOpenMessage} />
+      )}
       {(item.x_url || item.youtube_url) && (
-        <div className="flex gap-2 justify-center mt-auto">
+        <div className="flex gap-2 justify-center">
           {item.x_url && (
             <a
               href={item.x_url}
@@ -108,6 +114,49 @@ function CaptainCard({
   );
 }
 
+function MessageButton({
+  item,
+  onOpenMessage,
+}: {
+  item: CaptainItem;
+  onOpenMessage: (item: CaptainItem) => void;
+}) {
+  const teamColor = item.team?.color ?? "#4052a7";
+  const hoverTextColor = resolveLabelTextColor(item.team?.color);
+  // 白雪チームの色は白背景に溶けるので枠線だけ濃くする
+  const borderColor = hoverTextColor === "#fff" ? teamColor : "#cbd5e1";
+
+  return (
+    <button
+      type="button"
+      onClick={() => onOpenMessage(item)}
+      className="mt-auto mb-2 inline-flex items-center gap-2 rounded-full border-2 bg-white px-5 py-2 text-sm font-bold text-slate-900 transition hover:bg-[var(--team-color)] hover:text-[var(--team-text-color)] focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2"
+      style={
+        {
+          borderColor,
+          "--team-color": teamColor,
+          "--team-text-color": hoverTextColor,
+        } as React.CSSProperties
+      }
+    >
+      <svg
+        className="h-5 w-5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden
+      >
+        <rect x="3" y="5" width="18" height="14" rx="2" />
+        <path d="m3 7 9 6 9-6" />
+      </svg>
+      大会前日メッセージ
+    </button>
+  );
+}
+
 function VoiceButton({
   item,
   onPlayVoice,
@@ -145,6 +194,8 @@ export function CaptainsSection({ items }: CaptainsSectionProps) {
     null,
   );
   const voiceEmbedUrl = getYouTubeEmbedUrl(voicePlayerItem?.voice_url);
+  const messageItems = items.filter((item) => item.message_image);
+  const [messageIndex, setMessageIndex] = useState<number | null>(null);
 
   return (
     <section
@@ -165,6 +216,11 @@ export function CaptainsSection({ items }: CaptainsSectionProps) {
               key={item.id}
               item={item}
               onPlayVoice={setVoicePlayerItem}
+              onOpenMessage={(target) =>
+                setMessageIndex(
+                  messageItems.findIndex(({ id }) => id === target.id),
+                )
+              }
             />
           ))}
         </ul>
@@ -174,6 +230,14 @@ export function CaptainsSection({ items }: CaptainsSectionProps) {
           embedUrl={voiceEmbedUrl}
           name={voicePlayerItem.name ?? "団長"}
           onClose={() => setVoicePlayerItem(null)}
+        />
+      )}
+      {messageIndex !== null && (
+        <CaptainMessageModal
+          items={messageItems}
+          index={messageIndex}
+          onChangeIndex={setMessageIndex}
+          onClose={() => setMessageIndex(null)}
         />
       )}
     </section>
