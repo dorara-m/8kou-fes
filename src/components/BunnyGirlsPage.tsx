@@ -244,7 +244,7 @@ export function BunnyGirlsPage() {
     <div className="min-h-screen bg-black px-4 py-16 text-white md:py-24">
       <div className="mx-auto max-w-5xl">
         <h1 className="mb-4 text-center text-3xl font-bold md:text-5xl">
-          <a href="https://x.com/hashtag/%E5%85%AB%E7%85%8C%E3%83%95%E3%82%A7%E3%82%B9%E3%83%90%E3%83%8B%E3%83%BC%E3%82%AC%E3%83%BC%E3%83%AB%E9%83%A8?src=hashtag_click&f=live" target="_blank" rel="noopener noreferrer" className="underline decoration-2 underline-offset-8 transition hover:opacity-70">#八煌フェスバニーガール部</a>
+          <a href="https://x.com/hashtag/%E5%85%AB%E7%85%8C%E3%83%95%E3%82%A7%E3%82%B9%E3%83%90%E3%83%8B%E3%83%BC%E3%82%AC%E3%83%BC%E3%83%AB%E9%83%A8?src=hashtag_click&f=live" target="_blank" rel="noopener noreferrer" className="underline decoration-2 underline-offset-8 transition hover:opacity-70">#八煌フェス<br className="md:hidden" />バニーガール部</a>
         </h1>
         <p className="mb-12 text-center text-sm text-white/60 md:mb-16">
           部員募集中...🐰

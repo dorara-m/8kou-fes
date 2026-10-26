@@ -42,7 +42,8 @@ function fromStaff(name: string, ...bunnyImages: BunnyImage[]): BunnyGirlItem {
     id: `staff-${staff.id}`,
     name,
     role: "実行委員",
-    icon: staff.image?.url,
+    // 実行委員紹介で切り替わって出る「もう1枚」の方を使う
+    icon: (staff.image2 ?? staff.image)?.url,
     bunnyImages,
   };
 }
