@@ -2,6 +2,7 @@
 
 import type { MouseEvent } from 'react';
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { scrollToSection } from '@/lib/contentReady';
 
 const navItems = [
@@ -20,6 +21,7 @@ const navItems = [
 const SCROLL_THRESHOLD = 80;
 
 export function Header() {
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [visible, setVisible] = useState(false);
 
@@ -52,6 +54,9 @@ export function Header() {
     'opacity-100 translate-y-0 pointer-events-auto';
   const headerHidden =
     'opacity-0 -translate-y-2 pointer-events-none';
+
+  // ナビはトップページ内のアンカーなので、おまけページ等では出さない
+  if (pathname !== '/') return null;
 
   return (
     <header>

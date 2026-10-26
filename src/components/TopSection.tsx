@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { PlayerBubbles } from "./PlayerBubbles";
 import type { BubbleItem } from "@/types/bubble";
@@ -219,6 +220,20 @@ export function TopSection({
           </p>
         )}
       </div>
+
+      {/* おまけページ「#八煌フェスバニーガール部」への導線（右下の固定ボタンの上に着地させる） */}
+      <Link
+        href="/bunny"
+        className="absolute bottom-24 right-4 z-20 grid h-14 w-14 place-items-center rounded-full border-2 border-white bg-black text-3xl shadow-[0_0_20px_rgba(216,123,174,0.8)] transition hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d87bae] focus-visible:ring-offset-2 md:bottom-32 md:right-10 md:h-16 md:w-16 md:text-4xl animate-bunny-drop-roll motion-reduce:animate-none"
+        aria-label="おまけ：#八煌フェスバニーガール部"
+        title="#八煌フェスバニーガール部"
+      >
+        <span
+          aria-hidden
+          className="absolute inset-0 rounded-full border-2 border-[#d87bae] opacity-0 animate-bunny-ring motion-reduce:hidden"
+        />
+        <span aria-hidden>🐰</span>
+      </Link>
     </section>
   );
 }
