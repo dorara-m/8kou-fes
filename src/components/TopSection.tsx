@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { AfterMeetingBanner } from "./AfterMeetingBanner";
 import { PlayerBubbles } from "./PlayerBubbles";
 import type { BubbleItem } from "@/types/bubble";
 import { EVENT_CLOSED, EVENT_START } from "@/lib/event";
@@ -220,6 +221,8 @@ export function TopSection({
           </p>
         )}
       </div>
+
+      <AfterMeetingBanner show={showCharacters} />
 
       {/* おまけページ「#八煌フェスバニーガール部」への導線（右下の固定ボタンの上に着地させる） */}
       <Link

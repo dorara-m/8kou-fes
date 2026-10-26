@@ -15,6 +15,8 @@ type StreamsSectionProps = {
   prePartyItems?: StreamItem[];
   /** 後夜祭歌枠リレーのプレイリスト */
   afterPartyItems?: StreamItem[];
+  /** 実行委員会アフターミーティングの配信。空の間は COMING SOON を表示する */
+  afterMeetingItems?: StreamItem[];
 };
 
 /** YouTube が「画像なし」の代わりに返すプレースホルダー画像の幅 */
@@ -24,6 +26,7 @@ export function StreamsSection({
   items,
   prePartyItems = [],
   afterPartyItems = [],
+  afterMeetingItems = [],
 }: StreamsSectionProps) {
   return (
     <section id="streams" className="border-t border-slate-200 bg-white">
@@ -80,6 +83,34 @@ export function StreamsSection({
             </ul>
           </div>
         )}
+        <div className="mt-12">
+          <SubHeading>実行委員会アフターミーティング</SubHeading>
+          <ul className="mx-auto flex max-w-3xl flex-wrap justify-center gap-6">
+            {afterMeetingItems.length > 0 ? (
+              afterMeetingItems.map((item) => (
+                <li
+                  key={item.id}
+                  className="w-full sm:w-[calc((100%-1.5rem)/2)]"
+                >
+                  <StreamPlayer item={item} />
+                </li>
+              ))
+            ) : (
+              <li className="w-full sm:w-[calc((100%-1.5rem)/2)]">
+                <div className="grid aspect-video place-items-center rounded-lg border border-slate-200 bg-slate-900 text-center">
+                  <p>
+                    <span className="block font-heading text-2xl font-bold tracking-widest text-white">
+                      COMING SOON
+                    </span>
+                    <span className="mt-1 block text-xs font-bold text-slate-400">
+                      11月6日(金) 配信予定
+                    </span>
+                  </p>
+                </div>
+              </li>
+            )}
+          </ul>
+        </div>
       </div>
     </section>
   );

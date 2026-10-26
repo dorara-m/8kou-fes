@@ -25,3 +25,8 @@ export const AFTER_PARTY_PLAYLISTS: StreamItem[] = withIds<Omit<StreamItem, "id"
   { url: "https://www.youtube.com/watch?v=uUCYxbCSmFA&list=PLHOMRMOzHElk", title: "DAY1" },
   { url: "https://www.youtube.com/watch?v=ztpgpBmPohE&list=PLc_tK9geJ8PA", title: "DAY2" },
 ]);
+
+/** 実行委員会アフターミーティングの配信。空の間は「COMING SOON」を表示する */
+export const AFTER_MEETING_STREAMS: StreamItem[] = withIds<Omit<StreamItem, "id">>([
+  // { url: "https://www.youtube.com/watch?v=..." },
+]);

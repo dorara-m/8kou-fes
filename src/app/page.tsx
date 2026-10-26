@@ -18,6 +18,7 @@ import { STAFF } from "@/content/staff";
 import { FAN_ART } from "@/content/fanArt";
 import { BUBBLE_ITEMS } from "@/content/bubbles";
 import {
+  AFTER_MEETING_STREAMS,
   AFTER_PARTY_PLAYLISTS,
   PRE_PARTY_STREAMS,
   STREAMS,
@@ -102,6 +103,7 @@ export default function HomePage() {
         items={STREAMS}
         prePartyItems={PRE_PARTY_STREAMS}
         afterPartyItems={AFTER_PARTY_PLAYLISTS}
+        afterMeetingItems={AFTER_MEETING_STREAMS}
       />
       <CatchCopySection />
       <ResultsSection />
