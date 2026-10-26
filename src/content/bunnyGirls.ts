@@ -79,4 +79,6 @@ export const BUNNY_GIRLS: BunnyGirlItem[] = [
   fromPlayer("海汐 しゃち", { url: "/images/bunny/syachi.jpeg", author:{name: "椎乃。",xUrl:"https://x.com/Shiino419_/status/2114699774679281713?s=20"}}),
   fromPlayer("ジョカ・ジョカ", { url: "/images/bunny/joka.jpeg", author:{name: "宵未鳥",xUrl:"https://x.com/yomidori_37/status/2114724359554334978?s=20"}}),
   fromCreator("アスタリスク", { url: "/images/bunny/asterisk.jpeg", author:{name: "アスタリスク",xUrl:"https://x.com/asterisk_vtuber/status/2114737996515905779?s=20"}}),
+  fromCreator("音來山マオ", { url: "/images/bunny/mao.jpeg", author:{name: "音來山マオ",xUrl:"https://x.com/negiyama_mao/status/2114745673694539894?s=20"}}),
+  fromCreator("N番囚人のえぬた", { url: "/images/bunny/enuta.jpeg", author:{name: "N番囚人のえぬた",xUrl:"https://x.com/pano_N_pticon/status/2114747170633216080?s=20"}}),
 ];
