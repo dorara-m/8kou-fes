@@ -27,7 +27,7 @@ export const CAPTAINS: CaptainItem[] = withIds<Omit<CaptainItem, "id">>([
       height: 850,
       width: 850,
     },
-    name: "星野夜空",
+    name: "星野 夜空",
     team: getTeam("4l9vzx4a9gz"),
     message_image: {
       url: "/images/captain-message/aonami.png",
@@ -45,7 +45,7 @@ export const CAPTAINS: CaptainItem[] = withIds<Omit<CaptainItem, "id">>([
       height: 850,
       width: 850,
     },
-    name: "山田恋羽",
+    name: "山田 恋羽",
     team: getTeam("92q7vscgxo"),
     message_image: {
       url: "/images/captain-message/touka.png",
@@ -99,7 +99,7 @@ export const CAPTAINS: CaptainItem[] = withIds<Omit<CaptainItem, "id">>([
       height: 850,
       width: 850,
     },
-    name: "紫虎ユラ",
+    name: "紫虎 ユラ",
     team: getTeam("sfypgr-1p35"),
     message_image: {
       url: "/images/captain-message/purple.png",
@@ -117,7 +117,7 @@ export const CAPTAINS: CaptainItem[] = withIds<Omit<CaptainItem, "id">>([
       height: 850,
       width: 850,
     },
-    name: "奏俱らくり",
+    name: "奏俱 らくり",
     team: getTeam("qz8mg90j4"),
     message_image: {
       url: "/images/captain-message/shirayuki.png",
@@ -135,7 +135,7 @@ export const CAPTAINS: CaptainItem[] = withIds<Omit<CaptainItem, "id">>([
       height: 850,
       width: 850,
     },
-    name: "異吹ムレ",
+    name: "異吹 ムレ",
     team: getTeam("ilrg1xnh0"),
     message_image: {
       url: "/images/captain-message/kokuya.png",

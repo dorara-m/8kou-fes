@@ -4,21 +4,21 @@ export const CREATORS: CreatorItem[] = [
   {
     department: "制作室",
     role: "告知動画",
-    name: "如月あやめ",
+    name: "如月 あやめ",
     image: "/images/creator/ayame.png",
     xUrl: "https://x.com/kisaragi15ayame",
   },
   {
     department: "美術部",
     role: "準優勝商品、live2Dアイテム",
-    name: "糸泉線子",
+    name: "糸泉 線子",
     image: "/images/creator/senko.png",
     xUrl: "https://x.com/itoizumi_senko",
   },
   {
     department: "美術部",
     role: "カウントダウン画像、ファンアート",
-    name: "絵餓鬼ザビ丸",
+    name: "絵餓鬼 ザビ丸",
     image: "/images/player/8etp0d5snn1t.png",
     xUrl: "https://x.com/ZABIMALL_VT",
   },
@@ -32,14 +32,14 @@ export const CREATORS: CreatorItem[] = [
   {
     department: "美術部",
     role: "MVP賞",
-    name: "黒川よみ",
+    name: "黒川 よみ",
     image: "/images/creator/yomi.png",
     xUrl: "https://x.com/huwapyon_vt",
   },
   {
     department: "美術部",
     role: "団長任命状",
-    name: "栞つづる",
+    name: "栞 つづる",
     image: "/images/creator/tuzuru.png",
     xUrl: "https://twitter.com/tuduru_shiori"
   },
@@ -67,7 +67,7 @@ export const CREATORS: CreatorItem[] = [
   {
     department: "美術部",
     role: "大会当日サムネイル、推しチーム画像",
-    name: "夜縹はか",
+    name: "夜縹 はか",
     image: "/images/creator/haka.png",
     xUrl: "https://x.com/yohanadahaka_",
   },
@@ -95,14 +95,14 @@ export const CREATORS: CreatorItem[] = [
   {
     department: "放送部",
     role: "スプラトゥーン3司会",
-    name: "音來山マオ",
+    name: "音來山 マオ",
     image: "/images/creator/mao.png",
     xUrl: "https://x.com/negiyama_mao",
   },
   {
     department: "放送部",
     role: "テトリス99司会",
-    name: "冠城夜曇",
+    name: "冠城 夜曇",
     image: "/images/creator/kaburaki.png",
     xUrl: "https://x.com/snow_No__",
   },
@@ -116,7 +116,7 @@ export const CREATORS: CreatorItem[] = [
   {
     department: "放送部",
     role: "マリオカート8DX司会",
-    name: "涼乱ユラ",
+    name: "涼乱 ユラ",
     image: "/images/creator/yura.png",
     xUrl: "https://x.com/Suzuran_Yura",
   },
