@@ -82,4 +82,11 @@ export const BUNNY_GIRLS: BunnyGirlItem[] = [
   fromCreator("アスタリスク", { url: "/images/bunny/asterisk.jpeg", author:{name: "アスタリスク",xUrl:"https://x.com/asterisk_vtuber/status/2114737996515905779?s=20"}}),
   fromCreator("音來山マオ", { url: "/images/bunny/mao.jpeg", author:{name: "音來山マオ",xUrl:"https://x.com/negiyama_mao/status/2114745673694539894?s=20"}}),
   fromCreator("N番囚人のえぬた", { url: "/images/bunny/enuta.jpeg", author:{name: "N番囚人のえぬた",xUrl:"https://x.com/pano_N_pticon/status/2114747170633216080?s=20"}}),
+  fromPlayer("青空 あのこ", { url: "/images/bunny/anoko.jpeg", author:{name: "青空 あのこ",xUrl:"https://x.com/aonocco/status/2114750695404601754?s=20"}}),
+  fromPlayer("白金 燐", { url: "/images/bunny/ojo.jpeg", author:{name: "白銀 燐",xUrl:"https://x.com/akairo_ojo/status/2114750752900174057?s=20"}}),
+  fromStaff("夢咲乃彩", { url: "/images/bunny/noa.jpeg",author:{name: "夢咲 乃彩",xUrl:"https://x.com/N_YumesakiVT/status/2114755642242261478?s=20"}}),
+  fromPlayer("しにー", { url: "/images/bunny/shini.jpeg", author:{name: "しにー",xUrl:"https://x.com/sinichan0423/status/2114759615070306813?s=20"}}),
+  fromPlayer("まるみん", { url: "/images/bunny/marumin.jpeg", author:{name: "まるみん",xUrl:"https://x.com/maruminchannel/status/2114762726061035573?s=20"}}),
+  fromPlayer("雅 はつる", { url: "/images/bunny/hatsuru.png", author:{name: "雅 はつる",xUrl:"https://x.com/haturu_miyabi_v/status/2114764331879707109?s=20"}}),
+  fromPlayer("スバひび(うたのおにいさん)", { url: "/images/bunny/subahibi.jpeg", author:{name: "ノクターン・ヴェルティーナ",xUrl:"https://x.com/NocturneVertina/status/2114781355825586266?s=20"}}),
 ];
